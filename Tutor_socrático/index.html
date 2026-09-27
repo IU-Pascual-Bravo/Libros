@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=yes,minimal-ui">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<title>El tutor socrático con IA</title>
+
+	<!-- se precarga la imagen utilizada para el cargador del libro, en caso de que se utilice -->
+	<link rel="preload" as="image" href="images/general/icartesilibri_logo.svg">
+
+	<!-- configuración del libro -->
+	<script>
+	window.book_config = {
+		// parámetro que indica si los capítulos, secciones y figura se auto numeran
+		// para que los capítulos se auto numeren deben utilizar la etiqueta <h1>
+		// para que las secciones se auto numeren deben utilizar la etiqueta <h2>
+		auto_numerate_sections_and_figures: true,
+		// parámetro para que los interactivos se muestren a pantalla completa al presionar el botón de la esquina superior derecha
+		open_interactives_fullscreen: true,
+		// parámetro para usar el id de las referencias bibliográficas en lugar de la autonumeración
+		bibitem_ref_id: false,
+	}
+	</script>
+
+  <!-- núcleo del libro interactivo -->
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <script type="text/javascript" src="js/book.js" charset="utf-8"></script>
+  
+  <!-- personalización del usuario -->
+  <link rel="stylesheet" href="extra/fonts.css" type="text/css">
+  <link rel="stylesheet" href="extra/style.css" type="text/css">
+  <link rel="stylesheet" href="extra/mis_estilos.css" type="text/css">
+
+  <!-- inclusión de la biblioteca KaTex -->
+  <link rel="stylesheet" type="text/css" href="extra/katex/katex.min.css">
+  <script src="extra/katex/katex.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="extra/katex/copy-tex.min.css">
+  <script src="extra/katex/copy-tex.min.js"></script>
+  <script src="extra/katex/auto-render.min.js"></script>
+
+  <!-- Opcional en caso de requerir formulas químicas -->
+  <script src="extra/katex/mhchem.min.js"></script>
+  
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [ {left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}, {left: "\\[", right: "\\]", display: true}, {left: "\\(", right: "\\)", display: false} ]
+    });
+  });
+  </script>
+  
+  <style>
+        .flotad {
+            float: right;
+            margin-left: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+		
+		.flotai {
+            float: left;
+			margin-right: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+        
+    </style>
+</head>
+
+<body>
+	<div id="book_loader_container">
+		<!-- se utiliza un elemento para que funcione como cargador del libro -->
+		<div id="book_loader"></div>
+		<!-- y se indica la imagen a utilizar para personalizar el libro -->
+		<img src="images/general/icartesilibri_logo.svg" width="20%" style="padding-left:1em;">
+	</div>
+	
+	<div id="book_container">
+		<div id="btn_back_page"></div>
+		<div id="btn_next_page"></div>
+		<button id="go_to_table_of_content"></button>
+		
+		<button id="btn_config"></button>
+		<div id="config_options">
+			<div id="dark_light_mode"></div>
+		</div>
+
+		<!-- si este elemento no esta presente, el botón de la tabla de contenido lleva a la primera página con un elemento class="toc_link" -->
+	<div id="table_of_content"></div>
+
+	<div id="pages_container">
+	<!--  -->
+	<div class="page" style="background-color:transparent;"></div>
+
+	<!-- Portada -->
+	<div class="page invertcolor" style="margin:0; padding:0; background-size:contain; background-image:url(images/general/portada.svg);">
+				
+		<div class="invertcolor" style="position: absolute; width: 640px; height: 825px; left: 0px; top: 0px; background-image: url(&quot;images/cap1.jpg&quot;); background-size: 640px 825px; background-repeat: no-repeat;"></div>
+		<!-- Título del libro -->
+		
+		
+			
+		<!-- Nombre del autor del libro -->
+		<div style="position: absolute; bottom: 60px; left: 0px; width: 640px; font-size: 24px; color: rgb(255, 255, 255); text-align: center; text-shadow: rgb(0, 0, 0) 2px 2px 5px; white-space: pre-line;">Juan Guillermo Rivera Berrío</div>
+		
+		<!-- Logo de la editorial o institución -->
+		<p style="position: absolute; bottom: -10px; left: 0px; width: 640px; text-align: center; right: 0px;"> <a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/gifanimadoRedProyecto.gif" width="120px"></a> </p>
+	</div>
+
+	<!--  -->
+	<div class="page" style="display:flex; align-items:center; justify-content:center;">
+		<a style="width:50%" target="_blank" href="https://proyectodescartes.org/iCartesiLibri/"><img src="images/general/icartesilibri_logo.svg" width="100%"></a>
+	</div>
+
+	<!--  -->
+	<!-- init-page-num="true" es un parámetro que indica que a partir de esta página comienza la numeración -->
+	<!-- inicialmente los números de las páginas se numeran con numerales romanos -->
+	<!-- num="" es un parámetro que indica que esta página no lleva numeración visible -->
+	<!--  -->
+	<div class="page" style="text-align:center; font-size:120%;" init-page-num="true" num="">
+		<h1>El tutor socrático con IA</h1>
+		<br><br><br><br>
+		<div style="margin-top: 100px;"><b style="white-space: pre-line;">Juan Guillermo Rivera Berrío</b>
+		<br><br><a target="_blank" href="https://pascualbravo.edu.co/"> <img src="images/logo.png" width="55%"></a>
+		</div>
+		<div align="center" style="position: absolute; bottom: 105px; left:0; right:0;"> Fondo Editorial RED Descartes<br><br>
+		<a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/logo_descartes3.png" width="300px"></a></div>
+
+		<div align="center" style="position: absolute; bottom: 50px; left:0; right:0;">Córdoba (España)<br>
+		2026</div>
+	</div>
+
+	<!--  -->
+    <div class="page" num="">
+		<p>Título de la obra:<br>
+        El tutor socrático con IA</p>
+		<br>
+		<p>Autor: <br>Juan Guillermo Rivera Berrío</p><br>
+      	  
+		<p>
+        Código JavaScript para el libro: <a href="https://github.com/jlongi/libro_interactivo" target="_blank">Joel Espinosa Longi</a>, <a href="https://www.matem.unam.mx/" target="_blank">IMATE</a>, UNAM. <br>
+        Recursos interactivos: <a href="http://descartes.matem.unam.mx/" target="_blank">DescartesJS</a>, herramientas de IA<br>
+        Fuentes: <a href="https://fonts.google.com/specimen/Lato" target="_blank">Lato</a> y <a href="https://fonts.google.com/specimen/Ubuntu+Mono" target="_blank">UbuntuMono</a><br>
+		</p><br><br>
+		<p>Red Educativa Digital Descartes<br>
+        Córdoba (España)<br>
+        <a href="mailto:descartes@proyectodescartes.org?Subject=Fondo editorial"> descartes@proyectodescartes.org</a><br>
+        <a href="https://proyectodescartes.org/descartescms/" target="_blank">https://proyectodescartes.org</a><br>
+        <br>
+        Proyecto iCartesiLibri<br>
+        <a href="https://proyectodescartes.org/iCartesiLibri/index.htm" target="_blank">https://proyectodescartes.org/iCartesiLibri/index.htm</a> <br>
+        <br>
+        ISBN: <br>
+		</p>
+		<p style="font-size:10px; position: absolute; bottom: 30px; left: 50px; right:0;"><a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank"><img src="images/general/88x31.png" style="height:36px; width:99px"></a><br>
+        Esta obra está bajo una licencia Creative Commons 4.0 internacional: Reconocimiento-No Comercial-Compartir Igual.</p>
+    
+	</div>
+
+	<!-- p5 -->
+	<div class="page">
+		<h2>Tabla de contenido</h2>
+
+		<!-- con esto se agrega una entrada en la tabla de contenido,
+		href="#prefacio" indica una referencia a una elemento html con 
+		el parámetro id="prefacio", automáticamente se busca está referencia
+		y se agrega el título correspondiente y la página donde se encuentra -->
+			
+		<div class="toc_link" href="#prefacio"></div>
+
+		
+		
+	<div class="toc_link" href="#capitulo_1"></div><div class="toc_link" href="#capitulo_2"></div><div class="toc_link" href="#capitulo_3"></div><div class="toc_link" href="#capitulo_4"></div><div class="toc_link" href="#capitulo_5"></div><div class="toc_link" href="#capitulo_6"></div><div class="toc_link" href="#capitulo_7"></div><div class="toc_link" href="#capitulo_8"></div><div class="toc_link" href="#capitulo_9"></div>
+	<div class="toc_link" href="#capitulo_10"></div>
+	<div class="toc_link" href="#quiz"></div>
+	<div class="toc_link" href="#tutor"></div>
+	
+	</div>
+
+
+
+	<!--  -->
+	<!-- num-type-arabic="true" es un parámetro que indica que a partir de esta página la numeración utilizara numerales arábigos -->
+	<!-- p5  -->
+	<div class="page" num-type-arabic="true">
+		<h1 id="prefacio">Prefacio</h1>
+
+		<p>La inteligencia artificial está transformando la manera en que buscamos información, resolvemos problemas y aprendemos. Sin embargo, incorporar estas tecnologías a la educación plantea una pregunta fundamental: ¿cómo podemos utilizar la IA para fortalecer el pensamiento del estudiante sin sustituirlo?</p>
+		<p>Este libro parte de una idea sencilla: una buena respuesta no siempre es la mejor forma de enseñar. En determinadas situaciones, una pregunta bien formulada puede resultar mucho más poderosa. Preguntar qué evidencia respalda una afirmación, qué supuesto se está utilizando, cómo podría comprobarse una conclusión o qué ocurriría si cambiara una condición permite que el estudiante participe activamente en la construcción de su conocimiento.</p>
+		<p>El tutor socrático con IA propone precisamente esta perspectiva. Inspirado en la tradición de la mayéutica socrática, el tutor no se limita a entregar soluciones, sino que acompaña al estudiante mediante preguntas progresivas, pistas, contraejemplos y oportunidades de revisión. Su propósito es hacer visible el razonamiento, detectar dificultades y favorecer que quien aprende pueda explicar, justificar y reconstruir sus propias ideas.</p>
+		<p>A lo largo de la obra se desarrollan distintas dimensiones de este enfoque: la pregunta que despierta, Sócrates en la era digital, el diseño del diálogo, la escucha, la formulación de preguntas con propósito, la IA como espejo, el razonamiento paso a paso y el aprendizaje a partir de los errores. Estos elementos muestran que el valor educativo de la inteligencia artificial no depende únicamente de su capacidad para generar información, sino de cómo se diseña y utiliza la interacción con el estudiante.</p>
+		
+	</div>
+	
+	<!-- p6 -->
+	<!-- Una página en blanco y sin numeración visible -->
+	<!--  -->
+	<div class="page">
+		<p>Pero un tutor inteligente no está exento de riesgos. Una IA puede interpretar incorrectamente una respuesta, formular preguntas poco apropiadas, proporcionar información imprecisa o generar dependencia si el estudiante espera siempre una pista o una solución. Por ello, el acompañamiento tecnológico debe estar unido al criterio pedagógico, a la verificación de la información y a la supervisión docente. El libro plantea, además, cuestiones de privacidad, transparencia, autonomía, sesgos y responsabilidad, entendiendo que la tecnología educativa debe respetar la dignidad y la libertad de quien aprende.</p>
+		<p>El propósito, entonces, no es presentar a la IA como un sustituto del profesor ni como un oráculo capaz de resolver cualquier problema. Es, más bien, explorarla como interlocutor intelectual: una herramienta capaz de escuchar, preguntar, contrastar, orientar y devolver al estudiante una imagen más clara de su propio razonamiento.</p>
+		<p>Esta perspectiva adquiere especial sentido cuando el aprendizaje se vincula con problemas reales. Un grupo de estudiantes puede utilizar un tutor socrático para investigar el desperdicio de agua en su institución, recopilar datos, cuestionar sus propias conclusiones, comparar alternativas, estimar sus efectos y presentar una propuesta ante la comunidad educativa. En ese proceso, la IA no proporciona simplemente un plan terminado: ayuda a los estudiantes a comprender su entorno, participar en él y actuar de manera crítica, colaborativa y responsable.</p>
+		<p>En última instancia, El tutor socrático con IA invita a cambiar la pregunta «¿qué respuesta puede darme la inteligencia artificial?» por otra más educativa: «¿qué pregunta puede ayudarme a pensar mejor?» Porque aprender no consiste solamente en encontrar respuestas. También consiste en aprender a preguntar, argumentar, dudar, verificar, corregir y transformar.</p>
+	
+	
+	</div>
+
+	<!-- Pega aquí las páginas que generaste -->
+
+
+	<!-- p7 -->
+	<div class="page"><h1>El tutor socrático con IA</h1><h2 id="capitulo_1">La pregunta que despierta</h2><figure class="flotai" data-capitulo="1">
+		<img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_11.jpg" alt="3D render of a curious student awakening in a luminous library, guided by a calm holographic AI Socratic tutor; a glowing question mark opens a doorway to stars, symbolizing discovery through questioning, warm cinematic light, thoughtful atmosphere, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+        <figcaption>La pregunta que despierta</figcaption>
+                    
+        </figure><p>Una <strong>pregunta que despierta</strong> no busca únicamente comprobar si el estudiante conoce una respuesta; pretende activar su curiosidad, hacer visible su razonamiento y conducirlo hacia una comprensión más profunda. En el tutor socrático con IA, la pregunta funciona como una herramienta de aprendizaje: en lugar de entregar una solución inmediata, el sistema formula interrogantes graduales como “¿Qué información tienes?”, “¿Qué relación encuentras?” o “¿Cómo podrías comprobarlo?”. Así, la inteligencia artificial acompaña el pensamiento sin sustituirlo.</p>
+				<div class="caja2"><h1 style="font-size:22px">El funcionamiento de este enfoque</h1>
+		 Depende de varios componentes principales: <strong>un modelo de diálogo</strong>, capaz de interpretar las respuestas; <strong>un diagnóstico del nivel de comprensión</strong>; <strong>una secuencia de preguntas orientadoras</strong>; y <strong>mecanismos de retroalimentación</strong>, que ofrecen pistas sin revelar directamente la solución.</div><br>
+				
+	</div>
+
+	<!-- p8 -->
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_1.jpg" style="background-image: url(&quot;images/fondo_pagina_1.jpg&quot;); background-size: 640px 825px; background-position: 0px 0px; background-repeat: no-repeat;" num="">
+	
+	</div>
+
+	<!-- p8 -->	
+	<div class="page">
+		<p>Internamente, el tutor analiza la respuesta del estudiante, identifica posibles errores conceptuales, estima su grado de avance y selecciona la siguiente pregunta. Este proceso convierte la conversación en un itinerario adaptativo, en el que cada intervención depende de lo que el estudiante acaba de expresar.</p><p>Entre sus aplicaciones prácticas se encuentran la resolución de problemas matemáticos, el análisis de textos, el aprendizaje de idiomas y la investigación científica. Por ejemplo, ante un problema de proporciones, la IA no tendría que decir inmediatamente qué operación realizar, sino preguntar: <strong>“¿Qué cantidades se están comparando?”</strong>, <strong>“¿La relación aumenta o disminuye?”</strong> y <strong>“Qué representación —tabla, dibujo o expresión— podría ayudarte?”</strong>. Este método favorece varios beneficios: desarrolla la autonomía, fortalece el pensamiento crítico, permite aprender de los errores y ayuda al estudiante a explicar sus decisiones con sus propias palabras. La pregunta deja de ser un examen y se convierte en una invitación a pensar.</p><p>Sin embargo, el tutor socrático con IA también presenta desafíos y limitaciones. Una pregunta demasiado difícil puede frustrar; una demasiado obvia puede resultar poco estimulante. Además, la IA puede interpretar de forma incorrecta una respuesta ambigua o formular preguntas repetitivas que no se ajusten al contexto emocional y educativo del estudiante. Por ello, el sistema debe combinar <strong>adaptación</strong>, <strong>lenguaje claro</strong>, <strong>respeto por los ritmos individuales</strong> y supervisión docente. El profesor sigue siendo esencial para evaluar la calidad del diálogo y decidir cuándo conviene orientar de manera más directa.</p><p>En la práctica, una secuencia eficaz puede organizarse así:</p>
+	</div>
+		
+	<!-- p9 -->		
+	<div class="page">
+		<ul>
+		<li><strong>Explorar:</strong> “¿Qué sabes ya sobre el problema?”</li>
+		<li><strong>Relacionar:</strong> “¿Con qué idea estudiada se conecta?”</li>
+		<li><strong>Contrastar:</strong> “¿Qué ocurriría si cambiaras este dato?”</li>
+		<li><strong>Justificar:</strong> “¿Por qué consideras válida tu respuesta?”</li>
+		<li><strong>Transferir:</strong> “¿Podrías aplicar este procedimiento en una situación diferente?”</li>
+		</ul>
+		<div class="caja10">
+		<p>De este modo, la IA no actúa como una máquina de respuestas, sino como un <strong>acompañante intelectual</strong>. Su propósito es despertar la pregunta que el estudiante todavía no se había formulado y ayudarlo a descubrir que comprender no consiste solo en llegar a una conclusión, sino en aprender a construirla, revisarla y defenderla.</p></div>
+		
+	</div>
+	
+	<!-- p10 -->		
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_2.jpg" style="background-image: url(&quot;images/fondo_pagina_2.jpg&quot;); background-size: 1280px 825px; background-position: 0px 0px; background-repeat: no-repeat;" num="">
+	</div>
+
+	<!-- p11 -->	
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_2.jpg" style="background-image: url(&quot;images/fondo_pagina_2.jpg&quot;); background-size: 1280px 825px; background-position: -640px 0px; background-repeat: no-repeat;"  num="">
+	
+	</div>
+	
+	<!-- p12 -->	
+	<div class="page">
+	
+	<h2 id="capitulo_2">Sócrates en la era digital</h2>
+		<figure class="flotai" data-capitulo="2">
+		<img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_12.jpg" alt="3D render of Socrates in a luminous futuristic classroom, guiding a curious student beside a holographic AI tutor, ancient marble columns merging with digital networks, glowing question marks and dialogue bubbles, atmosphere of wisdom, critical thinking, and human-AI collaboration, cinematic lighting, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+        <figcaption>Sócrates en la era digital</figcaption>
+        </figure>
+		<p>Sócrates, en la era digital, no se entiende como un simple personaje histórico, sino como un <strong>modelo de diálogo orientado al aprendizaje</strong>. El tutor socrático con IA funciona mediante preguntas que ayudan al estudiante a examinar sus ideas, detectar contradicciones y construir respuestas propias, en lugar de recibir soluciones inmediatas. Su principio fundamental es la <strong>mayéutica</strong>: acompañar al aprendiz para que descubra el conocimiento mediante la reflexión, la argumentación y la revisión de sus supuestos.</p>
+		<p>Los componentes principales de este tutor incluyen un modelo de lenguaje, un sistema de análisis de respuestas, una memoria del contexto de la conversación y reglas pedagógicas. La IA debe identificar el nivel de comprensión del estudiante, formular preguntas progresivas y adaptar la dificultad. Su proceso interno puede resumirse así:</p>
+		<p>1. Analiza la respuesta y detecta conceptos correctos, errores o vacíos.</p>
+		<p>2. Formula una pregunta que estimule el razonamiento.</p><p>3. Evita revelar la solución antes de tiempo.</p>
+		<p>4. Ofrece pistas, ejemplos o contraejemplos cuando el estudiante lo necesita.</p>
+		
+	</div>
+
+	<!-- p13 -->		
+	<div class="page">
+		<p>5. Comprueba si la persona puede explicar y aplicar lo aprendido.</p>
+		<p>En la práctica, este enfoque puede utilizarse para resolver problemas matemáticos, interpretar textos literarios, estudiar ciencias o preparar debates. Por ejemplo, ante la pregunta «¿Por qué se producen las estaciones del año?», el tutor no tendría que responder directamente: podría preguntar «¿Qué relación observas entre la inclinación del eje terrestre y la cantidad de luz solar que recibe cada hemisferio?». De este modo, la conversación transforma el aprendizaje en una investigación guiada. También puede pedir al estudiante que justifique una respuesta, compare dos explicaciones o encuentre un contraejemplo.</p>
+		<div class="caja10">Entre sus principales <strong>beneficios y ventajas</strong> se encuentran la personalización, el desarrollo del pensamiento crítico y la posibilidad de aprender al propio ritmo. La IA puede ofrecer retroalimentación inmediata sin sustituir completamente el esfuerzo intelectual del estudiante. Además, permite practicar de forma segura, reformular preguntas y recibir apoyo constante.</div>
+		<br><p>Sin embargo, existen <strong>desafíos y limitaciones</strong>: una IA puede formular preguntas poco adecuadas, ofrecer información incorrecta o confundir una duda legítima con un error conceptual. También existe el riesgo de que el estudiante dependa demasiado de las pistas o acepte las respuestas del sistema sin analizarlas.</p>
+		
+	</div>
+	
+	<!-- p14 -->
+	<div class="page">
+		<p>Por ello, un buen tutor socrático con IA debe combinar tecnología y criterio pedagógico. Sus respuestas han de ser claras, respetuosas y ajustadas a la edad, los conocimientos previos y los objetivos del aprendiz. En un caso real de uso, un estudiante que redacta un ensayo podría recibir preguntas como: <strong>«¿Cuál es tu tesis?»</strong>, <strong>«Qué evidencia la respalda?»</strong> y <strong>«Qué objeción podría plantear un lector?»</strong>. Así, la IA no escribe el trabajo por él, sino que fortalece su capacidad para argumentar, revisar y aprender de manera autónoma.</p><h2 id="capitulo_3">Diseñar el diálogo</h2><figure class="flotai" data-capitulo="3">
+		<img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_13.jpg" alt="3D render of an AI Socratic tutor and a curious student shaping a glowing dialogue through floating question spheres, branching paths, and illuminated thought bubbles, warm collaborative atmosphere, cinematic lighting, symbolizes guided inquiry and reflective learning, no readable text or labels. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+        <figcaption>Diseñar el diálogo</figcaption>
+         </figure><p>Diseñar el diálogo de un <strong>tutor socrático con IA</strong> consiste en estructurar una conversación que ayude al estudiante a pensar, justificar sus respuestas y construir el conocimiento por sí mismo, en lugar de recibir soluciones inmediatas. Su principio fundamental es la <strong>indagación guiada</strong>: la IA formula preguntas progresivas, detecta las ideas previas del alumno y adapta la dificultad según sus respuestas. Así, el diálogo no se limita a transmitir información, sino que convierte cada intercambio en una oportunidad de razonamiento y metacognición.</p>
+		 
+	</div>
+	
+	<!-- p15 -->	
+	<div class="page">
+		<p>Los componentes principales de este diseño son: <strong>objetivo de aprendizaje</strong>, contexto del problema, diagnóstico de conocimientos previos, banco de preguntas, mecanismos de retroalimentación y criterios para decidir cuándo ofrecer una pista o una explicación. En los procesos internos, la IA debe interpretar la respuesta del estudiante, identificar errores conceptuales, distinguir entre una duda y una respuesta incompleta, y seleccionar la siguiente intervención. Una secuencia eficaz puede avanzar desde preguntas abiertas —«¿Qué observas?»— hacia preguntas de análisis —«¿Por qué crees que ocurre?»— y, finalmente, hacia preguntas de verificación —«¿Cómo comprobarías tu conclusión?»—.</p><p>En la práctica, el tutor puede aplicar un ciclo conversacional como el siguiente:</p>
+		<ul>
+		<li><strong>Explorar:</strong> solicitar al estudiante que explique lo que entiende.</li>
+		<li><strong>Preguntar:</strong> plantear una cuestión que dirija su atención sin revelar la respuesta.</li>
+		<li><strong>Contrastar:</strong> pedir evidencias, ejemplos o una justificación.</li>
+		<li><strong>Orientar:</strong> ofrecer una pista breve cuando el alumno se bloquea.</li>
+		<li><strong>Revisar:</strong> invitarlo a corregir, resumir o transferir lo aprendido a una situación nueva.</li></ul>
+		<p>Este enfoque ofrece beneficios importantes: fomenta la autonomía, hace visible el razonamiento, desarrolla la capacidad de argumentar y permite una etroalimentación personalizada. </p>
+		
+	</div>
+	
+	<!-- p16 -->		
+	<div class="page">
+		<p>Por ejemplo, ante un estudiante que afirma que una planta crece porque «toma alimento del suelo», la IA no debería corregirlo de inmediato. Podría preguntar: <strong>«¿Qué evidencias indicarían que la planta obtiene su materia principalmente del suelo?»</strong> y después proponer una comparación entre una planta cultivada con y sin nutrientes. De este modo, el alumno revisa su explicación mediante la observación y no solo mediante la memorización de una respuesta correcta.</p>
+		<div class="caja3">Sin embargo, diseñar este diálogo presenta desafíos y limitaciones. Una IA puede formular preguntas demasiado generales, insistir en una línea de razonamiento equivocada o interpretar como error una respuesta válida expresada con palabras distintas. También existe el riesgo de utilizar preguntas mecánicas que aparenten ser socráticas, pero que conduzcan de forma encubierta a una única respuesta. Para evitarlo, conviene establecer reglas de interacción: <strong>no proporcionar la solución antes de explorar el razonamiento</strong>, adaptar el nivel de ayuda, reconocer diferentes caminos válidos y cerrar cada conversación con una síntesis elaborada por el estudiante. Así, el tutor actúa como mediador del pensamiento y no como un simple generador automático de respuestas.</div>
+		
+	</div>
+	
+	<!-- p17 -->
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_3.jpg" style="background-image: url(&quot;images/fondo_pagina_3.jpg&quot;); background-size: 640px 825px; background-position: 0px 0px; background-repeat: no-repeat;">
+	
+	</div>
+	
+	<!-- p18 -->
+	<div class="page">
+		<h2 id="capitulo_4">Escuchar para enseñar</h2><figure class="centrada" data-capitulo="4">
+        <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_14.jpg" alt="3D render of an AI Socratic tutor attentively listening to a student, glowing speech waves transforming into thoughtful questions, ancient Greek agora blended with a modern learning interface, warm empathetic lighting, visual focus on dialogue and understanding; any readable text or labels must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:70%;">
+        <figcaption>Escuchar para enseñar</figcaption>
+        </figure>
+		<p><strong>Escuchar para enseñar</strong> significa comprender la respuesta del estudiante antes de formular una nueva pregunta o explicación. En un tutor socrático con IA, escuchar no se limita a reconocer palabras: implica identificar ideas, dudas, errores, emociones, nivel de confianza y posibles razonamientos incompletos. El principio fundamental es que la IA no debe apresurarse a ofrecer la solución, sino utilizar la intervención del estudiante como evidencia para guiar el aprendizaje mediante preguntas que promuevan la reflexión.</p>
+		<p style="text-align-last; justify">Este proceso depende de varios componentes principales: el análisis del lenguaje, la memoria del diálogo, la detección de conceptos clave,</p>
+		
+	</div>
+	
+	<!-- p19 -->
+	<div class="page">
+		<p> la estimación del nivel de comprensión y la selección de una respuesta pedagógica adecuada. Internamente, el tutor puede seguir una secuencia como la siguiente:</p>
+		<p>1. <strong>Interpretar</strong> lo que el estudiante ha dicho, incluso si está incompleto o contiene errores.</p>
+		<p>2. <strong>Distinguir</strong> entre una respuesta correcta, una intuición parcialmente válida y una confusión conceptual.</p>
+		<p>3. <strong>Inferir</strong> qué sabe el estudiante y qué necesita revisar.</p>
+		<p>4. <strong>Elegir</strong> una pregunta, pista, ejemplo o reformulación que favorezca el siguiente descubrimiento.</p>
+		<p>5. <strong>Comprobar</strong> si la nueva intervención demuestra una comprensión más profunda.</p>
+		<p>La escucha socrática funciona porque convierte cada respuesta en una oportunidad de diagnóstico. Si un estudiante afirma: “La planta crece porque absorbe su alimento del suelo”, la IA no debería responder inmediatamente con una definición científica. Puede preguntar: <strong>“¿Qué ocurre con la planta cuando recibe luz, agua y dióxido de carbono?”</strong> o <strong>“¿Cómo comprobarías qué parte de su crecimiento proviene del suelo?”</strong>. De este modo, el tutor ayuda a revisar la idea inicial sin descalificarla. La conversación se transforma en un proceso de construcción compartida, en el que el estudiante explica, contrasta, corrige y justifica.</p>
+		<p style="text-align-last: justify">Sus aplicaciones prácticas abarcan la resolución de problemas, la lectura crítica, la escritura, las ciencias y la formación profesional. Por ejemplo, ante un problema matemático, la IA puede escuchar no solo el resultado, sino también el procedimiento: <strong>“¿Por qué decidiste utilizar esa operación?”</strong>. En una redacción, puede detectar que el</p>
+		
+	</div>
+
+	<!-- p20 -->	
+	<div class="page">
+		<p> estudiante tiene una tesis clara, pero carece de evidencias, y preguntar: <strong>“¿Qué ejemplo respalda mejor tu afirmación?”</strong>. Entre sus principales beneficios se encuentran:</p>
+		<ul>
+		<p></p><li>Favorecer la autonomía y el pensamiento crítico.</li><p></p>
+		<p></p><li>Personalizar el ritmo y la dificultad de las preguntas.</li><p></p>
+		<p></p><li>Detectar errores antes de que se conviertan en hábitos.</li><p></p>
+		<p></p><li>Crear un espacio seguro para expresar dudas.</li><p></p>
+		<p></p><li>Promover explicaciones propias en lugar de respuestas memorizadas.</li><p></p>
+		<p></p>
+		</ul><p></p>
+		<div class="caja3">Sin embargo, escuchar mediante IA también presenta desafíos. El sistema puede interpretar mal una frase ambigua, confundir una duda con un error o responder de manera demasiado genérica. Además, no siempre reconoce adecuadamente el contexto cultural, la ironía, la frustración o el silencio reflexivo del estudiante. Por ello, un tutor socrático eficaz debe combinar <strong>precisión tecnológica con prudencia pedagógica</strong>: pedir aclaraciones cuando sea necesario, reconocer sus límites y evitar conducir al estudiante hacia una respuesta predeterminada. En un caso real de aprendizaje, si un alumno responde “no sé”, la mejor intervención no sería repetir la explicación, sino ofrecer una pregunta más accesible: <strong>“¿Qué dato del problema sí puedes identificar?”</strong>. Escuchar, en este sentido, es transformar la incertidumbre en el punto de partida de una nueva pregunta.</div>
+		
+	</div>
+	
+	<!-- p21 -->	
+	<div class="page">
+		<h2 id="capitulo_5">Preguntar con propósito</h2><figure class="centrada" data-capitulo="5">
+        <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_15.jpg" alt="3D render of an AI Socratic tutor guiding a curious student through a glowing maze of meaningful questions, each path revealing insight and self-discovery, warm cinematic lighting, thoughtful expressions, elegant educational atmosphere, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:79%;">
+        <figcaption>Preguntar con propósito</figcaption>
+        </figure><p>Preguntar con propósito es la capacidad de formular preguntas que orientan el aprendizaje en lugar de limitarse a solicitar respuestas. En el contexto del <strong>tutor socrático con IA</strong>, significa utilizar la conversación para ayudar al estudiante a analizar, justificar, relacionar y revisar sus propias ideas. La IA no busca demostrar cuánto sabe, sino guiar al alumno mediante preguntas progresivas que hagan visible su razonamiento y favorezcan una comprensión más profunda.</p>
+		
+	</div>
+
+	<!-- p22 -->
+	<div class="page">
+		<p>Los componentes principales de este enfoque son:</p>
+		<ul>
+		<p></p><li><strong>La intención pedagógica:</strong> determinar qué se desea desarrollar, como comprensión, argumentación o resolución de problemas.</li><p></p>
+		<p></p><li><strong>El diagnóstico:</strong> identificar qué sabe el estudiante, qué confunde y qué estrategias está utilizando.</li><p></p>
+		<p></p><li><strong>La pregunta orientadora:</strong> formular intervenciones abiertas, claras y adecuadas a su nivel.</li><p></p>
+		<p></p><li><strong>La retroalimentación:</strong> ofrecer pistas, contraejemplos o reformulaciones sin sustituir el esfuerzo del alumno.</li><p></p>
+		<p></p><li><strong>La metacognición:</strong> invitar al estudiante a explicar cómo llegó a una conclusión y cómo podría verificarla.</li><p></p>
+		<p></p></ul><p></p><p>El principio de funcionamiento es avanzar desde el pensamiento actual del estudiante hacia un pensamiento más elaborado. Para ello, la IA puede comenzar con preguntas de clarificación —«¿Qué significa este concepto con tus propias palabras?»—, continuar con preguntas de evidencia —«¿Qué datos respaldan tu afirmación?»— y terminar con preguntas de transferencia —«¿En qué otra situación podrías aplicar esta idea?»—. Internamente, el tutor analiza la respuesta, estima el nivel de comprensión, detecta posibles errores y selecciona la siguiente pregunta. Este proceso debe ser <strong>adaptativo y gradual</strong>: una pregunta demasiado difícil bloquea, mientras que una demasiado obvia no genera aprendizaje significativo.</p>
+		<p>En la práctica, este método puede aplicarse a distintas áreas. </p>
+		
+	</div>
+	
+	<!-- p23 -->	
+	<div class="page">
+		<p>Ante un problema de ciencias, en vez de entregar directamente la solución, la IA puede preguntar: «¿Qué variables intervienen?», «¿Qué relación esperas entre ellas?» y «¿Cómo comprobarías tu hipótesis?». En literatura, puede orientar el análisis con preguntas como «¿Qué evidencia del texto sostiene esa interpretación?» o «¿Cómo cambiaría el sentido si el narrador fuera otro?». Sus principales beneficios son promover la autonomía, fortalecer el razonamiento crítico, hacer visibles los errores y adaptar el acompañamiento a cada estudiante.</p>
+		<div class="caja10"><p>Sin embargo, <strong>preguntar con propósito también presenta desafíos</strong>. La IA puede interpretar de forma incorrecta una respuesta, formular preguntas repetitivas o dar pistas excesivas que reduzcan la independencia del alumno. Además, no toda pregunta abierta es automáticamente útil: debe estar vinculada con un objetivo claro y con el nivel de desarrollo del estudiante. Un tutor responsable revisa la calidad de sus intervenciones, evita conducir al alumno hacia una única respuesta y combina preguntas con momentos de síntesis. Así, la conversación se convierte en una herramienta para pensar, no en un mecanismo disfrazado para entregar soluciones.</p></div>
+		
+	</div>
+	
+	<!-- p24 -->	
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_4.jpg" style="background-image: url(&quot;images/fondo_pagina_4.jpg&quot;); background-size: 1280px 825px; background-position: 0px 0px; background-repeat: no-repeat;">
+	
+	</div>
+	
+	<!-- p25 -->	
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_4.jpg" style="background-image: url(&quot;images/fondo_pagina_4.jpg&quot;); background-size: 1280px 825px; background-position: -640px 0px; background-repeat: no-repeat;">
+	
+	</div>
+	
+	<!-- p26 -->	
+	<div class="page">
+		<h2 id="capitulo_6">La IA como espejo</h2>
+		<figure class="flotai" data-capitulo="6">
+        <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_16.jpg" alt="3D render of a thoughtful student facing a luminous AI mirror, where reflections reveal deeper questions, branching ideas, and self-discovery; a calm Socratic tutor presence guides without giving answers, warm blue-gold lighting, symbolic and contemplative atmosphere, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+        <figcaption>La IA como espejo</figcaption>
+        </figure>
+		<p>La <strong>IA como espejo</strong> es un tutor que no se limita a proporcionar respuestas, sino que refleja el razonamiento del estudiante para ayudarle a examinarlo. Su función principal consiste en formular preguntas, señalar contradicciones y hacer visibles los supuestos que suelen permanecer ocultos. En lugar de decir directamente “la respuesta es esta”, puede preguntar: <em>¿Qué evidencia respalda tu conclusión?</em>, <em>¿Qué ocurriría si cambiaras esa premisa?</em> o <em>¿Cómo explicarías tu idea con un ejemplo?</em> Así, el estudiante observa su propio pensamiento y aprende a regularlo.</p><p>Este enfoque se apoya en varios <strong>componentes principales</strong>: un modelo capaz de interpretar el lenguaje, un sistema de memoria contextual, estrategias de diálogo socrático y criterios para adaptar la dificultad. Su principio de funcionamiento es devolver al estudiante una versión organizada de sus propias ideas, sin sustituir completamente su esfuerzo intelectual. En términos prácticos, el tutor puede:</p>
+		<ul>
+		<p></p><li>Reformular una respuesta para comprobar si ha comprendido bien.</li><p></p>
+		<p></p><li>Identificar saltos lógicos o conceptos confusos.</li><p></p></ul>
+		
+	</div>
+	
+	<!-- p27 -->	
+	<div class="page">	
+		<ul>
+		
+		<p></p><li>Proponer preguntas graduadas, de lo concreto a lo abstracto.</li><p></p>
+		<p></p><li>Solicitar evidencias, ejemplos y contraejemplos.</li><p></p>
+		<p></p><li>Invitar a revisar y corregir la respuesta inicial.</li><p></p>
+		<p></p></ul><p></p><p>Internamente, el proceso suele comenzar con el análisis de la intervención del estudiante: qué afirma, qué razones ofrece y qué aspectos parecen incompletos. Después, la IA selecciona una pregunta o una intervención adecuada al nivel de comprensión observado. Finalmente, evalúa la nueva respuesta y ajusta el diálogo. Este ciclo convierte la conversación en una secuencia de <strong>hipótesis, reflexión y revisión</strong>, en lugar de una simple búsqueda de soluciones. Por ejemplo, ante la afirmación “las plantas se alimentan del suelo”, el tutor podría preguntar qué función cumple la luz solar y qué experimento permitiría comprobar la idea.</p><p>Las <strong>aplicaciones prácticas</strong> abarcan la lectura crítica, la escritura, las ciencias, la resolución de problemas y la formación docente. Un estudiante que redacta un ensayo puede pedir a la IA que no corrija directamente su texto, sino que le formule preguntas sobre la claridad de su tesis, la relación entre sus argumentos y la calidad de sus fuentes. En matemáticas, el tutor puede solicitar que explique cada paso de su procedimiento y señalar el punto exacto en que aparece una inconsistencia. Entre sus principales <strong>beneficios</strong> se encuentran el desarrollo de la metacognición, la autonomía, la argumentación y la capacidad de aprender de los errores.</p>
+
+	</div>
+	
+	<!-- p28 -->	
+	<div class="page">
+		<p>Sin embargo, la IA como espejo también presenta <strong>desafíos y limitaciones</strong>. Puede interpretar de forma incorrecta una respuesta, formular preguntas demasiado fáciles o complejas y reforzar prejuicios presentes en los datos con los que fue entrenada. Además, si el estudiante espera siempre una guía inmediata, podría volverse dependiente del sistema. Por ello, conviene establecer reglas de uso: pedir pistas antes que soluciones, justificar las respuestas, verificar la información y comparar las sugerencias de la IA con fuentes confiables. Bien utilizada, no funciona como un oráculo que piensa por el estudiante, sino como un interlocutor que le ayuda a <strong>pensar sobre cómo piensa</strong>.</p><h2 id="capitulo_7">Razonar paso a paso</h2><figure class="centrada" data-capitulo="7">
+        <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_17.jpg" alt="3D render of an AI Socratic tutor guiding a curious student through a luminous staircase of connected reasoning steps, floating question marks, logic diagrams, and glowing thought nodes, symbolizing patient step-by-step learning; any legible words or labels must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:69%;">
+        <figcaption>Razonar paso a paso</figcaption>
+        </figure>
+		
+	</div>
+	
+	<!-- p28 -->	
+	<div class="page">
+		<div class="caja2"><h1>El <strong>razonamiento paso a paso</strong></h1>
+		<p>Es el proceso de dividir un problema complejo en acciones pequeñas, ordenadas y verificables. En un tutor socrático con IA, este método no consiste en entregar inmediatamente la respuesta, sino en guiar al estudiante mediante preguntas que le permitan identificar datos, establecer relaciones, formular hipótesis y comprobar conclusiones. El principio fundamental es que cada paso debe ser comprensible y justificable: el estudiante no solo aprende <em>qué</em> respuesta es correcta, sino también <em>por qué</em> lo es y cómo podría llegar a ella en otra situación.</p></div>
+		<br><p>Los <strong>componentes principales</strong> de este enfoque son:</p>
+		<ul>
+		<p></p><li><strong>Situación o problema:</strong> plantea el desafío y delimita lo que se necesita resolver.</li><p></p>
+		<p></p><li><strong>Preguntas orientadoras:</strong> ayudan a observar, comparar, inferir y explicar.</li><p></p>
+		<p></p><li><strong>Pistas graduales:</strong> ofrecen apoyo sin sustituir el esfuerzo intelectual.</li><p></p>
+		<p></p><li><strong>Verificación:</strong> permite revisar cálculos, evidencias o supuestos.</li><p></p>
+		<p></p><li><strong>Retroalimentación:</strong> señala avances y errores, y propone una nueva reflexión.</li><p></p></ul>
+		
+	</div>
+	
+	<!-- p30 -->	
+	<div class="page">
+		<p>Internamente, el tutor puede analizar la respuesta del estudiante, detectar si existe una confusión conceptual y seleccionar una pregunta adecuada para continuar. En lugar de mostrar procesos internos extensos o una respuesta terminada, presenta una <strong>explicación breve y pedagógica</strong>, adaptada al nivel del aprendiz. Por ejemplo, ante un problema de proporcionalidad, podría preguntar: “¿Qué cantidad permanece constante?” y después: “¿Cómo comprobarías que la relación entre ambas magnitudes se mantiene?”. Así, el estudiante construye el procedimiento mientras la IA regula la dificultad, ofrece ejemplos y solicita justificaciones.</p>
+		<p>Este método tiene aplicaciones prácticas en múltiples áreas. En matemáticas, el tutor puede pedir que el alumno identifique primero los datos y luego decida qué operación es pertinente. En ciencias, puede guiar la formulación de una hipótesis y el análisis de resultados. En lectura, puede preguntar qué evidencia del texto respalda una interpretación. Entre sus principales <strong>beneficios</strong> se encuentran:</p>
+		<p></p><ul><li>Favorece la comprensión profunda y no la memorización mecánica.</li>
+		<li>Desarrolla autonomía, metacognición y capacidad de justificar decisiones.</li>
+		<li>Permite adaptar el ritmo y el nivel de ayuda a cada estudiante.</li>
+		<li>Convierte los errores en oportunidades de análisis y aprendizaje.</li>
+		</ul>
+		<p>Sin embargo, el razonamiento paso a paso también presenta <strong>desafíos y limitaciones</strong>. Una IA puede interpretar de forma incorrecta una respuesta ambigua, formular preguntas demasiado fáciles o difíciles, o conducir al estudiante hacia una estrategia inadecuada. Además, existe el riesgo de que el alumno espere siempre una pista y deje de intentar resolver por sí mismo. </p>
+
+	</div>
+	
+	<!-- p31 -->	
+	<div class="page">
+		<p>Por ello, el tutor debe alternar apoyo y autonomía, pedir explicaciones con palabras propias y comprobar periódicamente si el estudiante puede transferir el procedimiento a un caso nuevo. La calidad del aprendizaje depende tanto de la precisión de la IA como del diseño de sus preguntas y de la participación activa del estudiante.</p>
+		<h2 id="capitulo_8">Errores que enseñan</h2><figure class="centrada" data-capitulo="8">
+        <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_18.jpg" alt="3D render of a student learning from a failed experiment, scattered puzzle pieces transforming into a staircase toward a glowing question mark, a friendly AI Socratic tutor guiding through thoughtful dialogue, warm hopeful lighting, symbolic growth and discovery; any readable labels must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:74%;">
+        <figcaption>Errores que enseñan</figcaption>
+        </figure><p style="text-align-last: justify;">Un <strong>error que enseña</strong> no es simplemente una respuesta incorrecta, sino una oportunidad para comprender cómo piensa el estudiante y orientar su aprendizaje. En un tutor socrático con IA, el error activa</p>
+		
+	</div>
+	
+	<!-- p32 -->	
+	<div class="page">
+		<p> un proceso de indagación: en lugar de entregar inmediatamente la solución, el sistema formula preguntas que ayudan a identificar la confusión, revisar las evidencias y construir una respuesta más sólida. Su principio de funcionamiento se basa en transformar el “te equivocaste” en preguntas como: <strong>“¿Qué supuesto utilizaste?”</strong>, <strong>“¿Qué dato respalda esa conclusión?”</strong> o <strong>“¿Puedes explicar ese paso con tus propias palabras?”</strong>.</p>
+		<p>Este proceso reúne varios componentes principales:</p><ul>
+		<p></p><li><strong>La respuesta del estudiante</strong>, que revela su razonamiento.  </li><p></p>
+		<p></p><li><strong>El diagnóstico del error</strong>, que distingue entre una confusión conceptual, un descuido o una dificultad de procedimiento.  </li><p></p>
+		<p></p><li><strong>Las preguntas socráticas</strong>, adaptadas al nivel y al contexto.  </li><p></p>
+		<p></p><li><strong>La retroalimentación gradual</strong>, que ofrece pistas sin sustituir el esfuerzo del aprendiz.  </li><p></p>
+		<p></p><li><strong>La reflexión final</strong>, mediante la cual el estudiante explica qué cambió en su comprensión.  </li><p></p>
+		<p></p></ul><p></p>
+		<p>Internamente, la IA analiza la respuesta, identifica patrones y selecciona una intervención adecuada. Por ejemplo, si un estudiante afirma que una planta “come tierra”, el tutor no debería limitarse a corregirlo. Puede preguntar: <strong>“¿Qué necesita la planta para crecer?”</strong>, <strong>“¿De dónde obtiene la materia que forma sus hojas?”</strong> y <strong>“Qué función cumplen la luz y el agua?”</strong>. Así, el alumno reorganiza sus ideas hasta comprender que la planta produce materia orgánica mediante la fotosíntesis. </p>
+		
+	</div>
+	
+	<!-- p33 -->	
+	<div class="page">
+		<p>La aplicación práctica de este enfoque aparece en matemáticas, ciencias, lectura y resolución de problemas: ante un resultado incorrecto, el tutor puede pedir que se revise una operación, se justifique una inferencia o se compare la respuesta con el enunciado.</p>
+		
+		<div class="caja5">Entre sus principales <strong>beneficios y ventajas</strong> se encuentran el desarrollo del pensamiento crítico, la autonomía y la metacognición, porque el estudiante aprende a localizar y explicar sus propios errores. También permite una enseñanza personalizada: dos alumnos que llegan al mismo resultado equivocado pueden recibir preguntas diferentes según sus razonamientos. Sin embargo, existen <strong>desafíos y limitaciones</strong>. Una IA puede interpretar mal una respuesta ambigua, formular preguntas demasiado difíciles o insistir en una hipótesis equivocada. Por ello, el tutor debe evitar la humillación, reconocer los avances parciales y derivar al docente los casos que requieran comprensión emocional, conocimiento especializado o una evaluación más profunda.</div><br>
+		<p>Un caso ilustrativo ocurre cuando un estudiante resuelve una ecuación y obtiene $x=8$, aunque la solución correcta sea $x=5$. En lugar de mostrar directamente el resultado, el tutor pregunta: <strong>“¿Puedes sustituir $x=8$ en la ecuación original?”</strong>. Al comprobar que ambos lados no coinciden, invita a revisar el paso donde se modificaron los términos. Finalmente, el estudiante explica el error con sus palabras y resuelve de nuevo el ejercicio. Este ciclo —<strong>respuesta, pregunta, revisión y reconstrucción</strong>— convierte la equivocación en evidencia útil para aprender y permite que la IA actúe como guía, no como sustituta del razonamiento.</p>
+		
+	</div>
+
+	<!-- p34 -->	
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_5.jpg" style="background-image: url(&quot;images/fondo_pagina_5.jpg&quot;); background-size: 1280px 825px; background-position: 0px 0px; background-repeat: no-repeat;"></div>
+
+	<!-- p35 -->	
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_5.jpg" style="background-image: url(&quot;images/fondo_pagina_5.jpg&quot;); background-size: 1280px 825px; background-position: -640px 0px; background-repeat: no-repeat;">
+	
+	</div>
+	
+	<!-- p36 -->	
+	<div class="page">
+		<h2 id="capitulo_9">Ética del tutor inteligente</h2>
+		<p>La <strong>ética del tutor inteligente</strong> estudia los principios que deben orientar el diseño, desarrollo y uso de una inteligencia artificial capaz de dialogar con el estudiante mediante preguntas socráticas. Su objetivo no es únicamente ofrecer respuestas correctas, sino promover un aprendizaje autónomo, reflexivo y respetuoso. El tutor funciona guiando al alumno con preguntas, pistas y retroalimentación gradual, evitando sustituir su razonamiento. Por ello, debe reconocer la diferencia entre <strong>ayudar a pensar</strong> y simplemente entregar una solución.</p>
+		<p>Entre sus componentes principales se encuentran el modelo del estudiante, el sistema de diálogo, la base de conocimientos, los mecanismos de evaluación y las normas de seguridad. El modelo del estudiante registra, de manera limitada y justificada, aspectos como sus avances, errores frecuentes o preferencias de aprendizaje. El principio de funcionamiento debe basarse en la <strong>proporcionalidad y la transparencia</strong>: recopilar solo los datos necesarios, explicar cómo se emplean y permitir que el estudiante o su tutor legal los consulte o elimine. Además, el sistema debe:</p>
+		<ul>
+		<li>Proteger la privacidad y la confidencialidad de la información.</li>
+		<li>Evitar respuestas discriminatorias o sesgadas.</li>
+		<li>Adaptar la dificultad sin etiquetar de forma permanente al alumno.</li>
+		<li>Informar cuándo interviene una inteligencia artificial.</li>
+		<li>Mantener la supervisión y responsabilidad de docentes y familias.</li>
+		</ul>
+		<p>En sus procesos internos, el tutor interpreta la pregunta del estudiante, identifica su posible objetivo, estima su nivel de comprensión y selecciona una intervención adecuada.</p>
+		
+	</div>
+	
+	<!-- p37 -->
+	<div class="page">
+		<p>Sin embargo, estas decisiones no deben ser completamente opacas. El sistema ha de ofrecer explicaciones comprensibles sobre sus recomendaciones y reconocer sus límites, especialmente cuando detecta confusión, frustración, contenidos sensibles o posibles riesgos. La <strong>autonomía</strong> también es esencial: las preguntas deben estimular la reflexión sin manipular las respuestas ni conducir al estudiante hacia opiniones ideológicas, comerciales o personales que no estén relacionadas con el aprendizaje.</p>
+		<div class="caja6"><p>En la práctica, un tutor socrático puede ayudar a un alumno a resolver un problema de matemáticas preguntándole qué información conoce, qué estrategia ha probado y por qué cree que un procedimiento es válido, en lugar de mostrar inmediatamente el resultado. También puede apoyar la lectura crítica al solicitar evidencias del texto y comparar distintas interpretaciones. Sus beneficios incluyen la retroalimentación personalizada, la disponibilidad continua y el desarrollo de habilidades metacognitivas. No obstante, existen <strong>desafíos y limitaciones</strong>: los modelos pueden cometer errores, reproducir prejuicios presentes en sus datos, generar dependencia o interpretar mal las emociones del estudiante. Por eso, sus respuestas deben revisarse en contextos educativos relevantes y nunca deben reemplazar por completo el criterio profesional del docente.</p></div>
+		
+	</div>
+	
+	<!-- p38 -->	
+	<div class="page">
+		<p>Un caso responsable sería aquel en que la IA propone preguntas diferenciadas para un grupo diverso, pero el profesor conserva la decisión sobre la evaluación y puede corregir las recomendaciones del sistema. En cambio, sería éticamente problemático utilizar el historial de conversaciones para clasificar a los estudiantes, vender perfiles educativos o penalizarlos automáticamente por sus errores. La calidad de un tutor inteligente no se mide solo por su precisión técnica, sino también por su capacidad para <strong>respetar la dignidad, la libertad, la igualdad y el derecho a aprender de cada persona</strong>.</p>
+		<h2 id="capitulo_10">Aprender para transformar</h2><p>Aprender para transformar implica pasar de la simple acumulación de información a la capacidad de <strong>comprender, cuestionar y actuar sobre la realidad</strong>. En este proceso, el tutor socrático con IA funciona como un acompañante que no entrega respuestas inmediatas, sino que formula preguntas orientadoras para que el estudiante construya su propio conocimiento. Su principio fundamental es el diálogo reflexivo: ante una respuesta, la IA puede preguntar “¿cómo lo sabes?”, “¿qué evidencia respalda tu idea?” o “¿qué ocurriría si cambiamos esta condición?”. Así, el aprendizaje se convierte en una experiencia activa, consciente y vinculada con problemas auténticos.</p><p>Los <strong>componentes principales</strong> de este enfoque son el estudiante, que participa como protagonista; el tutor socrático con IA, que guía sin sustituir el razonamiento; el contexto o problema, que da sentido a la investigación; y la retroalimentación, que permite revisar y mejorar las ideas.</p>
+		
+	</div>
+	
+	<!-- p39 -->	
+		<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_3.jpg" style="background-image: url(&quot;images/transforma.jpg&quot;); background-size: 640px 825px; background-position: 0px 0px; background-repeat: no-repeat;">
+	
+	</div>
+	
+	<!-- p40 -->	
+	<div class="page">
+		<p> Sus procesos internos pueden organizarse de la siguiente manera:</p>
+		<ul>
+		<p></p><li>Identificar los conocimientos previos y las posibles dificultades del estudiante.</li><p></p>
+		<p></p><li>Formular preguntas graduadas, desde la comprensión básica hasta el análisis crítico.</li><p></p>
+		<p></p><li>Detectar contradicciones, vacíos de explicación o razonamientos incompletos.</li><p></p>
+		<p></p><li>Proponer pistas, ejemplos y contraejemplos sin resolver completamente el problema.</li><p></p>
+		<p></p><li>Invitar a sintetizar lo aprendido y relacionarlo con una situación nueva.</li><p></p>
+		<p></p></ul><p></p><p>En la práctica, el tutor puede aplicarse en proyectos de ciencias, debates de historia, resolución de problemas matemáticos, análisis literario o toma de decisiones éticas. Por ejemplo, ante un estudiante que afirma que una comunidad debería construir una fábrica para generar empleo, la IA no tendría que responder simplemente “sí” o “no”. Podría preguntar: <strong>“¿Qué beneficios produciría?”, “¿qué impactos ambientales deben considerarse?”, “¿quiénes se verían afectados?” y “qué alternativas permitirían alcanzar el mismo objetivo?”</strong>. De este modo, el estudiante aprende a analizar un problema desde varias perspectivas y a fundamentar sus decisiones con evidencias.</p><p>Entre sus principales <strong>beneficios y ventajas</strong> se encuentran el desarrollo del pensamiento crítico, la autonomía, la metacognición y la capacidad de transferir conocimientos a contextos diferentes.</p>
+		
+	</div>
+
+	<!-- p41 -->	
+	<div class="page">
+		<p> Además, la IA puede adaptar el nivel de dificultad, ofrecer retroalimentación inmediata y mantener un diálogo personalizado durante el proceso de aprendizaje. Sin embargo, existen desafíos importantes: una pregunta mal formulada puede orientar de manera incorrecta; la IA puede presentar información imprecisa o sesgada; y un uso excesivo puede generar dependencia. Por ello, el tutor debe promover la verificación de fuentes, la argumentación propia y la intervención responsable del docente.</p>
+		<div class="caja9">Un caso significativo sería el de un grupo que utiliza un tutor socrático con IA para diseñar una propuesta de ahorro de agua en su escuela. Primero identifica el problema y recopila datos; después, la IA pregunta qué evidencias respaldan sus conclusiones y qué variables no han considerado. Finalmente, los estudiantes comparan alternativas, calculan sus posibles efectos y presentan un plan ante la comunidad educativa. El valor de la herramienta no reside en ofrecerles una solución terminada, sino en ayudarles a <strong>aprender para transformar</strong>: comprender su entorno, participar en él y actuar de manera crítica, colaborativa y responsable.</div>
+		
+	</div>
+	
+	<!-- p42 -->	
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/fondo_pagina_5.jpg" style="background-image: url(&quot;images/ahorro.jpg&quot;); background-size: 1280px 825px; background-position: 0px 0px; background-repeat: no-repeat;"></div>
+
+	<!-- p43 -->	
+	<div class="page image_expand pagina-imagen-generada" onclick="openImage(this.dataset.imageUrl)" data-image-url="images/ahorro.jpg" style="background-image: url(&quot;images/ahorro.jpg&quot;); background-size: 1280px 825px; background-position: -640px 0px; background-repeat: no-repeat;">
+	
+	</div>	
+
+	<!-- p44 -->	
+	<div class="page">
+		<h1 id="quiz">Cuestionario</h1>
+		<div class="interactive" poster="posters/quiz.jpg" width="540" height="700" scale="95%" src="interactivos/quiz.html"></div>
+
+	</div>
+
+	<!-- p45 -->	
+	<div class="page">
+		<h1 id="tutor">Tutor socrático</h1>
+		<div class="interactive" poster="posters/tutor.jpg" width="540" height="700" scale="95%" src="interactivos/tutor.html"></div>
+
+	</div>
+	
+	<!--  -->
+	<div class="page invertcolor" num="" style="background-image: radial-gradient(white, #ecf0f1, #e3e5e7); display:flex; align-items:center; justify-content:center;">
+			<a style="width:50%" target="_blank" href="https://descartes.matem.unam.mx/"><img loading="lazy" src="images/general/logo_descartes.svg" width="100%"></a>
+	</div>
+	
+	<!-- [cierra] pages_container -->
+	</div>
+
+	<!-- [cierra] book_container -->
+	</div>
+
+
+</body></html>
