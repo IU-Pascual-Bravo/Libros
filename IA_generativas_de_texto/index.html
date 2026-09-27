@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html><head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=yes,minimal-ui">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<title>IA generativas de texto</title>
+
+	<!-- se precarga la imagen utilizada para el cargador del libro, en caso de que se utilice -->
+	<link rel="preload" as="image" href="images/general/icartesilibri_logo.svg">
+
+	<!-- configuración del libro -->
+	<script>
+	window.book_config = {
+		// parámetro que indica si los capítulos, secciones y figura se auto numeran
+		// para que los capítulos se auto numeren deben utilizar la etiqueta <h1>
+		// para que las secciones se auto numeren deben utilizar la etiqueta <h2>
+		auto_numerate_sections_and_figures: true,
+		// parámetro para que los interactivos se muestren a pantalla completa al presionar el botón de la esquina superior derecha
+		open_interactives_fullscreen: true,
+		// parámetro para usar el id de las referencias bibliográficas en lugar de la autonumeración
+		bibitem_ref_id: false,
+	}
+	</script>
+
+  <!-- núcleo del libro interactivo -->
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <script type="text/javascript" src="js/book.js" charset="utf-8"></script>
+  
+  <!-- personalización del usuario -->
+  <link rel="stylesheet" href="extra/fonts.css" type="text/css">
+  <link rel="stylesheet" href="extra/style.css" type="text/css">
+
+  <!-- inclusión de la biblioteca KaTex -->
+  <link rel="stylesheet" type="text/css" href="extra/katex/katex.min.css">
+  <script src="extra/katex/katex.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="extra/katex/copy-tex.min.css">
+  <script src="extra/katex/copy-tex.min.js"></script>
+  <script src="extra/katex/auto-render.min.js"></script>
+
+  <!-- Opcional en caso de requerir formulas químicas -->
+  <script src="extra/katex/mhchem.min.js"></script>
+  
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [ {left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}, {left: "\\[", right: "\\]", display: true}, {left: "\\(", right: "\\)", display: false} ]
+    });
+  });
+  </script>
+  
+  <style>
+        .flotad {
+            float: right;
+            margin-left: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+		
+		.flotai {
+            float: left;
+			margin-right: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+        
+    </style>
+</head>
+
+<body>
+	<div id="book_loader_container">
+		<!-- se utiliza un elemento para que funcione como cargador del libro -->
+		<div id="book_loader"></div>
+		<!-- y se indica la imagen a utilizar para personalizar el libro -->
+		<img src="images/general/icartesilibri_logo.svg" width="20%" style="padding-left:1em;">
+	</div>
+	
+	<div id="book_container">
+		<div id="btn_back_page"></div>
+		<div id="btn_next_page"></div>
+		<button id="go_to_table_of_content"></button>
+		
+		<button id="btn_config"></button>
+		<div id="config_options">
+			<div id="dark_light_mode"></div>
+		</div>
+
+		<!-- si este elemento no esta presente, el botón de la tabla de contenido lleva a la primera página con un elemento class="toc_link" -->
+	<div id="table_of_content"></div>
+
+	<div id="pages_container">
+	<!--  -->
+	<div class="page" style="background-color:transparent;"></div>
+
+	<!-- Portada -->
+	<div class="page invertcolor" style="margin:0; padding:0; background-size:contain; background-image:url(images/general/portada.svg);">
+				
+		<div class="invertcolor" style="position: absolute; width: 640px; height: 825px; left: 0px; top: 0px; background-image: url(&quot;images/cap1.jpg&quot;); background-size: 640px 825px; background-repeat: no-repeat;"></div>
+		<!-- Título del libro -->
+		
+		
+			
+		<!-- Nombre del autor del libro -->
+		<div style="position: absolute; bottom: 60px; left: 0px; width: 640px; font-size: 24px; color: rgb(255, 255, 255); text-align: center; text-shadow: rgb(0, 0, 0) 2px 2px 5px; white-space: pre-line;">La IA y yo</div>
+		
+		<!-- Logo de la editorial o institución -->
+		<p style="position: absolute; bottom: -10px; left: 0px; width: 640px; text-align: center; right: 0px;"> <a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/gifanimadoRedProyecto.gif" width="120px"></a> </p>
+	</div>
+
+	<!--  -->
+	<div class="page" style="display:flex; align-items:center; justify-content:center;">
+		<a style="width:50%" target="_blank" href="https://proyectodescartes.org/iCartesiLibri/"><img src="images/general/icartesilibri_logo.svg" width="100%"></a>
+	</div>
+
+	<!--  -->
+	<!-- init-page-num="true" es un parámetro que indica que a partir de esta página comienza la numeración -->
+	<!-- inicialmente los números de las páginas se numeran con numerales romanos -->
+	<!-- num="" es un parámetro que indica que esta página no lleva numeración visible -->
+	<!--  -->
+	<div class="page" style="text-align:center; font-size:120%;" init-page-num="true" num="">
+		<h1>IA generativas de texto</h1>
+		Subtítulo (opcional)<br><br><br><br>
+		<div style="margin-top: 100px;"><b style="white-space: pre-line;">La IA y yo</b>
+		<br><a target="_blank" href="https://websim.ai/c/0c0GRb7OadRtP1IxT"> <img src="images/logo.png" width="40%"></a>
+		</div>
+		<div align="center" style="position: absolute; bottom: 105px; left:0; right:0;"> Fondo Editorial RED Descartes<br><br>
+		<a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/logo_descartes3.png" width="300px"></a></div>
+
+		<div align="center" style="position: absolute; bottom: 50px; left:0; right:0;">Córdoba (España)<br>
+		2024</div>
+	</div>
+
+	<!--  -->
+    <div class="page" num="">
+		<p>Título de la obra:<br>
+        IA generativas de texto</p>
+		<br>
+		<p>Autores: <br>La IA y yo</p><br>
+      	  
+		<p>
+        Código JavaScript para el libro: <a href="https://github.com/jlongi/libro_interactivo" target="_blank">Joel Espinosa Longi</a>, <a href="https://www.matem.unam.mx/" target="_blank">IMATE</a>, UNAM. <br>
+        Recursos interactivos: <a href="http://descartes.matem.unam.mx/" target="_blank">DescartesJS</a>, WebSim, Phet Colorado, GeoGebra, ... <br>
+        Fuentes: <a href="https://fonts.google.com/specimen/Lato" target="_blank">Lato</a> y <a href="https://fonts.google.com/specimen/Ubuntu+Mono" target="_blank">UbuntuMono</a><br>
+		Imagen de portada: ilustración generada por <a href="https://ideogram.ai/g/gM499E9RSBivOecxKJPU4Q/1" target="_blank">Ideogram AI</a> </p><br><br>
+		<p>Red Educativa Digital Descartes<br>
+        Córdoba (España)<br>
+        <a href="mailto:descartes@proyectodescartes.org?Subject=Fondo editorial"> descartes@proyectodescartes.org</a><br>
+        <a href="https://proyectodescartes.org/descartescms/" target="_blank">https://proyectodescartes.org</a><br>
+        <br>
+        Proyecto iCartesiLibri<br>
+        <a href="https://proyectodescartes.org/iCartesiLibri/index.htm" target="_blank">https://proyectodescartes.org/iCartesiLibri/index.htm</a> <br>
+        <br>
+        ISBN: <br>
+		</p>
+		<p style="font-size:10px; position: absolute; bottom: 30px; left: 50px; right:0;"><a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank"><img src="images/general/88x31.png" style="height:36px; width:99px"></a><br>
+        Esta obra está bajo una licencia Creative Commons 4.0 internacional: Reconocimiento-No Comercial-Compartir Igual.</p>
+    
+	</div>
+
+	<!--  -->
+	<div class="page">
+		<h2>Tabla de contenido</h2>
+
+		<!-- con esto se agrega una entrada en la tabla de contenido,
+		href="#prefacio" indica una referencia a una elemento html con 
+		el parámetro id="prefacio", automáticamente se busca está referencia
+		y se agrega el título correspondiente y la página donde se encuentra -->
+			
+		<div class="toc_link" href="#prefacio"></div>
+
+		
+		
+	<div class="toc_link" href="#capitulo_1"></div><div class="toc_link" href="#capitulo_2"></div><div class="toc_link" href="#capitulo_3"></div><div class="toc_link" href="#capitulo_4"></div><div class="toc_link" href="#capitulo_5"></div><div class="toc_link" href="#referencias"></div></div>
+
+	<!--  -->
+	<!-- Una página en blanco y sin numeración visible -->
+	<!--  -->
+	<div class="page" num-type-arabic="true"><h1 id="prefacio">Prefacio</h1><p>La inteligencia artificial generativa de texto constituye una nueva etapa en la relación entre las personas, el lenguaje y las tecnologías digitales. Sin embargo, su aparición no responde a un único momento: es resultado de décadas de investigación en inteligencia artificial, lingüística computacional y aprendizaje automático. Este libro nace con el propósito de ofrecer una mirada clara y fundamentada sobre cómo funcionan estos sistemas, qué posibilidades abren y por qué su uso requiere evaluación humana, verificación de fuentes y responsabilidad ética.</p><p>El recorrido comienza con los principios que hicieron posible el nacimiento de la IA generativa de texto. A partir de los modelos estadísticos, las representaciones neuronales de las palabras y la arquitectura Transformer, se explica cómo un sistema puede aprender regularidades a partir de grandes colecciones de textos y producir secuencias mediante predicciones probabilísticas. El libro presta atención a elementos como los tokens, los embeddings, la atención, el entrenamiento y la decodificación, sin perder de vista que la capacidad de generar respuestas coherentes no equivale a poseer intención, conciencia o comprensión humana.</p><p>A continuación, la obra se aproxima a la manera en que estos modelos procesan el lenguaje y a la importancia de las instrucciones que reciben. Comprender la diferencia entre fluidez y exactitud permite interpretar mejor sus respuestas; aprender a formular prompts ayuda a transformar una necesidad en una solicitud clara, contextualizada y verificable. Desde esta perspectiva, la interacción con una IA generativa no se presenta como una fórmula infalible, sino como un proceso de definición de objetivos, aportación de contexto, solicitud de un formato y revisión crítica de los resultados.</p></div>
+
+	<!--  -->
+	<!-- num-type-arabic="true" es un parámetro que indica que a partir de esta página la numeración utilizara numerales arábigos -->
+	<!--  -->
+	
+
+	<!--  -->
+	<!-- Una página en blanco y sin numeración visible -->
+	<!--  -->
+	
+
+	<!--  -->
+	<!-- Un nuevo capitulo -->
+	<!--  -->
+
+	<!-- Pega aquí las páginas que generaste -->
+	
+
+
+
+
+
+
+
+
+
+	<!--  -->
+	<div class="page"><p>El libro también sitúa estas tecnologías en escenarios educativos y profesionales, donde pueden apoyar la creación de borradores, la traducción, la programación, la adaptación de explicaciones, el análisis documental y la tutoría personalizada. Sus ventajas —rapidez, disponibilidad, capacidad de transformación y adaptación del lenguaje— conviven con limitaciones que no deben ignorarse: errores factuales, sesgos, exposición de información personal, dependencia excesiva y dificultades relacionadas con la autoría. Por ello, las aplicaciones se abordan desde la idea de que la IA es un asistente y no una autoridad infalible.</p><p>Finalmente, estas páginas invitan a considerar las condiciones de un uso ético y el futuro de la IA generativa de texto. La transparencia, la protección de datos, la revisión humana, la trazabilidad y la responsabilidad forman parte inseparable de cualquier aprovechamiento de estas herramientas. Como rasgo de la propia obra, tanto los textos como las imágenes que la componen se generaron con ayuda de inteligencia artificial; su selección, orientación y revisión, no obstante, se inscriben en el criterio humano. El lector puede recorrer este libro como una introducción progresiva a una tecnología en transformación y, al mismo tiempo, como una invitación a utilizarla con atención, sentido crítico y responsabilidad.</p></div>
+
+	<!--  -->
+	<div class="page"><h1>IA generativas de texto</h1><h2 id="capitulo_1">El nacimiento de la IA generativa</h2><figure class="flotai" data-capitulo="1">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_11.jpg" alt="3D render of the birth of generative AI: a vintage computer evolving into a luminous neural network, streams of glowing Spanish text transforming into creative images and ideas, dark futuristic laboratory, cinematic lighting, sense of discovery and technological awakening. Any visible labels must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>El nacimiento de la IA generativa</figcaption>
+                    
+                </figure><p>La <strong>IA generativa de texto</strong> no nació en un único momento, sino como resultado de varias décadas de investigación en inteligencia artificial, lingüística computacional y aprendizaje automático. Uno de sus antecedentes conceptuales se encuentra en la pregunta de Turing (1950) sobre si una máquina podía producir respuestas indistinguibles de las humanas. Más adelante, los modelos estadísticos comenzaron a representar la probabilidad de una secuencia de palabras; posteriormente, Bengio et al. (2003) propusieron un modelo neuronal capaz de aprender representaciones distribuidas de las palabras y predecir la siguiente unidad lingüística. En términos generales, un modelo generativo aprende patrones a partir de grandes colecciones de textos y estima una distribución de probabilidad como la siguiente:</p><div class="math-block">$P(x_1,x_2,\ldots,x_n)=\prod_{t=1}^{n}P(x_t\mid x_1,\ldots,x_{t-1})$</div></div><div class="page"><p>Así, el sistema puede producir texto seleccionando, paso a paso, aquellos tokens —palabras o fragmentos de palabras— que resultan más probables según el contexto.</p><p>El nacimiento de los sistemas modernos se aceleró con la arquitectura <strong>Transformer</strong>, presentada por Vaswani et al. (2017). Su mecanismo de atención permite relacionar cada palabra con otras partes del texto, incluso cuando están alejadas, sin procesar necesariamente la secuencia de forma estrictamente lineal. Los componentes principales de un generador de texto son:</p><ul>
+<p></p><li>un <strong>corpus de entrenamiento</strong> compuesto por documentos;</li><p></p>
+<p></p><li>un <strong>tokenizador</strong>, que divide el texto en unidades procesables;</li><p></p>
+<p></p><li>representaciones numéricas o <strong>embeddings</strong>;</li><p></p>
+<p></p><li>capas neuronales de <strong>atención y transformación</strong>;</li><p></p>
+<p></p><li>una función de entrenamiento que compara la predicción con el token correcto;</li><p></p>
+<p></p><li>un método de <strong>decodificación</strong>, mediante el cual se selecciona la salida final.</li><p></p>
+<p></p></ul><p></p><p>Durante el entrenamiento, el modelo ajusta millones o miles de millones de parámetros para reducir el error de predicción. En un modelo autorregresivo, el proceso interno puede representarse así:</p><div class="math-block">$\hat{x}_{t}=\arg\max_{x} P(x\mid x_1,x_2,\ldots,x_{t-1})$</div></div><div class="page"><p>Sin embargo, los sistemas reales no siempre eligen el token más probable; también pueden utilizar técnicas como <em>temperature</em>, muestreo y <em>top-k</em> para producir respuestas más variadas. Este principio permitió pasar de modelos especializados a modelos capaces de realizar distintas tareas lingüísticas dentro de una misma arquitectura.</p><p>Un momento decisivo fue el aprendizaje previo a gran escala seguido de la adaptación a tareas concretas. Devlin et al. (2019) demostraron con BERT la eficacia de los modelos Transformer preentrenados, aunque BERT fue diseñado principalmente para comprender el lenguaje mediante tokens enmascarados. En cambio, Radford et al. (2018) impulsaron el enfoque de preentrenar un modelo generativo y después ajustarlo para distintas tareas. Esta tendencia culminó en modelos como GPT-3, que Brown et al. (2020) presentaron como un sistema capaz de traducir, resumir, responder preguntas y redactar textos mediante ejemplos incluidos en la propia instrucción. Entre sus <strong>aplicaciones prácticas</strong> se encuentran la creación de borradores, la tutoría educativa, la asistencia en programación, la traducción y la generación de contenidos adaptados a distintos públicos.</p><p style="text-align-last: justify;">Las ventajas de esta tecnología incluyen rapidez, disponibilidad permanente, capacidad para transformar información y posibilidad de personalizar el nivel o estilo de una explicación. No obstante, sus <strong>desafíos y limitaciones</strong> son importantes: un modelo puede generar afirmaciones falsas con apariencia convincente, reproducir sesgos presentes en los datos, revelar información sensible o producir textos difíciles de atribuir a una fuente concreta. El informe de Bommasani et al. (2021) advierte que los modelos fundacionales ofrecen numerosas oportunidades, pero también riesgos relacionados con la equidad, la seguridad, la transparencia y la responsabilidad. Por ello, el nacimiento de la IA generativa de texto debe entenderse no solo como un avance técnico, sino como el inicio de una nueva etapa en la que la evaluación humana, la verificación de</p></div><div class="page"><p>fuentes y el uso ético son componentes esenciales.</p><h2 id="capitulo_2">Cómo entienden el lenguaje</h2><figure class="flotai" data-capitulo="2">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_12.jpg" alt="3D render of a glowing AI language model decoding Spanish words into meaning, with floating sentences transforming into interconnected semantic nodes, context bridges, grammar patterns, and neural pathways inside a transparent digital brain, cinematic lighting, futuristic blue and gold palette, no legible text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Cómo entienden el lenguaje</figcaption>
+                    
+                </figure><p>Las <strong>IA generativas de texto</strong> no entienden el lenguaje exactamente como lo hacen las personas; procesan grandes cantidades de texto para aprender regularidades y predecir qué elementos deberían aparecer a continuación. Su unidad básica suele ser el <em>token</em>, que puede ser una palabra, parte de ella o un signo. Durante el entrenamiento, el modelo recibe una secuencia incompleta y calcula la probabilidad de cada posible token siguiente. Este principio retoma la idea de que el lenguaje puede analizarse mediante probabilidades condicionadas, aunque los modelos actuales lo hacen con millones o miles de millones de parámetros (Shannon, 1948). Por ejemplo, ante la frase «La científica publicó los resultados en…», el sistema asigna probabilidades a opciones como «una», «la» o «una revista», según los patrones aprendidos.</p><p style="text-align-last: justify;">El componente central de muchos modelos actuales es la arquitectura</p></div><div class="page"><p><strong>Transformer</strong>, propuesta por Vaswani et al. (2017). Sus principales elementos son: <strong>tokenización</strong>, que convierte el texto en unidades manejables; <strong>representaciones vectoriales</strong>, que transforman esas unidades en números; <strong>codificación posicional</strong>, que conserva el orden; <strong>mecanismos de autoatención</strong>, que relacionan cada token con los demás; y <strong>capas neuronales de transformación</strong>, que refinan la información. La autoatención permite que el modelo valore qué palabras son relevantes para interpretar una secuencia. De manera simplificada, su cálculo puede expresarse así:</p><div class="math-block">$\operatorname{Attention}(Q,K,V)=\operatorname{softmax}\left(\frac{QK^{T}}{\sqrt{d_k}}\right)V$</div><p>En esta expresión, $Q$ representa las consultas, $K$ las claves, $V$ los valores y $d_k$ la dimensión de las claves. Gracias a este mecanismo, una palabra puede relacionarse con otras que aparecen muy lejos en la oración.</p><p>El <strong>proceso interno</strong> comienza cuando el texto se divide en tokens y cada uno se convierte en un vector. Después, las capas de atención combinan información contextual para construir representaciones cada vez más complejas. En los modelos autorregresivos, el objetivo de entrenamiento consiste en maximizar la probabilidad del siguiente token:</p><div class="math-block">$P(x_1,x_2,\ldots,x_n)=\prod_{t=1}^{n}P(x_t\mid x_1,\ldots,x_{t-1})$</div><p>Tras el entrenamiento inicial, algunos sistemas se ajustan con ejemplos de instrucciones y evaluaciones humanas para producir respuestas más útiles y seguras (Ouyang et al., 2022). El modelo GPT-3 mostró que aumentar la escala y la diversidad de los datos puede mejorar tareas como traducción, respuesta a preguntas y redacción sin entrenamiento específico para cada actividad (Brown et al., 2020). Sin embargo, generar una continuación probable no equivale a verificar que sea verdadera ni a poseer intención, conciencia o comprensión humana.</p></div><div class="page"><p>En la práctica, estas tecnologías se utilizan para <strong>resumir documentos, traducir, crear borradores, apoyar la programación, responder preguntas y adaptar explicaciones a distintos niveles educativos</strong>. Entre sus ventajas se encuentran la rapidez, la capacidad de trabajar con grandes volúmenes de texto y la posibilidad de interactuar mediante lenguaje natural. No obstante, presentan limitaciones importantes: pueden inventar datos, reproducir sesgos presentes en los datos de entrenamiento, ofrecer respuestas excesivamente seguras y tener dificultades con referencias ambiguas o información reciente. Bender et al. (2021) advierten que los modelos lingüísticos de gran escala pueden producir textos plausibles sin comprender su significado ni sus consecuencias sociales. Por ello, sus respuestas deben revisarse mediante fuentes confiables, especialmente en contextos médicos, jurídicos, académicos o financieros.</p><p>En síntesis, una IA generativa <strong>“entiende” el lenguaje en un sentido operativo y estadístico</strong>: identifica patrones, relaciones y contextos que le permiten producir secuencias coherentes. Sus capacidades surgen de la combinación de datos, parámetros, arquitectura Transformer y procedimientos de ajuste, no de una comprensión idéntica a la experiencia humana. Un uso responsable exige distinguir entre <strong>fluidez</strong> y <strong>exactitud</strong>, comprobar afirmaciones y reconocer que la calidad de la respuesta depende tanto del modelo como de la instrucción proporcionada, los datos disponibles y la supervisión de quien la utiliza.</p></div><div class="page"><h2 id="capitulo_3">El arte de crear prompts</h2><figure class="flotai" data-capitulo="3">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_13.jpg" alt="3D render of a luminous prompt-crafting studio: a human hand arranging colorful blocks labeled en español “contexto”, “objetivo”, “tono” y “precisión” around a glowing AI text core, flowing ideas transforming into clear structured sentences, cinematic lighting, sleek futuristic workspace, highly detailed. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>El arte de crear prompts</figcaption>
+                    
+                </figure><p>Un <strong>prompt</strong> es una instrucción, pregunta o conjunto de indicaciones que orienta a una IA generativa para producir una respuesta. En los modelos de lenguaje, el sistema analiza la secuencia de palabras proporcionada y genera nuevos tokens según patrones aprendidos durante su entrenamiento; por ello, no “comprende” la petición exactamente como una persona, sino que calcula qué continuación resulta más probable y pertinente. Brown et al. (2020) demostraron que los modelos de gran escala pueden realizar tareas mediante ejemplos incluidos directamente en el prompt, una capacidad conocida como <em>few-shot learning</em>. Así, el arte de crear prompts consiste en transformar una necesidad humana en instrucciones claras, contextualizadas y verificables.</p><p>Los <strong>componentes principales</strong> de un prompt eficaz suelen ser los siguientes:</p></div><div class="page"><ul>
+<p></p><li><strong>Rol o perspectiva:</strong> especifica quién debe ser la IA, por ejemplo, “actúa como docente de historia”.</li><p></p>
+<p></p><li><strong>Tarea:</strong> define con precisión qué debe hacer, como resumir, comparar, clasificar o redactar.</li><p></p>
+<p></p><li><strong>Contexto:</strong> aporta información relevante, destinatarios, propósito y restricciones.</li><p></p>
+<p></p><li><strong>Formato de salida:</strong> indica si se desea una tabla, una lista, un esquema o determinados apartados.</li><p></p>
+<p></p><li><strong>Criterios de calidad:</strong> establece el tono, la extensión, el nivel de dificultad y la necesidad de reconocer incertidumbres.</li><p></p>
+<p></p><li><strong>Ejemplos:</strong> muestra entradas y respuestas esperadas cuando la tarea requiere un patrón específico.</li><p></p>
+<p></p></ul><p></p><p style="text-align-last: justify;">Este diseño se relaciona con el principio de que cuanto más explícita sea la relación entre objetivo, información disponible y resultado esperado, mayor será la posibilidad de obtener una respuesta útil. Reynolds y McDonell (2021) describen el <em>prompting</em> como una forma de programación mediante lenguaje natural: el usuario no modifica directamente los parámetros internos del modelo, sino que configura su comportamiento mediante instrucciones y ejemplos. En la práctica, el proceso puede organizarse en cuatro pasos: <strong>definir el objetivo</strong>, <strong>proporcionar el contexto</strong>, <strong>solicitar una salida concreta</strong> y <strong>evaluar y refinar la respuesta</strong>. Las técnicas de razonamiento guiado, como pedir que el sistema</p></div><div class="page"><p>descomponga una tarea compleja en pasos, pueden mejorar ciertos resultados, aunque no garantizan que el razonamiento generado sea correcto (Wei et al., 2022).</p><p>Las aplicaciones prácticas abarcan la creación de materiales educativos, la elaboración de borradores, la traducción, el análisis preliminar de documentos, la generación de código y la atención automatizada de consultas. Por ejemplo, un docente puede solicitar: “Actúa como especialista en biología de secundaria; explica la fotosíntesis en 180 palabras, utiliza una analogía cotidiana, incluye tres conceptos clave y termina con dos preguntas de autoevaluación”. Este prompt combina rol, audiencia, tema, extensión, estructura y criterios pedagógicos. Entre sus <strong>beneficios</strong> se encuentran el ahorro de tiempo, la adaptación del lenguaje a distintos públicos y la posibilidad de iterar rápidamente sobre una respuesta. Sin embargo, sus <strong>limitaciones</strong> incluyen la generación de información falsa, la ambigüedad, los sesgos presentes en los datos de entrenamiento y la vulnerabilidad a instrucciones contradictorias o ataques de <em>prompt injection</em>. Ouyang et al. (2022) muestran que el ajuste de los modelos mediante instrucciones y retroalimentación humana puede mejorar su alineación, pero la supervisión del usuario sigue siendo necesaria: toda respuesta importante debe contrastarse con fuentes confiables, especialmente en ámbitos médicos, jurídicos, financieros y académicos.</p></div><div class="page"><h2 id="capitulo_4">Aplicaciones que transforman</h2><figure class="flotai" data-capitulo="4">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_14.jpg" alt="3D render of a luminous generative-text AI core transforming into real-world applications—education, healthcare, business, creativity, and communication—connected by glowing data streams, diverse people collaborating, futuristic yet human-centered atmosphere, clean composition, subtle Spanish labels only. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Aplicaciones que transforman</figcaption>
+                    
+                </figure><p>Las <strong>IA generativas de texto</strong> son sistemas capaces de producir contenido nuevo —como respuestas, resúmenes, traducciones, guiones o código— a partir de instrucciones escritas por una persona. Su funcionamiento se basa, principalmente, en modelos de lenguaje entrenados con grandes colecciones de textos para aprender relaciones entre palabras, frases y conceptos. La arquitectura <em>Transformer</em>, propuesta por Vaswani et al. (2017), utiliza mecanismos de atención que permiten valorar qué partes de una secuencia son más relevantes para interpretar el contexto. A partir de ese aprendizaje, el sistema predice, paso a paso, qué elemento textual es más probable que continúe una determinada entrada.</p><p style="text-align-last: justify;">Entre sus <strong>componentes principales</strong> se encuentran los datos de entrenamiento, el modelo neuronal, el mecanismo de atención, los parámetros aprendidos y la interfaz mediante la cual el usuario formula instrucciones o <em>prompts</em>. Durante la generación, el texto de entrada se divide en unidades denominadas <em>tokens</em>;</p></div><div class="page"><p>después, el modelo calcula probabilidades para seleccionar las siguientes unidades y construir una respuesta coherente. Los modelos de gran escala pueden realizar tareas con pocos ejemplos o incluso sin ejemplos específicos, una capacidad estudiada por Brown et al. (2020). Sin embargo, producir una respuesta gramaticalmente correcta no garantiza que la información sea verdadera: el sistema puede generar afirmaciones plausibles pero incorrectas.</p><p>Sus <strong>aplicaciones prácticas</strong> abarcan la educación, la atención al cliente, la comunicación institucional, la programación, el análisis documental y la creación de contenidos. En el aula, pueden apoyar la elaboración de explicaciones adaptadas al nivel del estudiante, la generación de preguntas de práctica y la revisión inicial de textos; en las organizaciones, permiten redactar borradores, clasificar consultas y resumir informes. UNESCO (2023) señala que estas herramientas pueden favorecer la personalización y ampliar el acceso a recursos educativos, siempre que se utilicen con criterios pedagógicos, supervisión humana y protección de datos. Un caso reconocible es el uso de asistentes conversacionales como ChatGPT para interactuar mediante lenguaje natural y resolver tareas diversas (OpenAI, 2022).</p><p style="text-align-last: justify;">Entre sus <strong>beneficios y ventajas</strong> destacan la rapidez, la disponibilidad permanente, la capacidad de adaptar el registro lingüístico y el apoyo a procesos creativos o repetitivos. También pueden mejorar la accesibilidad al facilitar traducciones, reformulaciones y conversiones de información compleja a un lenguaje más sencillo. No obstante, sus <strong>desafíos y limitaciones</strong> incluyen errores factuales, sesgos presentes en los datos de entrenamiento, exposición de información personal, dependencia excesiva y dificultades para determinar la autoría de los contenidos. El <em>Artificial Intelligence Risk Management Framework</em> recomienda gestionar estos riesgos mediante evaluación, documentación, transparencia y supervisión durante todo el ciclo de vida del sistema (National</p></div><div class="page"><p>Institute of Standards and Technology, 2023).</p><p>Por ello, el principio de uso responsable consiste en considerar la IA generativa como un <strong>asistente</strong>, no como una autoridad infalible. Un proceso adecuado incluye definir el objetivo, redactar una instrucción clara, revisar críticamente la respuesta, contrastar los datos con fuentes confiables y adaptar el resultado al contexto. En entornos educativos y profesionales también es importante declarar cuándo se utilizó la herramienta y evitar introducir información confidencial. La eficacia de estas aplicaciones depende, en última instancia, de la combinación entre las capacidades del modelo y el juicio humano que verifica, contextualiza y toma las decisiones finales.</p><h2 id="capitulo_5">Uso ético y futuro</h2><figure class="flotai" data-capitulo="5">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_15.jpg" alt="3D render of a glowing generative text AI core surrounded by balanced scales, diverse people, transparent safeguards, and a hopeful futuristic city, symbolizing ethical use, responsibility, creativity, and the future of AI; subtle legible labels in Spanish only: “Ética”, “Responsabilidad”, “Futuro”. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Uso ético y futuro</figcaption>
+                    
+                </figure><p style="text-align-last: justify;">Las <strong>IA generativas de texto</strong> son sistemas capaces de producir respuestas, resúmenes, traducciones, explicaciones o textos creativos a partir de instrucciones humanas. Su funcionamiento se basa, principalmente, en modelos</p></div><div class="page"><p>de lenguaje entrenados con grandes colecciones de textos: el sistema divide la entrada en unidades llamadas <em>tokens</em>, identifica relaciones entre ellas y calcula qué secuencia resulta más probable como continuación. Sin embargo, generar una respuesta coherente no equivale a comprenderla ni a garantizar que sea verdadera. Por ello, uno de los principios fundamentales de su uso ético consiste en distinguir entre <strong>fluidez lingüística, conocimiento verificable e intención humana</strong>. La UNESCO (2023) recomienda que estas herramientas se utilicen con supervisión, transparencia y objetivos educativos claramente definidos.</p><p>Entre sus <strong>componentes principales</strong> se encuentran los datos de entrenamiento, la arquitectura del modelo, los procedimientos de ajuste y alineación, la interfaz de interacción y los mecanismos de seguridad. Durante el proceso interno, el modelo transforma una instrucción en representaciones numéricas, compara patrones aprendidos y genera una respuesta paso a paso mediante predicciones probabilísticas. Los filtros y sistemas de supervisión pueden reducir contenidos dañinos, pero no eliminan por completo los errores, los sesgos o las respuestas inventadas. El marco de gestión de riesgos del National Institute of Standards and Technology (NIST, 2023) propone evaluar estos sistemas considerando aspectos como validez, seguridad, privacidad, explicabilidad, transparencia y responsabilidad.</p><p style="text-align-last: justify;">En las <strong>aplicaciones prácticas</strong>, la IA generativa puede apoyar la elaboración de borradores, la adaptación de textos a distintos niveles de lectura, la traducción, la programación, la accesibilidad y la tutoría personalizada. Sus beneficios incluyen ahorrar tiempo, facilitar la creación de materiales y ofrecer apoyo a personas con distintas necesidades lingüísticas o educativas. No obstante, el uso ético exige declarar cuándo se ha empleado la herramienta, comprobar los datos y conservar la responsabilidad humana sobre el resultado. En el ámbito académico, por ejemplo, un estudiante puede utilizarla para proponer ideas o recibir explicaciones, pero debe revisar las fuentes, redactar con criterio propio y</p></div><div class="page"><p>respetar las normas de autoría y citación establecidas por su institución (UNESCO, 2023).</p><p>Sus principales <strong>desafíos y limitaciones</strong> son las llamadas “alucinaciones” —respuestas falsas expresadas con seguridad—, la reproducción de sesgos presentes en los datos, la exposición de información personal, la posible infracción de derechos de autor y la dependencia excesiva de respuestas automatizadas. Un caso real de regulación es el <strong>Reglamento de Inteligencia Artificial de la Unión Europea</strong>, que establece obligaciones diferenciadas según el nivel de riesgo y contempla requisitos de transparencia para determinados sistemas de IA generativa (European Parliament &amp; Council of the European Union, 2024). En la práctica, una organización responsable debe aplicar medidas como no introducir datos confidenciales sin autorización, verificar afirmaciones importantes mediante fuentes independientes, conservar registros de uso y proporcionar revisión humana en decisiones que afecten derechos o oportunidades.</p><p>El <strong>futuro de la IA generativa de texto</strong> dependerá menos de producir respuestas cada vez más extensas y más de hacerlas confiables, trazables, inclusivas y controlables. Se espera una mayor integración con buscadores, bases documentales y herramientas de verificación, así como mejores mecanismos para indicar el origen de la información y detectar contenidos sintéticos. El AI Index de Stanford Institute for Human-Centered Artificial Intelligence (2024) muestra que el desarrollo de estos sistemas avanza rápidamente, lo que aumenta la necesidad de formar a usuarios capaces de evaluar críticamente sus resultados. En consecuencia, la competencia esencial del futuro no será simplemente saber “usar” una IA, sino <strong>formular instrucciones responsables, identificar sus límites, proteger a las personas afectadas y tomar decisiones finales con criterio humano</strong>.</p></div><div class="page"><h2 id="referencias">Referencias bibliográficas</h2><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Bender, E. M., Gebru, T., McMillan-Major, A., &amp; Shmitchell, S. (2021). On the dangers of stochastic parrots: Can language models be too big? <em>Proceedings of the 2021 ACM Conference on Fairness, Accountability, and Transparency</em>, 610–623. <a href="https://doi.org/10.1145/3442188.3445922" target="_blank" rel="noopener noreferrer">https://doi.org/10.1145/3442188.3445922</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Bengio, Y., Ducharme, R., Vincent, P., &amp; Janvin, C. (2003). A neural probabilistic language model. <em>Journal of Machine Learning Research, 3</em>, 1137–1155. <a href="https://www.jmlr.org/papers/v3/bengio03a.html" target="_blank" rel="noopener noreferrer">https://www.jmlr.org/papers/v3/bengio03a.html</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Bommasani, R., Hudson, D. A., Adeli, E., Altman, R., Arora, S., von Arx, S., Bernstein, M. S., Bohg, J., Bosselut, A., Brunskill, E., Brynjolfsson, E., Buch, S., Card, D., Castellon, R., Chatterji, N., Chen, A., Creel, K., Davis, J. Q., Demszky, D., … Liang, P. (2021). <em>On the opportunities and risks of foundation models</em>. arXiv. <a href="https://arxiv.org/abs/2108.07258" target="_blank" rel="noopener noreferrer">https://arxiv.org/abs/2108.07258</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Brown, T. B., Mann, B., Ryder, N., Subbiah, M., Kaplan, J. D., Dhariwal, P., Neelakantan, A., Shyam, P., Sastry, G., Askell, A., Agarwal, S., Herbert-Voss, A., Krueger, G., Henighan, T., Child, R., Ramesh, A., Ziegler, D. M., Wu, J., Winter, C., … Amodei, D. (2020). Language models are few-shot learners. En <em>Advances in Neural Information Processing Systems, 33</em> (pp. 1877–1901). Curran Associates, Inc. <a href="https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html" target="_blank" rel="noopener noreferrer">https://proceedings.neurips.cc/paper/2020/hash/1457c0d6bfcb4967418bfb8ac142f64a-Abstract.html</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word; text-align-last: justify;">Devlin, J., Chang, M.-W., Lee, K., &amp; Toutanova, K. (2019). BERT: Pre-training of deep bidirectional transformers for language understanding. En <em>Proceedings of the 2019 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language</em></p></div><div class="page"><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;"><em>Technologies</em> (pp. 4171–4186). Association for Computational Linguistics. <a href="https://doi.org/10.18653/v1/N19-1423" target="_blank" rel="noopener noreferrer">https://doi.org/10.18653/v1/N19-1423</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">European Parliament, &amp; Council of the European Union. (2024). <em>Regulation (EU) 2024/1689 of the European Parliament and of the Council of 13 June 2024 laying down harmonised rules on artificial intelligence and amending Regulations (EC) No 300/2008, (EU) No 167/2013, (EU) No 168/2013, (EU) 2018/858, (EU) 2018/1139 and (EU) 2019/2144 and Directives 2014/90/EU, (EU) 2016/797 and (EU) 2020/1828 (Artificial Intelligence Act)</em>. <em>Official Journal of the European Union, L 2024/1689</em>. <a href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener noreferrer">https://eur-lex.europa.eu/eli/reg/2024/1689/oj</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">National Institute of Standards and Technology. (2023). <em>Artificial intelligence risk management framework (AI RMF 1.0)</em> (NIST AI 100-1). U.S. Department of Commerce. <a href="https://doi.org/10.6028/NIST.AI.100-1" target="_blank" rel="noopener noreferrer">https://doi.org/10.6028/NIST.AI.100-1</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">OpenAI. (2022, 30 de noviembre). <em>Introducing ChatGPT</em>. <a href="https://openai.com/index/chatgpt/" target="_blank" rel="noopener noreferrer">https://openai.com/index/chatgpt/</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Ouyang, L., Wu, J., Jiang, X., Almeida, D., Wainwright, C., Mishkin, P., Zhang, C., Agarwal, S., Slama, K., Ray, A., Schulman, J., Hilton, J., Kelton, F., Miller, L., Simens, M., Askell, A., Welinder, P., Christiano, P., Leike, J., &amp; Lowe, R. (2022). Training language models to follow instructions with human feedback. <em>Advances in Neural Information Processing Systems, 35</em>, 27730–27744. <a href="https://proceedings.neurips.cc/paper_files/paper/2022/hash/b1efde53be365442bedb58ba3b675f8f-Abstract-Conference.html" target="_blank" rel="noopener noreferrer">https://proceedings.neurips.cc/paper_files/paper/2022/hash/b1efde53be365442bedb58ba3b675f8f-Abstract-Conference.html</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word; text-align-last: justify;">Radford, A., Narasimhan, K., Salimans, T., &amp; Sutskever, I. (2018). <em>Improving language understanding by generative pre-training</em>. OpenAI.</p></div><div class="page"><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;"><a href="https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf" target="_blank" rel="noopener noreferrer">https://cdn.openai.com/research-covers/language-unsupervised/language_understanding_paper.pdf</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Reynolds, L., &amp; McDonell, K. (2021). <em>Prompt programming for large language models: Beyond the few-shot paradigm</em>. arXiv. <a href="https://doi.org/10.48550/arXiv.2102.07350" target="_blank" rel="noopener noreferrer">https://doi.org/10.48550/arXiv.2102.07350</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Shannon, C. E. (1948). A mathematical theory of communication. <em>The Bell System Technical Journal, 27</em>(3), 379–423; <em>27</em>(4), 623–656. <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01338.x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/j.1538-7305.1948.tb01338.x</a>; <a href="https://doi.org/10.1002/j.1538-7305.1948.tb01339.x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1002/j.1538-7305.1948.tb01339.x</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Stanford Institute for Human-Centered Artificial Intelligence. (2024). <em>AI Index report 2024</em>. Stanford University. <a href="https://aiindex.stanford.edu/report/" target="_blank" rel="noopener noreferrer">https://aiindex.stanford.edu/report/</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Turing, A. M. (1950). Computing machinery and intelligence. <em>Mind, 59</em>(236), 433–460. <a href="https://doi.org/10.1093/mind/LIX.236.433" target="_blank" rel="noopener noreferrer">https://doi.org/10.1093/mind/LIX.236.433</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">UNESCO. (2023). <em>Guidance for generative AI in education and research</em>. <a href="https://unesdoc.unesco.org/ark:/48223/pf0000386693" target="_blank" rel="noopener noreferrer">https://unesdoc.unesco.org/ark:/48223/pf0000386693</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Vaswani, A., Shazeer, N., Parmar, N., Uszkoreit, J., Jones, L., Gomez, A. N., Kaiser, Ł., &amp; Polosukhin, I. (2017). Attention is all you need. En <em>Advances in Neural Information Processing Systems, 30</em> (pp. 5998–6008). Curran Associates, Inc. <a href="https://proceedings.neurips.cc/paper/7181-attention-is-all-you-need" target="_blank" rel="noopener noreferrer">https://proceedings.neurips.cc/paper/7181-attention-is-all-you-need</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F., Chi, E., Le, Q. V., &amp; Zhou, D. (2022). Chain-of-thought prompting elicits reasoning in large language models. <em>Advances in Neural Information Processing Systems, 35</em>, 24824–24837. <a href="https://doi.org/10.48550/arXiv.2201.11903" target="_blank" rel="noopener noreferrer">https://doi.org/10.48550/arXiv.2201.11903</a></p></div><div class="page">
+
+	</div>
+	
+	<!--  -->
+	<div class="page invertcolor" num="" style="background-image: radial-gradient(white, #ecf0f1, #e3e5e7); display:flex; align-items:center; justify-content:center;">
+			<a style="width:50%" target="_blank" href="https://descartes.matem.unam.mx/"><img loading="lazy" src="images/general/logo_descartes.svg" width="100%"></a>
+	</div>
+	
+	<!-- [cierra] pages_container -->
+	</div>
+
+	<!-- [cierra] book_container -->
+	</div>
+
+
+</body></html>
