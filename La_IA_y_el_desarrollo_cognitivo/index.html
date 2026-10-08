@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=yes,minimal-ui">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<title>La IA y el desarrollo cognitivo del individuo</title>
+
+	<!-- se precarga la imagen utilizada para el cargador del libro, en caso de que se utilice -->
+	<link rel="preload" as="image" href="images/general/icartesilibri_logo.svg">
+
+	<!-- configuración del libro -->
+	<script>
+	window.book_config = {
+		// parámetro que indica si los capítulos, secciones y figura se auto numeran
+		// para que los capítulos se auto numeren deben utilizar la etiqueta <h1>
+		// para que las secciones se auto numeren deben utilizar la etiqueta <h2>
+		auto_numerate_sections_and_figures: true,
+		// parámetro para que los interactivos se muestren a pantalla completa al presionar el botón de la esquina superior derecha
+		open_interactives_fullscreen: true,
+		// parámetro para usar el id de las referencias bibliográficas en lugar de la autonumeración
+		bibitem_ref_id: false,
+	}
+	</script>
+
+  <!-- núcleo del libro interactivo -->
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <script type="text/javascript" src="js/book.js" charset="utf-8"></script>
+  
+  <!-- personalización del usuario -->
+  <link rel="stylesheet" href="extra/fonts.css" type="text/css">
+  <link rel="stylesheet" href="extra/style.css" type="text/css">
+  <link rel="stylesheet" href="extra/mis_estilos.css" type="text/css">
+
+  <!-- inclusión de la biblioteca KaTex -->
+  <link rel="stylesheet" type="text/css" href="extra/katex/katex.min.css">
+  <script src="extra/katex/katex.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="extra/katex/copy-tex.min.css">
+  <script src="extra/katex/copy-tex.min.js"></script>
+  <script src="extra/katex/auto-render.min.js"></script>
+
+  <!-- Opcional en caso de requerir formulas químicas -->
+  <script src="extra/katex/mhchem.min.js"></script>
+  
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [ {left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}, {left: "\\[", right: "\\]", display: true}, {left: "\\(", right: "\\)", display: false} ]
+    });
+  });
+  </script>
+  
+  <style>
+        .flotad {
+            float: right;
+            margin-left: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+		
+		.flotai {
+            float: left;
+			margin-right: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+        
+    </style>
+</head>
+
+<body>
+	<div id="book_loader_container">
+		<!-- se utiliza un elemento para que funcione como cargador del libro -->
+		<div id="book_loader"></div>
+		<!-- y se indica la imagen a utilizar para personalizar el libro -->
+		<img src="images/general/icartesilibri_logo.svg" width="20%" style="padding-left:1em;">
+	</div>
+	
+	<div id="book_container">
+		<div id="btn_back_page"></div>
+		<div id="btn_next_page"></div>
+		<button id="go_to_table_of_content"></button>
+		
+		<button id="btn_config"></button>
+		<div id="config_options">
+			<div id="dark_light_mode"></div>
+		</div>
+
+		<!-- si este elemento no esta presente, el botón de la tabla de contenido lleva a la primera página con un elemento class="toc_link" -->
+	<div id="table_of_content"></div>
+
+	<div id="pages_container">
+	<!--  -->
+	<div class="page" style="background-color:transparent;"></div>
+
+	<!-- Portada -->
+	<div class="page invertcolor" style="margin:0; padding:0; background-size:contain; background-image:url(images/general/portada.svg);">
+				
+		<div class="invertcolor" style="position: absolute; width: 640px; height: 825px; left: 0px; top: 0px; background-image: url(&quot;images/cap1.jpg&quot;); background-size: 640px 825px; background-repeat: no-repeat;"></div>
+		<!-- Título del libro -->
+		
+		
+			
+		<!-- Nombre del autor del libro -->
+		<div style="position: absolute; bottom: 60px; left: 0px; width: 640px; font-size: 24px; color: rgb(255, 255, 255); text-align: center; text-shadow: rgb(0, 0, 0) 2px 2px 5px; white-space: pre-line;">Alejandra Cristina Moncada
+Wilfer León Arias Loaiza</div>
+		
+		<!-- Logo de la editorial o institución -->
+		<p style="position: absolute; bottom: -10px; left: 0px; width: 640px; text-align: center; right: 0px;"> <a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/gifanimadoRedProyecto.gif" width="120px"></a> </p>
+	</div>
+
+	<!--  -->
+	<div class="page" style="display:flex; align-items:center; justify-content:center;">
+		<a style="width:50%" target="_blank" href="https://proyectodescartes.org/iCartesiLibri/"><img src="images/general/icartesilibri_logo.svg" width="100%"></a>
+	</div>
+
+	<!--  -->
+	<!-- init-page-num="true" es un parámetro que indica que a partir de esta página comienza la numeración -->
+	<!-- inicialmente los números de las páginas se numeran con numerales romanos -->
+	<!-- num="" es un parámetro que indica que esta página no lleva numeración visible -->
+	<!--  -->
+	<div class="page" style="text-align:center; font-size:120%;" init-page-num="true" num="">
+		<h1>La IA y el desarrollo cognitivo del individuo</h1>
+		<br><br><br><br>
+		<div style="margin-top: 100px;"><b style="white-space: pre-line;">Alejandra Cristina Moncada
+Wilfer León Arias Loaiza</b>
+		<br><a target="_blank" href="https://websim.ai/c/0c0GRb7OadRtP1IxT"> <img src="images/logo.png" width="40%"></a>
+		</div>
+		<div align="center" style="position: absolute; bottom: 105px; left:0; right:0;"> Fondo Editorial RED Descartes<br><br>
+		<a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/logo_descartes3.png" width="300px"></a></div>
+
+		<div align="center" style="position: absolute; bottom: 50px; left:0; right:0;">Córdoba (España)<br>
+		2026</div>
+	</div>
+
+	<!--  -->
+    <div class="page" num="">
+		<p>Título de la obra:<br>
+        La IA y el desarrollo cognitivo del individuo</p>
+		<br>
+		<p>Autores: <br>Alejandra Cristina Moncada<br>Wilfer León Arias Loaiza</p><br>
+      	  
+		<p>
+        Código JavaScript para el libro: <a href="https://github.com/jlongi/libro_interactivo" target="_blank">Joel Espinosa Longi</a>, <a href="https://www.matem.unam.mx/" target="_blank">IMATE</a>, UNAM. <br>
+        Recursos interactivos: <a href="http://descartes.matem.unam.mx/" target="_blank">DescartesJS</a>, WebSim, Phet Colorado, GeoGebra, ... <br>
+        Fuentes: <a href="https://fonts.google.com/specimen/Lato" target="_blank">Lato</a> y <a href="https://fonts.google.com/specimen/Ubuntu+Mono" target="_blank">UbuntuMono</a><br>
+		Imagen de portada: ilustración generada por <a href="https://ideogram.ai/g/gM499E9RSBivOecxKJPU4Q/1" target="_blank">Ideogram AI</a> </p><br><br>
+		<p>Red Educativa Digital Descartes<br>
+        Córdoba (España)<br>
+        <a href="mailto:descartes@proyectodescartes.org?Subject=Fondo editorial"> descartes@proyectodescartes.org</a><br>
+        <a href="https://proyectodescartes.org/descartescms/" target="_blank">https://proyectodescartes.org</a><br>
+        <br>
+        Proyecto iCartesiLibri<br>
+        <a href="https://proyectodescartes.org/iCartesiLibri/index.htm" target="_blank">https://proyectodescartes.org/iCartesiLibri/index.htm</a> <br>
+        <br>
+        ISBN: <br>
+		</p>
+		<p style="font-size:10px; position: absolute; bottom: 30px; left: 50px; right:0;"><a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank"><img src="images/general/88x31.png" style="height:36px; width:99px"></a><br>
+        Esta obra está bajo una licencia Creative Commons 4.0 internacional: Reconocimiento-No Comercial-Compartir Igual.</p>
+    
+	</div>
+
+	<!--  -->
+	<div class="page">
+		<h2>Tabla de contenido</h2>
+
+		<!-- con esto se agrega una entrada en la tabla de contenido,
+		href="#prefacio" indica una referencia a una elemento html con 
+		el parámetro id="prefacio", automáticamente se busca está referencia
+		y se agrega el título correspondiente y la página donde se encuentra -->
+			
+		<div class="toc_link" href="#prefacio"></div>
+
+		
+		
+	<div class="toc_link" href="#capitulo_1"></div><div class="toc_link" href="#capitulo_2"></div><div class="toc_link" href="#capitulo_3"></div><div class="toc_link" href="#capitulo_4"></div><div class="toc_link" href="#capitulo_5"></div><div class="toc_link" href="#capitulo_6"></div><div class="toc_link" href="#capitulo_7"></div><div class="toc_link" href="#capitulo_8"></div><div class="toc_link" href="#capitulo_9"></div><div class="toc_link" href="#capitulo_10"></div><div class="toc_link" href="#referencias"></div></div>
+
+	<!--  -->
+	<!-- Una página en blanco y sin numeración visible -->
+	<!--  -->
+	<div class="page" num-type-arabic="true"><h1 id="prefacio">Prefacio</h1><p>Este libro nace de una pregunta central: ¿cómo puede la inteligencia artificial contribuir al desarrollo cognitivo sin reemplazar la actividad mental, la autonomía ni el juicio de las personas? La respuesta que propone no presenta la IA como una autoridad ni como una solución automática, sino como una herramienta de apoyo, un objeto de análisis y, en determinadas condiciones, un andamio para aprender. Su propósito es explorar las relaciones entre estas tecnologías y capacidades como la atención, la memoria, el lenguaje, el razonamiento, la creatividad, la metacognición, la autorregulación y el pensamiento crítico.</p><p>El enfoque de la obra parte de una idea constante: los beneficios de la IA dependen de la forma en que se utiliza. Los sistemas generativos pueden explicar conceptos, adaptar actividades, formular preguntas, ofrecer retroalimentación, proponer alternativas y facilitar la práctica; sin embargo, también pueden producir errores, sesgos, información inventada o respuestas convincentes sin fundamento suficiente. Por ello, el libro invita a comprender su funcionamiento y, al mismo tiempo, a conservar activa la participación del estudiante: preguntar, contrastar, verificar, reformular, justificar y elaborar conclusiones propias. La tecnología puede ampliar las oportunidades de aprendizaje, pero no garantiza por sí misma una comprensión profunda.</p><p style="text-align-last: justify;">La organización sigue un recorrido que va de los conceptos esenciales de la inteligencia artificial y su relación con las mentes en la era digital hacia las etapas del desarrollo humano y los procesos vinculados con el cerebro y el aprendizaje. A partir de allí, la mirada se concentra en la atención y la memoria, en las posibilidades y límites de la creatividad algorítmica y en las condiciones necesarias para fortalecer el pensamiento crítico. Este trayecto conduce a una reflexión ética</p></div>
+
+
+
+	<!--  -->
+	<div class="page"><p> sobre la autonomía, la privacidad, la equidad, la transparencia y la responsabilidad, y culmina en la propuesta de una inteligencia híbrida basada en la complementariedad entre las capacidades humanas y los sistemas artificiales.</p><p>Recorrer estas páginas supone observar la IA desde una doble perspectiva. Por un lado, como recurso para personalizar explicaciones, generar ejercicios, simular conversaciones, comparar argumentos, organizar información y acompañar distintos ritmos de aprendizaje. Por otro, como una presencia que puede favorecer la dependencia, reducir el esfuerzo de recuperación, homogeneizar las ideas o desplazar la toma de decisiones. En consecuencia, la obra concede especial importancia a la supervisión humana, la verificación de fuentes, la protección de los datos personales y la evaluación del proceso de razonamiento, no únicamente del resultado final.</p><p>Con transparencia, se deja constancia de que tanto los textos como las imágenes de esta obra fueron generados con ayuda de inteligencia artificial. Esta circunstancia forma parte del propio tema del libro y reclama una lectura atenta, crítica y reflexiva. La invitación es a avanzar por sus páginas preguntándose no solo qué puede hacer la IA, sino qué conviene delegarle, qué debe conservar la persona y cómo diseñar interacciones que fortalezcan, en lugar de sustituir, la capacidad de pensar por sí misma.</p></div>
+
+	<!--  -->
+	<div class="page"><h1 id="capitulo_1">Mentes en la Era Digital</h1><figure class="flotai" data-capitulo="1">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_11.jpg" alt="3D render of a human mind evolving within a luminous digital landscape, neural pathways merging with AI circuits, holographic screens, books, and diverse people learning and thinking critically, balanced between technology and human cognition; any readable text or labels must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Mentes en la Era Digital</figcaption>
+                    
+                </figure><p>La inteligencia artificial (IA) aplicada al desarrollo cognitivo se refiere al uso de sistemas capaces de analizar información, reconocer patrones, generar textos, ofrecer retroalimentación y adaptar actividades de aprendizaje. En particular, la IA generativa funciona mediante modelos entrenados con grandes volúmenes de datos que producen respuestas probables a partir de las instrucciones del usuario. Sin embargo, no comprende ni razona exactamente como una persona: genera resultados estadísticamente plausibles que deben ser interpretados y verificados. Kasneci et al. (2023) señalan que estos sistemas pueden apoyar la explicación de conceptos, la personalización del aprendizaje y la creación de materiales, aunque también pueden producir errores, sesgos o información inventada.</p><div class="caja9"><p>En el desarrollo cognitivo intervienen varios <strong>componentes principales</strong>: atención, memoria, lenguaje, razonamiento, pensamiento crítico, metacognición y autorregulación. </p></div></div>
+				
+				<div class="page"><p>La IA puede actuar como una herramienta de apoyo en cada uno de ellos, pero sus efectos dependen de la forma en que se utilice. Entre sus aplicaciones prácticas se encuentran:</p><ul>
+<p></p><li>generar preguntas de práctica y ejercicios graduados;</li><p></p>
+<p></p><li>explicar un concepto con distintos niveles de dificultad;</li><p></p>
+<p></p><li>proporcionar retroalimentación inmediata sobre un texto;</li><p></p>
+<p></p><li>simular conversaciones para aprender idiomas;</li><p></p>
+<p></p><li>ayudar a comparar argumentos y detectar contradicciones;</li><p></p>
+<p></p><li>sugerir rutas de estudio personalizadas.</li><p></p>
+<p></p></ul><p></p><p>Lo et al. (2023) sostiene que estas posibilidades pueden aumentar la motivación y facilitar el acceso a explicaciones individualizadas, especialmente cuando el estudiante recibe orientación para formular preguntas, contrastar respuestas y corregir sus propios errores. En este sentido, la IA no debería sustituir la actividad mental, sino ampliar las oportunidades para practicarla.</p><p style="text-align-last: justify;">El <strong>principio de funcionamiento cognitivo</strong> más importante consiste en establecer un ciclo entre la persona y la herramienta: el estudiante plantea una pregunta, recibe una respuesta, evalúa su calidad, la contrasta con otras fuentes y reformula su comprensión. Este proceso favorece la metacognición, porque obliga a preguntarse qué se sabe, qué falta por comprender y qué evidencias respaldan una conclusión. </p></div>
+
+<div class="page"><p>Por ejemplo, ante una explicación generada por IA sobre el cambio climático, el estudiante puede identificar sus afirmaciones principales, verificar los datos en fuentes científicas y redactar una versión propia. Tlili et al. (2023) advierten que el valor educativo de los chatbots depende precisamente de que se integren en actividades de diálogo, análisis y producción personal, y no únicamente en la obtención rápida de respuestas.</p><p>Entre los <strong>beneficios y ventajas</strong> se encuentran la disponibilidad permanente de apoyo, la adaptación del lenguaje, la reducción del tiempo necesario para elaborar materiales y la posibilidad de recibir múltiples ejemplos. También puede favorecer la inclusión cuando ofrece lectores de texto, traducción, simplificación lingüística o apoyos para estudiantes con diferentes necesidades. No obstante, existen <strong>desafíos y limitaciones</strong>: dependencia excesiva, disminución del esfuerzo de recuperación de información, plagio, respuestas incorrectas, sesgos culturales y desigualdad en el acceso. UNESCO (2023) recomienda que el uso educativo de la IA preserve la autonomía humana, la privacidad, la supervisión docente y la evaluación crítica de los resultados.</p><p>Un caso ilustrativo es el de un estudiante que utiliza un asistente de IA para preparar un ensayo. Si copia directamente la respuesta, la herramienta puede limitar el desarrollo de la escritura y del razonamiento. Si, en cambio, solicita un esquema, compara dos interpretaciones, identifica errores y redacta una conclusión propia, la IA se convierte en un <strong>andamio cognitivo</strong>. Por ello, el criterio central no es utilizar o rechazar la tecnología, sino diseñar tareas que exijan argumentar, crear, verificar y explicar. Como concluye Kasneci et al. (2023), el potencial de la IA educativa se alcanza cuando complementa la interacción humana y el juicio del aprendiz, en lugar de reemplazarlos.</p></div><div class="page"><h1 id="capitulo_2">IA: Conceptos Esenciales</h1><figure class="flotad" data-capitulo="2">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_12.jpg" alt="3D render of a glowing human brain connected to a neural network, surrounded by floating icons of data, learning, reasoning, perception, and ethics, with a transparent holographic interface labeled in Spanish: “Datos”, “Aprendizaje”, “Razonamiento” and “Ética”, cinematic lighting, clean educational composition. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>IA: Conceptos Esenciales</figcaption>
+                    
+                </figure><p>La <strong>inteligencia artificial (IA)</strong> es un conjunto de métodos computacionales capaces de realizar tareas que normalmente requieren capacidades humanas, como reconocer patrones, comprender lenguaje, generar contenidos, clasificar información o apoyar la toma de decisiones. En el ámbito del desarrollo cognitivo, su importancia no reside únicamente en que “piense” o responda, sino en que puede convertirse en un mediador para la atención, la memoria, el razonamiento y la metacognición. La IA generativa, representada por modelos de lenguaje como ChatGPT, produce texto mediante el análisis de grandes volúmenes de datos y la estimación de la secuencia más probable de unidades lingüísticas. Bubeck et al. (2023) observaron que modelos avanzados como GPT-4 podían resolver tareas diversas de razonamiento, programación y comprensión, aunque esto no implica que posean conciencia ni comprensión humana.</p><p style="text-align-last: justify;">Sus <strong>componentes principales</strong> incluyen los datos de entrenamiento, los algoritmos, las redes neuronales, la capacidad computacional y la interfaz mediante la cual interactúa el usuario. En los modelos de lenguaje, el proceso suele comenzar con la división del texto en unidades o <em>tokens</em>; posteriormente, estas se representan numéricamente y se procesan mediante mecanismos de atención que permiten relacionar </p></div>
+				
+				<div class="page"><p>unas partes del contexto con otras.  Finalmente, el sistema genera una respuesta seleccionando progresivamente nuevos <em>tokens</em>. Este funcionamiento explica tanto su fluidez como sus limitaciones: el modelo puede producir una respuesta gramaticalmente convincente sin garantizar que sea verdadera. Kasneci et al. (2023) destacan que esta característica ofrece oportunidades educativas, pero exige supervisión, verificación de fuentes y actividades que mantengan al estudiante intelectualmente activo.</p>
+				<div class="caja9"><h1>En el desarrollo cognitivo</h1><p>La IA puede emplearse para <strong>personalizar explicaciones, proporcionar retroalimentación inmediata, proponer preguntas socráticas, simular conversaciones y apoyar la planificación del estudio</strong>. Sus beneficios potenciales abarcan la adaptación del nivel de dificultad, el acceso a múltiples ejemplos y la ayuda a estudiantes que necesitan practicar a su propio ritmo. Sin embargo, el beneficio depende del tipo de interacción: copiar una respuesta puede reducir la elaboración mental, mientras que comparar una respuesta generada con evidencias, detectar errores y justificar una corrección puede fortalecer el pensamiento crítico y la metacognición. Por ello, una estrategia pedagógica adecuada consiste en solicitar al estudiante que formule primero una hipótesis, use la IA como interlocutora y después evalúe críticamente el resultado.</p></div></div>
+				
+				<div class="page">
+				<p  style="text-align-last: justify;"> La revisión de oportunidades y riesgos educativos realizada por</p>
+				<p> Kasneci et al. (2023) respalda este uso orientado al aprendizaje activo, no a la sustitución del esfuerzo cognitivo.</p>
+				<p>Entre sus <strong>desafíos y limitaciones</strong> se encuentran las llamadas alucinaciones —respuestas plausibles pero incorrectas—, los sesgos presentes en los datos, la</p>
+				<p>protección insuficiente de información personal, la dependencia tecnológica y la posible disminución de la autonomía intelectual. Tlili et al. (2023), al analizar ChatGPT como caso de estudio en educación, señalan la necesidad de establecer normas de uso, formar a docentes y estudiantes y revisar las formas tradicionales de evaluación. En consecuencia, el uso responsable debe incluir: <strong>verificación de información</strong>, <strong>declaración del apoyo recibido de la IA</strong>, <strong>protección de datos personales</strong> y <strong>evaluación del razonamiento propio</strong>, no solo del producto final. La IA debe funcionar como herramienta de apoyo y objeto de análisis, no como autoridad incuestionable.</p><p>Un caso práctico puede desarrollarse en una clase de ciencias: el estudiante pide a una IA tres explicaciones de un fenómeno, identifica posibles errores, contrasta las respuestas con un libro académico y redacta una conclusión propia. En este proceso intervienen la comprensión, la comparación, la argumentación y la autorregulación. La UNESCO (2023) recomienda precisamente un enfoque centrado en la persona, con atención a la privacidad, la inclusión, la equidad y la responsabilidad educativa. Así, los <strong>conceptos esenciales</strong> de la IA no deben enseñarse solo como contenidos técnicos; también deben relacionarse con la pregunta fundamental de cómo conservar y ampliar las capacidades cognitivas humanas cuando se interactúa con sistemas capaces de generar información de manera rápida y convincente.</p></div>
+				
+				<div class="page"><h2 id="capitulo_3">Etapas evolutivas del desarrollo humano</h2><figure class="centrada" data-capitulo="3">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_13.jpg" alt="3D render of a luminous human life-cycle timeline, from infancy to old age, showing evolving brains, emotions, learning, and cognition, connected by glowing neural networks and subtle AI circuitry; clean educational composition, futuristic yet humanistic, soft studio lighting, high detail, no text or labels" style="border-radius:15px;cursor:pointer;width:80%;">
+                    <figcaption>Etapas evolutivas del desarrollo humano</figcaption>
+                    
+                </figure><p>El desarrollo humano es un proceso dinámico mediante el cual cambian las capacidades cognitivas, socioemocionales, lingüísticas y autorregulatorias desde la infancia hasta la vejez. En el contexto de la inteligencia artificial (IA), no debe entenderse que la tecnología sustituye las etapas evolutivas ni que produce automáticamente un mayor desarrollo cognitivo; más bien, actúa como un <strong>mediador del aprendizaje</strong>, capaz de ofrecer explicaciones, retroalimentación y oportunidades de práctica adaptadas a las necesidades de cada persona.</div>
+				
+				
+				<div class="page">
+				<p> Los modelos generativos pueden apoyar la personalización educativa, aunque sus respuestas deben ser supervisadas porque pueden contener errores, sesgos o información inventada (Kasneci et al., 2023; Lo, 2023).</p><p>Las principales etapas evolutivas pueden organizarse de manera orientativa —sin considerarlas rígidas ni idénticas para todas las culturas— en las siguientes:</p>
+				<ul>
+<p></p><li><strong>Primera infancia:</strong> predominan la exploración sensorial, el desarrollo del lenguaje, la memoria inicial y la adquisición de habilidades sociales. La IA puede emplearse mediante cuentos interactivos, reconocimiento de voz o actividades lúdicas, siempre con acompañamiento adulto y límites de tiempo.</li><p></p>
+<p></p><li><strong>Niñez media:</strong> se fortalecen el razonamiento lógico, la atención voluntaria, la comprensión lectora y la resolución de problemas. Los sistemas inteligentes pueden proporcionar ejercicios graduados y retroalimentación inmediata, pero conviene que el niño explique sus respuestas para evitar una dependencia pasiva.</li><p></p>
+<p></p><li><strong>Adolescencia:</strong> aumentan la capacidad de abstracción, el pensamiento crítico, la metacognición y la construcción de la identidad. En esta etapa, la IA puede utilizarse para comparar argumentos, simular debates o analizar fuentes, aunque también exige trabajar la verificación de información y la responsabilidad digital.</li><p></p>
+<p></p><li><strong>Adultez:</strong> el aprendizaje suele orientarse a metas profesionales, sociales y personales. La IA puede facilitar la formación continua, la planificación, la traducción y la resolución de tareas complejas.</li></ul>
+</div>
+
+<div class="page">
+<ul><li><strong>Vejez:</strong> pueden presentarse cambios en la velocidad de procesamiento o en determinados tipos de memoria, junto con una amplia experiencia acumulada. Herramientas conversacionales, interfaces accesibles y aplicaciones de estimulación cognitiva pueden favorecer la autonomía, siempre que respeten la privacidad y no sustituyan la interacción humana.</li></ul><p></p>
+<p>El <strong>principio de funcionamiento</strong> de la IA aplicada al desarrollo cognitivo consiste en analizar una entrada —por ejemplo, una respuesta, una pregunta o un patrón de desempeño— y generar una salida adaptada, como una pista, una explicación o una nueva actividad. Sus componentes principales son los datos, los algoritmos, la interfaz, el usuario y la mediación pedagógica. En los procesos internos de aprendizaje, la persona interpreta la respuesta de la IA, la contrasta con sus conocimientos previos y reorganiza sus estrategias. Por ello, la interacción más beneficiosa no es la que entrega directamente una solución, sino la que promueve preguntas, justificaciones y revisión crítica. La literatura reciente identifica como ventajas la personalización, la disponibilidad permanente y la retroalimentación rápida, pero también advierte riesgos relacionados con la dependencia, la privacidad, la desigualdad de acceso y la pérdida de oportunidades para practicar el razonamiento autónomo (Tlili et al., 2023; Lo, 2023).</p>
+
+<p style="text-align-last: justify">En términos de <strong>aplicaciones prácticas</strong>, una familia puede emplear un asistente conversacional para crear preguntas de comprensión lectora; un docente puede solicitar varias explicaciones de un mismo concepto para atender distintos niveles; y un adulto mayor puede utilizar una interfaz de voz para organizar actividades o acceder a información. Sin embargo, estos usos deben incorporar <strong>desafíos y limitaciones</strong>: supervisión humana, protección de datos, adecuación a la edad, revisión de sesgos y comprobación de la exactitud de las respuestas. La UNESCO (2023) recomienda una implementación</p></div>
+
+
+<div class="page">
+<p> centrada en las personas, con criterios de seguridad, inclusión y responsabilidad. En consecuencia, la IA puede ampliar las oportunidades de desarrollo cognitivo a lo largo de la vida, pero sus beneficios dependerán de la calidad del entorno educativo, de la participación activa del individuo y de la orientación ética de adultos, docentes y profesionales.</p>
+<h2 id="capitulo_4">Cerebro y Aprendizaje</h2><figure class="flotad" data-capitulo="4">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_14.jpg" alt="3D render of a glowing human brain learning through interaction with an AI neural network, illuminated synapses forming new pathways, floating books and holographic cognitive maps, vibrant blue and golden light, symbolizing memory, attention, and cognitive development, futuristic yet human-centered, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Cerebro y Aprendizaje</figcaption>
+                    
+                </figure><p>El <strong>cerebro y el aprendizaje</strong> forman un sistema dinámico en el que la atención, la memoria de trabajo, la motivación y la recuperación activa de la información interactúan para construir conocimientos duraderos. En este contexto, la inteligencia artificial (IA) puede entenderse como una herramienta de apoyo cognitivo que analiza datos, genera explicaciones, adapta actividades y proporciona retroalimentación. Sin embargo, la IA no “aprende por el estudiante”: su efecto depende de cómo se integre en las actividades mentales del individuo. Kasneci et al. (2023) señalan que los modelos de lenguaje pueden favorecer experiencias educativas personalizadas, aunque también plantean riesgos relacionados con la exactitud de la información, la autonomía y la evaluación del aprendizaje.</p><p style="text-align-last: justify;">Los <strong>componentes principales</strong> de esta relación son: <strong>atención</strong>, para seleccionar la información relevante; <strong>memoria de trabajo</strong>, para</p></div>
+				
+		<div class="page"><p> manipular temporalmente los contenidos; <strong>memoria a largo plazo</strong>, para consolidar conocimientos; <strong>metacognición</strong>, para supervisar cómo se aprende; y <strong>motivación</strong>, para sostener el esfuerzo. La IA puede intervenir en cada componente mediante tutores conversacionales, sistemas de recomendación, simulaciones y herramientas de retroalimentación. Su principio de funcionamiento consiste en adaptar la respuesta al desempeño observable del estudiante: identifica errores, propone ejemplos graduales y ajusta la dificultad. No obstante, una respuesta inmediata no garantiza aprendizaje profundo; para que exista desarrollo cognitivo, el estudiante debe explicar, comparar, recuperar y aplicar la información. Tlili et al. (2023) destacan que los chatbots educativos pueden facilitar la interacción y el acompañamiento, pero requieren supervisión pedagógica y criterios claros de uso.</p><p>Entre los <strong>procesos internos</strong> favorecidos por una integración adecuada se encuentran la elaboración de conceptos, la práctica distribuida, la resolución de problemas y la autorregulación. Por ejemplo, un estudiante puede solicitar a una IA que formule preguntas socráticas sobre un texto, que presente un problema con dificultad progresiva o que revise la lógica de una respuesta sin proporcionar directamente la solución. En este caso, la herramienta funciona como andamiaje: apoya temporalmente la actividad cognitiva y puede retirarse gradualmente cuando aumenta la competencia. En las <strong>aplicaciones prácticas</strong>, la IA se utiliza para crear mapas conceptuales, adaptar lecturas, simular laboratorios, generar ejercicios y ofrecer retroalimentación lingüística. Además, Noy y Zhang (2023) encontraron que las herramientas generativas pueden mejorar el rendimiento y reducir el tiempo en determinadas tareas profesionales; sin embargo, ese resultado no debe interpretarse automáticamente como evidencia de aprendizaje, pues producir un resultado con mayor rapidez no equivale a comprenderlo.</p></div>
+		
+		<div class="page"><p>Los <strong>beneficios y ventajas</strong> potenciales incluyen la personalización del ritmo, el acceso inmediato a ejemplos, la detección temprana de dificultades y el apoyo a estudiantes con distintas necesidades. También puede ampliar las oportunidades de práctica fuera del aula y ayudar al docente a identificar patrones de error. Un caso realista sería el de una plataforma que detecta que un alumno confunde causa y consecuencia en un texto histórico y le propone una secuencia de actividades: identificar hechos, ordenarlos temporalmente, justificar relaciones y redactar una explicación propia. En este proceso, la IA no sustituye la actividad intelectual, sino que organiza oportunidades para ejercitarla.</p><p>Los <strong>desafíos o limitaciones</strong> son igualmente importantes: respuestas incorrectas o sesgadas, dependencia excesiva, reducción del esfuerzo mental, problemas de privacidad y desigualdad en el acceso. Si el estudiante delega en la IA la lectura, la escritura o la resolución de problemas, puede producirse una participación cognitiva superficial.</p>
+		<div class="caja10"><p>La UNESCO (2023) recomienda establecer un uso centrado en la persona, con protección de datos, supervisión humana y objetivos pedagógicos explícitos.</p></div>
+		<p>Una estrategia responsable consiste en exigir que toda respuesta generada por IA sea contrastada con fuentes confiables, explicada con palabras propias y revisada mediante preguntas como: <strong>¿qué comprendí?, ¿qué evidencia lo respalda?, ¿qué parte podría ser incorrecta?</strong> Así, el objetivo no es usar más IA, sino utilizarla de manera que fortalezca la atención, la comprensión, la memoria y la autonomía intelectual.</p></div>
+		
+		<div class="page"><h2 id="capitulo_5">Atención bajo Influencia</h2><figure class="flotai" data-capitulo="5">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_15.jpg" alt="3D render of a human mind as a glowing attention spotlight, pulled between colorful AI-driven notifications, social media symbols, and calming cognitive pathways; visual contrast between distraction and focused thought, cinematic lighting, futuristic yet human, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Atención bajo Influencia</figcaption>
+                    
+                </figure><p>La <strong>atención bajo influencia</strong> describe la manera en que los sistemas de inteligencia artificial pueden orientar, fragmentar, ampliar o sustituir parcialmente la atención del individuo. En este contexto, la atención no depende únicamente de la voluntad: también está condicionada por notificaciones, recomendaciones algorítmicas, respuestas instantáneas y contenidos personalizados. En los sistemas generativos, el usuario introduce una instrucción, el modelo procesa patrones lingüísticos y produce una respuesta que compite por convertirse en el centro de la actividad mental. Kasneci et al. (2023) señalan que estas herramientas pueden apoyar la explicación, la retroalimentación y la personalización del aprendizaje, aunque también pueden fomentar una recepción pasiva de la información.</p><p>Sus <strong>componentes principales</strong> son el foco atencional, la memoria de trabajo, la motivación, la interfaz digital y el grado de autonomía concedido a la IA. El principio de funcionamiento puede resumirse así: cuanto menor es el esfuerzo requerido para obtener una respuesta, mayor es la posibilidad de que la persona reduzca la búsqueda, la comparación y la comprobación independiente. Este fenómeno se relaciona con la <strong>descarga cognitiva</strong>, es decir, la delegación de una tarea mental en una herramienta externa. </p></div>
+				
+		<div class="page"><p>Gerlich (2025) encontró una asociación entre un uso más frecuente de herramientas de IA y una mayor tendencia a delegar procesos cognitivos, junto con una relación negativa entre esa dependencia y el pensamiento crítico; no obstante, estos resultados deben interpretarse con cautela porque no demuestran por sí solos una relación causal universal.</p><p>Los <strong>procesos internos</strong> implicados pueden organizarse en una secuencia:</p><p>1. <strong>Captura:</strong> la interfaz atrae la atención mediante respuestas inmediatas, sugerencias o estímulos personalizados.</p><p>2. <strong>Selección:</strong> el usuario decide qué información aceptar, ignorar o ampliar.</p><p>3. <strong>Delegación:</strong> algunas operaciones —resumir, recordar, redactar o comparar— se trasladan al sistema.</p><p>4. <strong>Supervisión:</strong> la persona verifica la exactitud, la pertinencia y los posibles sesgos de la respuesta.</p><p>5. <strong>Integración:</strong> la información validada se incorpora a la memoria y al razonamiento propio.</p><p style="text-align-last: justify;">En las <strong>aplicaciones prácticas</strong>, la IA puede ayudar a dividir una tarea compleja en pasos, generar preguntas de estudio, ofrecer ejemplos alternativos o adaptar la dificultad de un ejercicio. También puede funcionar como un tutor socrático si se le solicita que formule preguntas en lugar de entregar soluciones. Sus principales <strong>beneficios</strong> aparecen cuando amplía la atención sin reemplazarla: reduce tareas repetitivas, facilita la accesibilidad y proporciona retroalimentación rápida. </p></div>
+		
+		<div class="page"><p>Para favorecer ese uso, conviene aplicar una regla sencilla: primero elaborar una respuesta personal, después consultar a la IA y finalmente comparar, corregir y justificar las diferencias.</p><p>El principal <strong>desafío</strong> consiste en confundir fluidez con comprensión. Una respuesta clara y convincente puede contener errores, sesgos o información inventada; además, la facilidad de obtenerla puede disminuir la tolerancia a la incertidumbre y la disposición a concentrarse en problemas difíciles. Por ello, la UNESCO recomienda establecer criterios de uso responsable, protección de datos, supervisión humana y formación en alfabetización digital (Miao &amp; Holmes, 2023). Un <strong>caso real de uso educativo</strong> sería pedir a una IA que evalúe un borrador: la actividad es formativa si el estudiante conserva el control, revisa los argumentos y explica los cambios; se vuelve perjudicial si acepta automáticamente la versión generada y deja de construir su propio razonamiento. La atención bajo influencia, por tanto, no exige rechazar la IA, sino diseñar interacciones que mantengan activa la observación, la memoria, la duda y la toma de decisiones.</p>
+		<h1 id="capitulo_6">Memoria y Tecnología</h1>
+		<p style="text-align-last: justify">La <strong>memoria y la tecnología</strong> se relacionan mediante un proceso denominado <em>descarga cognitiva</em>: el individuo utiliza dispositivos externos para almacenar, recuperar o transformar información que, en otras circunstancias, tendría que mantener mentalmente. En este proceso intervienen varios <strong>componentes principales</strong>: la memoria de trabajo, encargada de manipular información durante una tarea; la memoria a largo plazo, donde se consolidan conocimientos; los dispositivos digitales, que funcionan como depósitos externos; y los sistemas de inteligencia artificial, capaces de organizar, resumir y recuperar contenidos. Kasneci et al. (2023) señalan que los modelos de lenguaje pueden apoyar la explicación y personalización del aprendizaje, aunque</p>
+		</div>
+		
+		<div class="page">
+		<p> su utilidad depende de que el estudiante conserve una participación activa en la construcción del conocimiento.</p>
+		<figure class="centrada" data-capitulo="6">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_16.jpg" alt="3D render of a human brain intertwined with glowing neural networks, holographic memory archives, and futuristic digital devices, symbolizing the connection between memory, technology, and individual cognitive development; cool blue and warm gold lighting, clean educational composition, Spanish labels only. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Memoria y Tecnología</figcaption>
+                    
+                </figure><p style="text-align-last: justify;">El <strong>principio de funcionamiento</strong> consiste en trasladar parte de una tarea mental a una herramienta tecnológica. Por ejemplo, una persona</p></div>
+				
+				<div class="page"><p> puede consultar una aplicación para recordar una fecha, utilizar un buscador para localizar un concepto o pedir a una IA generativa que sintetice un texto. Los <strong>procesos internos</strong> incluyen la codificación inicial de la información, la decisión de qué conservar externamente, la recuperación mediante una consulta y la posible integración del resultado con los conocimientos previos. Cuando la herramienta proporciona una respuesta sin exigir razonamiento, puede reducir el esfuerzo de elaboración y limitar la consolidación de recuerdos; cuando formula preguntas, ofrece retroalimentación o solicita justificar una respuesta, puede estimular la comprensión. Gerlich (2025) relaciona el uso intensivo de herramientas de IA con la descarga cognitiva y advierte que una dependencia excesiva puede debilitar la práctica del pensamiento crítico.</p><p>Entre sus <strong>aplicaciones prácticas</strong>, la IA puede crear tarjetas de estudio, adaptar ejercicios al nivel del estudiante, generar simulaciones, transformar un texto complejo en explicaciones graduales y proporcionar recordatorios personalizados. Sus <strong>beneficios y ventajas</strong> incluyen el acceso rápido a información, la reducción de la carga de tareas repetitivas y el apoyo a estudiantes con diferentes ritmos de aprendizaje. Un ejemplo es solicitar a un asistente de IA que formule preguntas sobre un capítulo y después responderlas sin consultar el texto; esta estrategia obliga a recuperar la información y permite detectar lagunas de conocimiento. Sin embargo, la tecnología debe emplearse como apoyo y no como sustituto de la evocación, la lectura profunda y la elaboración personal. La UNESCO (2023) recomienda que el uso educativo de la IA se oriente mediante criterios pedagógicos, supervisión humana y protección de la autonomía del estudiante.</p><p style="text-align-last: justify;">Los principales <strong>desafíos o limitaciones</strong> son la dependencia tecnológica, la aceptación de respuestas incorrectas, la disminución de la atención sostenida, la privacidad de los datos y la desigualdad en el acceso a herramientas de calidad. Para favorecer el desarrollo</p></div>
+				
+				<div class="page"><p> cognitivo, conviene aplicar una secuencia equilibrada: <strong>primero</strong>, intentar recordar o resolver el problema sin ayuda; <strong>después</strong>, consultar la IA como fuente de orientación; <strong>luego</strong>, verificar la respuesta con materiales confiables; y <strong>finalmente</strong>, explicar con palabras propias lo aprendido. De este modo, la tecnología no reemplaza la memoria, sino que se convierte en un entorno de práctica, retroalimentación y organización del conocimiento.</p><h1 id="capitulo_7">Creatividad Algorítmica</h1><figure class="flotad" data-capitulo="7">
+               <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_17.jpg" alt="3D render of a human mind fused with a luminous neural network, generating colorful geometric ideas through flowing algorithms, symbolizing creativity, cognition, and AI collaboration; futuristic studio lighting, intricate details, Spanish labels only if any text appears. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Creatividad Algorítmica</figcaption>
+                    
+                </figure><p>La <strong>creatividad algorítmica</strong> es la capacidad de un sistema de inteligencia artificial para generar, transformar o combinar ideas, textos, imágenes, sonidos y soluciones a partir de patrones aprendidos en grandes conjuntos de datos. No equivale necesariamente a una creatividad humana autónoma: el sistema produce resultados mediante procedimientos de predicción, recombinación y optimización, mientras que la persona formula objetivos, selecciona instrucciones y evalúa la pertinencia de las respuestas. En este sentido, la IA puede funcionar como una herramienta de <strong>ampliación cognitiva</strong>, ya que ayuda a explorar más alternativas en menos tiempo. Noy y Zhang (2023) observaron que las herramientas generativas pueden mejorar el desempeño en determinadas tareas de escritura, especialmente cuando se emplean como apoyo y no como sustituto completo del juicio humano.</p></div>
+				
+				<div class="page">
+				<p>Sus componentes principales son: <strong>datos de entrenamiento</strong>, modelos capaces de reconocer relaciones complejas, instrucciones o <em>prompts</em>, mecanismos de generación y criterios humanos de evaluación. </p>
+				<p>El proceso interno puede describirse de manera simplificada en cuatro etapas: <strong>1)</strong> interpretación de la solicitud; <strong>2)</strong> recuperación estadística de patrones relevantes; <strong>3)</strong> generación de varias posibilidades; y <strong>4)</strong> revisión, corrección y selección por parte del usuario. Por ello, la creatividad algorítmica no consiste únicamente en “crear” un producto, sino en establecer un ciclo de interacción entre persona y sistema. En el desarrollo cognitivo, este ciclo puede estimular la fluidez —producir muchas ideas—, la flexibilidad —cambiar de perspectiva— y la elaboración —mejorar una propuesta—, siempre que el individuo compare, cuestione y reelabore las respuestas.</p><p>Las aplicaciones prácticas abarcan la escritura de borradores, la creación de prototipos, la composición visual, la programación, la resolución de problemas y el diseño de actividades educativas. En un contexto de aprendizaje, por ejemplo, un estudiante puede solicitar cinco explicaciones diferentes de un concepto, pedir analogías, contrastar argumentos y construir posteriormente una respuesta propia. Doshi y Hauser (2024) encontraron que la IA generativa puede aumentar la creatividad individual en ciertas tareas; sin embargo, también advirtieron que los productos creados con ayuda algorítmica tienden a parecerse más entre sí. Este resultado muestra un beneficio y una limitación simultáneos: la IA facilita la generación de ideas, pero puede reducir la <strong>diversidad colectiva</strong> si muchas personas utilizan modelos, instrucciones y fuentes semejantes.</p>
+				<p>Entre los principales desafíos se encuentran la dependencia excesiva, la aceptación de errores con apariencia convincente, la homogeneización de las ideas, los sesgos presentes en los datos y la dificultad para determinar la autoría. </p>
+				</div>
+				
+				<div class="page"><p>Koivisto y Grassini (2023), al comparar producciones humanas y generadas por IA en tareas de dibujo creativo, señalaron que los participantes humanos todavía podían superar a los sistemas en determinados aspectos de originalidad y calidad. Por ello, una práctica cognitiva responsable debe incluir <strong>verificación de información, comparación de alternativas, justificación de decisiones y revisión humana</strong>. La creatividad algorítmica resulta más educativa cuando la IA actúa como provocadora de posibilidades y el individuo conserva la intención, el criterio, la responsabilidad y la decisión final.</p>
+				
+				<h1 id="capitulo_8">Desarrollo del Pensamiento Crítico</h1>
+               <p style="text-align-last: justify;">El <strong>pensamiento crítico</strong> es la capacidad de analizar información, evaluar la calidad de las evidencias, identificar supuestos y construir juicios razonados antes de aceptar una conclusión. En el contexto de la inteligencia artificial generativa, no consiste en recibir una respuesta y repetirla, sino en utilizarla como una hipótesis que debe ser examinada. Su funcionamiento depende de varios componentes: <strong>formulación de preguntas</strong>, comparación de fuentes, razonamiento lógico, verificación de datos, reconocimiento de sesgos y argumentación fundamentada. Lo (2023) señala que las herramientas como ChatGPT pueden apoyar la explicación, la síntesis y la generación de ideas, pero también pueden producir información incorrecta o incompleta, por lo que exigen una participación activa del estudiante.</p><p>El principio de funcionamiento puede describirse como un ciclo de interacción reflexiva: <strong>preguntar, obtener una respuesta, contrastarla, identificar sus límites y reformular el problema</strong>. En los procesos internos del aprendizaje, la IA puede estimular la metacognición cuando el usuario explica por qué acepta o rechaza una respuesta. Por ejemplo, ante una explicación histórica generada por un sistema, el estudiante puede elaborar una tabla de análisis: <strong>afirmación, evidencia disponible, fuente de verificación, posible sesgo y conclusión</strong></p>
+			   </div>
+				
+				
+				<div class="page">
+				<p><strong> provisional</strong>. Kasneci et al. (2023) destacan que los modelos de lenguaje pueden favorecer la personalización y el diálogo educativo, aunque advierten que la dependencia excesiva puede debilitar la autonomía intelectual y la evaluación independiente.</p>
+				<figure class="centrada" data-capitulo="8">
+				<img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_18.jpg" alt="3D render of a thoughtful student developing critical thinking alongside a glowing AI hologram, examining diverse information through a magnifying glass, connecting evidence, questioning assumptions, and choosing between illuminated paths; futuristic library, balanced scales, vibrant blue and gold lighting, symbolic cognitive growth. Any legible labels must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Desarrollo del Pensamiento Crítico</figcaption>
+                    
+                </figure>
+				</div>
+				
+				<div class="page">
+				<p>Entre sus <strong>aplicaciones prácticas</strong>, la IA puede emplearse para proponer contraargumentos, transformar una pregunta amplia en subproblemas, comparar interpretaciones de un texto, simular un debate o proporcionar retroalimentación inicial sobre la estructura de un ensayo. Sus beneficios incluyen mayor rapidez para explorar perspectivas, apoyo a estudiantes con diferentes ritmos de aprendizaje y oportunidades para practicar la argumentación. Sin embargo, estos beneficios solo aparecen cuando la actividad exige justificar las decisiones. Una estrategia didáctica consiste en pedir al estudiante que: <strong>1. genere una respuesta con IA; 2. localice dos fuentes académicas externas; 3. señale errores, omisiones o sesgos; 4. redacte una versión corregida; y 5. explique qué cambios realizó y por qué</strong>. Tlili et al. (2023) consideran que este uso guiado puede convertir el chatbot en un recurso de aprendizaje, siempre que el docente mantenga una función de orientación, evaluación y acompañamiento.</p><p>Entre los principales <strong>desafíos y limitaciones</strong> se encuentran las respuestas inventadas, la reproducción de sesgos presentes en los datos de entrenamiento, la dificultad para distinguir autoridad de apariencia de autoridad y el riesgo de sustituir la comprensión por una respuesta inmediata. Un caso educativo posible sería el análisis de una respuesta de IA sobre cambio climático: el estudiante no debería calificarla únicamente por su redacción, sino revisar la actualidad de las cifras, la procedencia de los datos y la relación entre evidencias y conclusiones. De este modo, la IA deja de ser una fuente incuestionable y se convierte en un objeto de análisis. La orientación internacional propone precisamente un uso responsable, con supervisión humana, protección de la privacidad y desarrollo de competencias para evaluar críticamente los resultados de estas tecnologías (UNESCO, 2023). El objetivo no es pensar menos gracias a la IA, sino <strong>pensar mejor frente a ella</strong>.</p></div>
+				
+				<div class="page"><h1 id="capitulo_9">Ética del Desarrollo Cognitivo</h1><figure class="flotai" data-capitulo="9">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_19.jpg" alt="3D render of a human mind evolving alongside a compassionate AI, surrounded by glowing ethical scales, diverse learners, transparent pathways, and protective digital barriers, symbolizing autonomy, equity, privacy, critical thinking, and responsible cognitive development; warm light, futuristic educational environment, no readable text, or any visible labels in Spanish only. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Ética del Desarrollo Cognitivo</figcaption>
+                    
+                </figure><p>La <strong>ética del desarrollo cognitivo</strong> estudia cómo el uso de la inteligencia artificial (IA) puede favorecer o perjudicar capacidades como el razonamiento, la memoria, la creatividad, la autorregulación y el pensamiento crítico. En el contexto educativo, la IA generativa funciona mediante modelos que identifican patrones en grandes conjuntos de datos y producen respuestas a partir de instrucciones del usuario. Sus componentes principales incluyen los datos de entrenamiento, el modelo algorítmico, la interfaz de interacción y la supervisión humana. Rudolph et al. (2023) advierten que estas herramientas pueden transformar la evaluación y el aprendizaje, pero también generar respuestas plausibles sin garantizar que sean verdaderas o pedagógicamente adecuadas.</p><p>Desde una perspectiva ética, el principio de funcionamiento más importante no debe ser la sustitución del esfuerzo intelectual, sino su <strong>ampliación responsable</strong>. La IA puede ofrecer explicaciones adaptadas, ejemplos, retroalimentación inmediata y apoyo a estudiantes con diferentes necesidades. Sin embargo, cuando el usuario delega de manera constante la búsqueda, la escritura o la resolución de problemas, se produce una forma de <strong>descarga cognitiva</strong> que puede reducir la práctica de habilidades fundamentales.</p></div>
+				
+				<div class="page"><div class="caja9"><p> Gerlich (2025) relaciona el uso excesivo de herramientas de IA con riesgos para el pensamiento crítico, especialmente cuando las personas aceptan automáticamente las respuestas generadas y dejan de comprobar sus fuentes, argumentos y posibles sesgos.</p></div><p>Los procesos internos implicados incluyen varias etapas: formulación de una pregunta, generación de una respuesta, interpretación de la información, verificación de su calidad y elaboración de una conclusión propia. Éticamente, el estudiante debe conservar el control de las etapas de análisis y juicio. Por ejemplo, puede utilizar un asistente de IA para comparar perspectivas sobre un problema, pero debe identificar supuestos, detectar errores y justificar la decisión final con evidencias independientes. Entre las <strong>aplicaciones prácticas</strong> se encuentran la creación de mapas conceptuales, la simulación de debates, la tutoría personalizada y la revisión preliminar de textos. Estas aplicaciones ofrecen beneficios como accesibilidad, rapidez y adaptación; no obstante, la UNESCO (2023) recomienda establecer límites relacionados con la privacidad, la transparencia, la equidad y la supervisión docente.</p><p style="text-align-last: justify;">Los principales <strong>desafíos o limitaciones</strong> son la fabricación de información, los sesgos presentes en los datos, la exposición de información personal, la desigualdad de acceso y la dificultad para distinguir una producción auténticamente reflexiva de una respuesta automatizada. También existe un problema de responsabilidad: si una herramienta proporciona una explicación errónea, la responsabilidad educativa no puede atribuirse exclusivamente al sistema. Un caso frecuente ocurre cuando un estudiante entrega un ensayo generado</p></div>
+				
+				<div class="page"><p> por IA sin comprenderlo; aunque el texto parezca coherente, se debilitan la autoría, la metacognición y la capacidad de argumentar. Por ello, la evaluación debe valorar no solo el producto final, sino también el proceso: borradores, decisiones, fuentes consultadas y explicación oral del razonamiento.</p><p>Una ética del desarrollo cognitivo puede organizarse en los siguientes criterios: <strong>finalidad formativa</strong>, usando la IA para aprender y no únicamente para producir resultados; <strong>supervisión humana</strong>, revisando sus respuestas antes de aceptarlas; <strong>transparencia</strong>, declarando cuándo y cómo se utilizó; <strong>protección de datos</strong>, evitando introducir información sensible; y <strong>proporcionalidad</strong>, reservando la automatización para tareas que no comprometan la autonomía intelectual. En síntesis, la IA es beneficiosa cuando amplía las oportunidades de comprender, practicar y crear, pero resulta perjudicial cuando reemplaza la duda, la deliberación y la responsabilidad personal. El objetivo ético no es formar individuos que dependan de sistemas inteligentes, sino personas capaces de utilizarlos críticamente y de pensar por sí mismas.</p><h1 id="capitulo_10">Hacia una Inteligencia Híbrida</h1>
+				
+				<p>La <strong>inteligencia híbrida</strong> es un modelo de colaboración en el que las capacidades cognitivas humanas se integran con sistemas de inteligencia artificial para resolver problemas, aprender y tomar decisiones. No implica sustituir el razonamiento humano, sino distribuir las tareas según las fortalezas de cada agente: la IA procesa grandes volúmenes de información, identifica patrones y genera alternativas; la persona interpreta, contextualiza, cuestiona y decide. En este sentido, los modelos generativos pueden funcionar como asistentes socráticos, tutores personalizados o herramientas de exploración conceptual, siempre que el individuo conserve la responsabilidad intelectual sobre el resultado (Kasneci et al., 2023; Lo, 2023).</p></div>
+				
+				
+				<div class="page">
+				<figure class="centrada" data-capitulo="10">
+                <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_110.jpg" alt="3D render of a human mind seamlessly merging with a luminous AI neural network, interconnected organic and digital synapses, symbolic growth, creativity, critical thinking, and collaborative intelligence, futuristic yet human-centered, soft cinematic lighting, blue and warm gold palette, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:80%;">
+                    <figcaption>Hacia una Inteligencia Híbrida</figcaption>
+                    
+                </figure>
+				<p style="text-align-last: justify">Sus <strong>componentes principales</strong> son: la persona con sus conocimientos previos y criterios éticos; el sistema de IA, capaz de analizar datos y producir respuestas; la interacción mediante instrucciones, preguntas y retroalimentación; y un mecanismo de verificación que permita evaluar la calidad de la información. El <strong>principio de funcionamiento</strong> se basa en la complementariedad: el usuario formula un objetivo, la IA propone contenidos o soluciones, y la persona revisa, corrige y utiliza esas propuestas para construir una respuesta mejor fundamentada. Este proceso puede describirse como un ciclo de <strong>exploración, contraste, elaboración y reflexión</strong>. Así, el valor cognitivo no se</p></div>
+				
+				<div class="page"><p> encuentra únicamente en la respuesta automática, sino en la actividad mental que se produce al comparar alternativas, detectar errores y justificar una elección (Dwivedi et al., 2023).</p>
+				<p>Los <strong>procesos internos</strong> de esta colaboración incluyen la externalización de la memoria, la generación de hipótesis, la reorganización de conceptos y la metacognición. Por ejemplo, un estudiante puede solicitar a la IA varias explicaciones de un fenómeno científico, identificar cuál es más clara, pedir ejemplos y después elaborar una síntesis propia. Entre sus <strong>aplicaciones prácticas</strong> se encuentran la tutoría adaptativa, la traducción y simplificación de textos, la lluvia de ideas, la programación asistida, la simulación de debates y la retroalimentación preliminar sobre escritos. Sus principales <strong>beneficios y ventajas</strong> son la personalización del aprendizaje, la disponibilidad inmediata de apoyo, la ampliación de perspectivas y la posibilidad de dedicar más tiempo a actividades de análisis y creación. Sin embargo, estos beneficios solo aparecen cuando la herramienta se utiliza como apoyo para pensar y no como sustituto de la comprensión.</p><p>La inteligencia híbrida también presenta <strong>desafíos y limitaciones</strong>. Las respuestas de la IA pueden contener errores, sesgos, información desactualizada o referencias inexistentes; además, una dependencia excesiva puede debilitar la memoria, la autonomía y la capacidad de resolver problemas sin asistencia. Por ello, cada interacción debe incorporar prácticas de alfabetización crítica: verificar fuentes, comparar explicaciones, reconocer incertidumbres, proteger los datos personales y declarar cuándo se ha utilizado IA. Un caso de aplicación responsable sería pedir a un sistema generativo que proponga tres interpretaciones de un texto, contrastarlas con bibliografía académica y redactar después una conclusión propia. Como advierten Lo (2023) y UNESCO (2023), el desarrollo cognitivo depende menos del acceso a la herramienta que del diseño pedagógico, la supervisión humana y la promoción de una participación activa, ética y reflexiva.</p>
+				
+				</div>
+				
+				<div class="page">
+				<h1 id="referencias">Referencias bibliográficas</h1>
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Bubeck, S., Chandrasekaran, V., Eldan, R., Gehrke, J., Horvitz, E., Kamar, E., Lee, P., Lee, Y. T., Li, Y., Lundberg, S., Nori, H., Palangi, H., Ribeiro, M. T., &amp; Zhang, Y. (2023). <em>Sparks of artificial general intelligence: Early experiments with GPT-4</em>. arXiv. <a href="https://doi.org/10.48550/arXiv.2303.12712" target="_blank" rel="noopener noreferrer">https://doi.org/10.48550/arXiv.2303.12712</a></p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word; text-align-last: justify;">Cotton, D. R. E., Cotton, P. A., &amp; Shipway, J. R. (2023). ChatGPT: What does it mean for higher education? <em>Journal of Applied Learning &amp; Teaching, 6</em>(1),</p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">27–32. <a href="https://doi.org/10.37074/jalt.2023.6.1.22" target="_blank" rel="noopener noreferrer">https://doi.org/10.37074/jalt.2023.6.1.22</a></p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Doshi, A. R., &amp; Hauser, O. P. (2024). Generative AI enhances individual creativity but reduces the collective diversity of novel content. <em>Science Advances, 10</em>(28), eadn5290. <a href="https://doi.org/10.1126/sciadv.adn5290" target="_blank" rel="noopener noreferrer">https://doi.org/10.1126/sciadv.adn5290</a></p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Dwivedi, Y. K., Kshetri, N., Hughes, L., Slade, E. L., Jeyaraj, A., Kar, A. K., Baabdullah, A. M., Koohang, A., Raghavan, V., Ahuja, M., Albanna, H., Albashrawi, M. A., Al-Busaidi, K. A., Balakrishnan, J., Barlette, Y., Basu, S., Bose, I., Brooks, L., Buhalis, D., … Wright, R. (2023). So what if ChatGPT wrote it? Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy. <em>International Journal of Information Management, 71</em>, 102642. <a href="https://doi.org/10.1016/j.ijinfomgt.2023.102642" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.ijinfomgt.2023.102642</a></p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Gerlich, M. (2025). AI tools in society: Impacts on cognitive offloading and the future of critical thinking. <em>Societies, 15</em>(1), 6. <a href="https://doi.org/10.3390/soc15010006" target="_blank" rel="noopener noreferrer">https://doi.org/10.3390/soc15010006</a></p>
+				
+				</div>
+				
+				
+				<div class="page">
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Kasneci, E., Sessler, K., Küchemann, S., Bannert, M., Dementieva, D., Fischer, F., Gasser, U., Groh, G., Günnemann, S., Hüllermeier, E., Krusche, S., Kutyniok, G., Michaeli, T., Nerdel, C., Pfeiffer, F., Poquet, O., Sailer, M., Schmidt, A., Seidel, T., … Kasneci, G. (2023). ChatGPT for good? On opportunities and challenges of large language models for education. <em>Learning and Individual Differences, 103</em>, 102274. <a href="https://doi.org/10.1016/j.lindif.2023.102274" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.lindif.2023.102274</a></p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word; text-align-last: justify;">Koivisto, M., &amp; Grassini, S. (2023). Best humans still outperform artificial intelligence in creative drawing: A comparison between human and AI-produced images. <em>Scientific Reports, 13</em>, 13633.</p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;"><a href="https://doi.org/10.1038/s41598-023-40858-3" target="_blank" rel="noopener noreferrer">https://doi.org/10.1038/s41598-023-40858-3</a></p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Lo, C. K. (2023). What is the impact of ChatGPT on education? A rapid review of the literature. <em>Education Sciences, 13</em>(4), 410. <a href="https://doi.org/10.3390/educsci13040410" target="_blank" rel="noopener noreferrer">https://doi.org/10.3390/educsci13040410</a></p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Miao, F., &amp; Holmes, W. (2023). <em>Guidance for generative AI in education and research</em>. UNESCO. <a href="https://unesdoc.unesco.org/ark:/48223/pf0000386693" target="_blank" rel="noopener noreferrer">https://unesdoc.unesco.org/ark:/48223/pf0000386693</a></p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Noy, S., &amp; Zhang, W. (2023). Experimental evidence on the productivity effects of generative artificial intelligence. <em>Science, 381</em>(6654), 187–192. <a href="https://doi.org/10.1126/science.adh2586" target="_blank" rel="noopener noreferrer">https://doi.org/10.1126/science.adh2586</a></p>
+				
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Rudolph, J., Tan, S., &amp; Tan, S. (2023). ChatGPT: Bullshit spewer or the end of traditional assessments in higher education? <em>Journal of Applied Learning &amp; Teaching, 6</em>(1), 1–22. <a href="https://doi.org/10.37074/jalt.2023.6.1.9" target="_blank" rel="noopener noreferrer">https://doi.org/10.37074/jalt.2023.6.1.9</a></p></div><div class="page">
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Tlili, A., Shehata, B., Adarkwah, M. A., Bozkurt, A., Hickey, D. T., Huang, R., &amp; Agyemang, B. (2023). What if the devil is my guardian angel: ChatGPT as a case study of using chatbots in education. <em>Smart Learning Environments, 10</em>, 15. <a href="https://doi.org/10.1186/s40561-023-00237-x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1186/s40561-023-00237-x</a></p>
+	</div>
+	
+	<!--  -->
+	<div class="page invertcolor" num="" style="background-image: radial-gradient(white, #ecf0f1, #e3e5e7); display:flex; align-items:center; justify-content:center;">
+			<a style="width:50%" target="_blank" href="https://descartes.matem.unam.mx/"><img loading="lazy" src="images/general/logo_descartes.svg" width="100%"></a>
+	</div>
+	
+	<!-- [cierra] pages_container -->
+	</div>
+
+	<!-- [cierra] book_container -->
+	</div>
+
+
+</body></html>
