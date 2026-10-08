@@ -1,0 +1,281 @@
+
+
+.caja1 {
+	font-size: 22px;
+	text-align: center;
+	padding: 25px;
+	margin: 20px;
+	box-shadow: 6px 6px 10px #c2c2c2; 
+	width: 80%;
+	background-color: hsl(250 10% 90%);
+	margin-left: auto;
+	margin-right: auto;
+	border-radius: 3%;
+}
+
+body.dark .caja1 {
+	background-color: hsl(250 10% 10%);
+	color: #cccccc;
+}
+
+.caja2 {
+  background-color: #fdf6ee;  /* Fondo beige claro */
+  border-left: 5px solid #c1442f;  /* Borde rojo a la izquierda */
+  border-radius: 6px;  /* Bordes suavemente redondeados */
+  padding: 15px 20px; /* Espaciado interno */
+  color: #4a2e1f;                  /* Color del texto principal */
+  line-height: 1.6;                /* Mejora la legibilidad */
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+body.dark .caja2 {
+	background-color: hsl(250 10% 10%);
+	color: #cccccc;
+}
+
+.caja3 {
+/* Color de fondo */
+  background-color: var(--h1-color); /* Un tono de morado similar al de la imagen */
+  
+  /* Color del texto */
+  color: white; /* Un blanco ligeramente grisáceo/violáceo */
+  
+  /* Espaciado interno */
+  padding: 24px;
+  
+  /* Bordes redondeados */
+  border-radius: 8px;
+  
+  /* Sombra sutil para darle profundidad (opcional) */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  /* Limitar el ancho máximo para una mejor lectura */
+  max-width: 750px;
+  margin: 20px auto; /* Centrar el contenedor en la página */
+  }
+
+/* Estilo para el título "Fuentes clave" */
+.caja3 h4 {
+  font-size: 1.75rem; /* Tamaño de fuente más grande */
+  font-weight: bold;   /* Texto en negrita */
+  margin-top: 0;       /* Eliminar margen superior por defecto */
+  margin-bottom: 12px; /* Espacio entre el título y la línea */
+  color: white;
+}
+
+/* Estilo para la línea horizontal */
+.caja3 hr {
+  border: none; /* Quitamos el borde por defecto */
+  height: 1px;  /* Le damos un grosor de 1px */
+  background-color: #D2B4DE; /* Un color morado más claro para la línea */
+  opacity: 0.6; /* Hacemos la línea un poco transparente */
+  margin-bottom: 20px; /* Espacio entre la línea y el párrafo */
+}
+
+.caja4 {
+  background-color: #fafafa;
+  border: 1px solid #bbb;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  padding: 30px 20px 6px 20px;
+  
+  color: #333;
+  max-width: 700px;
+  margin: 40px auto;
+  margin-bottom: 20px;
+}
+
+body.dark .caja4 p {
+	color: black;
+}
+
+.caja4 p {
+	margin-top:-60px;
+	font-size: 20px;
+  line-height: 1.2;
+}
+
+.titulo4 {
+  display: inline-block;
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  font-size: 22px;
+  padding: 6px 12px;
+  border-radius: 4px;
+  position: relative;
+  top: -48px;
+  left: 0;
+}
+
+.caja5 {
+  background-color: #def6f2;  /* Fondo beige claro */
+  border-left: 5px solid #008c00;  /* Borde rojo a la izquierda */
+  border-radius: 6px;  /* Bordes suavemente redondeados */
+  padding: 15px 20px; /* Espaciado interno */
+  color: #4a2e00;                  /* Color del texto principal */
+  line-height: 1.3;                /* Mejora la legibilidad */
+  box-shadow: 3px 2px 3px rgba(0,0,0,0.2);
+}
+
+body.dark .caja5 {
+	background-color: hsl(90 5% 20%);
+	color: white;
+}
+
+.caja5 h1 {
+	color: #008c00;
+}
+
+.caja6 {
+  background-color: rgba(70, 0, 255, 0.8); 
+  color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  max-width: 750px;
+  margin: 20px auto;
+  font-size:19px;
+  }
+  
+.caja6:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 40px rgba(80, 0, 180, 0.5);
+  }
+
+.caja6 h4 {
+  font-size: 1.75rem;
+  font-weight: bold;
+  margin-top: 0;
+  margin-bottom: 12px;
+  color: white;
+}
+
+/* Estilo para la línea horizontal */
+.caja6 hr {
+  border: none; /* Quitamos el borde por defecto */
+  height: 2px;  /* Le damos un grosor de 1px */
+  background-color: white;   
+  opacity: 0.8; /* Hacemos la línea un poco transparente */
+  margin-bottom: 20px; /* Espacio entre la línea y el párrafo */
+}
+
+.caja7 {
+  background-color: #68e0e728;  /* Fondo azul claro */
+  border-top: 6px solid #008c0f;  /* Borde azul arriba */
+  border-radius: 10px;  /* Bordes suavemente redondeados */
+  padding: 15px 20px; /* Espaciado interno */
+  color: #4a2200; 
+  box-shadow: 3px 2px 5px #ccc;
+  line-height: 1.3;
+  font-size: 20px;
+  box-shadow: 3px 2px 3px rgba(0,0,0,0.2);
+}
+
+body.dark .caja7 {
+	background-color: hsl(200 5% 20%);
+	color: white;
+}
+
+.caja7 h1 {
+	color: var(--h1-color);
+}
+
+.caja8 {
+  background: linear-gradient(135deg, #a18cd1 0%, #fbc2eb 100%);
+  border-radius: 15px;
+  padding: 20px;
+  color: #222;
+  box-shadow: 0 5px 15px rgba(160, 120, 200, 0.4);
+  font-family: "Segoe UI", sans-serif;
+  margin: 15px;
+}
+
+.caja8 h1 {
+  color: #fff;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.6);
+  padding-bottom: 5px;
+}
+
+.caja9 {
+  position: relative;
+  background: #fff8e173;
+  border-left: 10px solid #ff9800;
+  border-radius: 8px;
+  padding: 20px 25px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15);
+  font-family: "Open Sans", sans-serif;
+  margin: 15px;
+  color: var(--text-color);
+}
+
+.caja9 h1 {
+  color: #ff9800;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.caja10 {
+  background: rgba(240, 248, 255, 0.8);
+  border: 3px double #007acc;
+  border-radius: 12px;
+  padding: 25px;
+  backdrop-filter: blur(6px);
+  color: #003366;
+  font-family: "Verdana", sans-serif;
+  margin: 15px;
+  box-shadow: 0 6px 15px rgba(0, 122, 204, 0.2);
+}
+
+.caja10 h1 {
+  color: #007acc;
+  border-bottom: 2px solid #007acc;
+  padding-bottom: 4px;
+}
+
+.flota_i {
+	float: left;
+    margin: 0px 10px -15px -5px;
+	padding: 5px;
+	border: 1px solid rgba(1,1,1,0);
+	width: 50%;
+	margin-top:-10px;
+}
+
+.flota_i .figcaption {
+	text-align: center;
+	margin-bottom:0px;
+	color: var(--text-color);
+}
+
+.flota_d {
+	float: right;
+    margin: 0px -10px 0px 15px;
+	padding: 5px;
+	border: 1px solid rgba(1,1,1,0);
+	width: 50%;
+	margin-top:10px;
+	
+}
+
+.flota_d .figcaption {
+	text-align: center;
+	color: var(--text-color);
+}
+
+.sin_boton {
+border: 0px; 
+border-color: rgba(1,1,1,0);
+background-color: rgba(1,1,1,0);
+}
+
+.sin_boton .btn_expand {
+border: 0px solid red;
+background-color: rgba(1,1,1, 0);
+opacity: 0.1;
+}
+
+p {
+    hyphens: auto;
+}

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=yes,minimal-ui">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<title>La IA en educación superior</title>
+
+	<!-- se precarga la imagen utilizada para el cargador del libro, en caso de que se utilice -->
+	<link rel="preload" as="image" href="images/general/icartesilibri_logo.svg">
+
+	<!-- configuración del libro -->
+	<script>
+	window.book_config = {
+		// parámetro que indica si los capítulos, secciones y figura se auto numeran
+		// para que los capítulos se auto numeren deben utilizar la etiqueta <h1>
+		// para que las secciones se auto numeren deben utilizar la etiqueta <h2>
+		auto_numerate_sections_and_figures: true,
+		// parámetro para que los interactivos se muestren a pantalla completa al presionar el botón de la esquina superior derecha
+		open_interactives_fullscreen: true,
+		// parámetro para usar el id de las referencias bibliográficas en lugar de la autonumeración
+		bibitem_ref_id: false,
+	}
+	</script>
+
+  <!-- núcleo del libro interactivo -->
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <script type="text/javascript" src="js/book.js" charset="utf-8"></script>
+  
+  <!-- personalización del usuario -->
+  <link rel="stylesheet" href="extra/fonts.css" type="text/css">
+  <link rel="stylesheet" href="extra/style.css" type="text/css">
+	<link rel="stylesheet" href="extra/mis_estilos.css" type="text/css">
+  <!-- inclusión de la biblioteca KaTex -->
+  <link rel="stylesheet" type="text/css" href="extra/katex/katex.min.css">
+  <script src="extra/katex/katex.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="extra/katex/copy-tex.min.css">
+  <script src="extra/katex/copy-tex.min.js"></script>
+  <script src="extra/katex/auto-render.min.js"></script>
+
+  <!-- Opcional en caso de requerir formulas químicas -->
+  <script src="extra/katex/mhchem.min.js"></script>
+  
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [ {left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}, {left: "\\[", right: "\\]", display: true}, {left: "\\(", right: "\\)", display: false} ]
+    });
+  });
+  </script>
+  
+  <style>
+        .flotad {
+            float: right;
+            margin-left: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+		
+		.flotai {
+            float: left;
+			margin-right: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+        
+    </style>
+</head>
+
+<body>
+	<div id="book_loader_container">
+		<!-- se utiliza un elemento para que funcione como cargador del libro -->
+		<div id="book_loader"></div>
+		<!-- y se indica la imagen a utilizar para personalizar el libro -->
+		<img src="images/general/icartesilibri_logo.svg" width="20%" style="padding-left:1em;">
+	</div>
+	
+	<div id="book_container">
+		<div id="btn_back_page"></div>
+		<div id="btn_next_page"></div>
+		<button id="go_to_table_of_content"></button>
+		
+		<button id="btn_config"></button>
+		<div id="config_options">
+			<div id="dark_light_mode"></div>
+		</div>
+
+		<!-- si este elemento no esta presente, el botón de la tabla de contenido lleva a la primera página con un elemento class="toc_link" -->
+	<div id="table_of_content"></div>
+
+	<div id="pages_container">
+	<!--  -->
+	<div class="page" style="background-color:transparent;"></div>
+
+	<!-- Portada -->
+	<div class="page invertcolor" style="margin:0; padding:0; background-size:contain; background-image:url(images/general/portada.svg);">
+				
+		<div class="invertcolor" style="position: absolute; width: 640px; height: 825px; left: 0px; top: 0px; background-image: url(&quot;images/cap1.jpg&quot;); background-size: 640px 825px; background-repeat: no-repeat;"></div>
+		<!-- Título del libro -->
+		
+		
+			
+		<!-- Nombre del autor del libro -->
+		<div style="position: absolute; bottom: 60px; left: 0px; width: 640px; font-size: 24px; color: rgb(255, 255, 255); text-align: center; text-shadow: rgb(0, 0, 0) 2px 2px 5px; white-space: pre-line;">Julieth Andrea Gómez Hernández
+Wilfer León Arias Loaiza</div>
+		
+		<!-- Logo de la editorial o institución -->
+		<p style="position: absolute; bottom: -10px; left: 0px; width: 640px; text-align: center; right: 0px;"> <a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/gifanimadoRedProyecto.gif" width="120px"></a> </p>
+	</div>
+
+	<!--  -->
+	<div class="page" style="display:flex; align-items:center; justify-content:center;">
+		<a style="width:50%" target="_blank" href="https://proyectodescartes.org/iCartesiLibri/"><img src="images/general/icartesilibri_logo.svg" width="100%"></a>
+	</div>
+
+	<!--  -->
+	<!-- init-page-num="true" es un parámetro que indica que a partir de esta página comienza la numeración -->
+	<!-- inicialmente los números de las páginas se numeran con numerales romanos -->
+	<!-- num="" es un parámetro que indica que esta página no lleva numeración visible -->
+	<!--  -->
+	<div class="page" style="text-align:center; font-size:120%;" init-page-num="true" num="">
+		<h1>La IA en educación superior</h1>
+		Subtítulo (opcional)<br><br><br><br>
+		<div style="margin-top: 100px;"><b style="white-space: pre-line;">Julieth Andrea Gómez Hernández
+Wilfer León Arias Loaiza</b>
+		<br><a target="_blank" href="https://websim.ai/c/0c0GRb7OadRtP1IxT"> <img src="images/logo.png" width="40%"></a>
+		</div>
+		<div align="center" style="position: absolute; bottom: 105px; left:0; right:0;"> Fondo Editorial RED Descartes<br><br>
+		<a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/logo_descartes3.png" width="300px"></a></div>
+
+		<div align="center" style="position: absolute; bottom: 50px; left:0; right:0;">Córdoba (España)<br>
+		2026</div>
+	</div>
+
+	<!--  -->
+    <div class="page" num="">
+		<p>Título de la obra:<br>
+        La IA en educación superior</p>
+		<br>
+		<p>Autores: <br>Julieth Andrea Gómez Hernández<br>Wilfer León Arias Loaiza</p><br>
+      	  
+		<p>
+        Código JavaScript para el libro: <a href="https://github.com/jlongi/libro_interactivo" target="_blank">Joel Espinosa Longi</a>, <a href="https://www.matem.unam.mx/" target="_blank">IMATE</a>, UNAM. <br>
+        Recursos interactivos: <a href="http://descartes.matem.unam.mx/" target="_blank">DescartesJS</a>, WebSim, Phet Colorado, GeoGebra, ... <br>
+        Fuentes: <a href="https://fonts.google.com/specimen/Lato" target="_blank">Lato</a> y <a href="https://fonts.google.com/specimen/Ubuntu+Mono" target="_blank">UbuntuMono</a><br>
+		Imagen de portada: ilustración generada por <a href="https://ideogram.ai/g/gM499E9RSBivOecxKJPU4Q/1" target="_blank">Ideogram AI</a> </p><br><br>
+		<p>Red Educativa Digital Descartes<br>
+        Córdoba (España)<br>
+        <a href="mailto:descartes@proyectodescartes.org?Subject=Fondo editorial"> descartes@proyectodescartes.org</a><br>
+        <a href="https://proyectodescartes.org/descartescms/" target="_blank">https://proyectodescartes.org</a><br>
+        <br>
+        Proyecto iCartesiLibri<br>
+        <a href="https://proyectodescartes.org/iCartesiLibri/index.htm" target="_blank">https://proyectodescartes.org/iCartesiLibri/index.htm</a> <br>
+        <br>
+        ISBN: <br>
+		</p>
+		<p style="font-size:10px; position: absolute; bottom: 30px; left: 50px; right:0;"><a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank"><img src="images/general/88x31.png" style="height:36px; width:99px"></a><br>
+        Esta obra está bajo una licencia Creative Commons 4.0 internacional: Reconocimiento-No Comercial-Compartir Igual.</p>
+    
+	</div>
+
+	<!--  -->
+	<div class="page">
+		<h2>Tabla de contenido</h2>
+
+		<!-- con esto se agrega una entrada en la tabla de contenido,
+		href="#prefacio" indica una referencia a una elemento html con 
+		el parámetro id="prefacio", automáticamente se busca está referencia
+		y se agrega el título correspondiente y la página donde se encuentra -->
+			
+		<div class="toc_link" href="#prefacio"></div>
+
+		
+		
+	<div class="toc_link" href="#capitulo_1"></div><div class="toc_link" href="#capitulo_2"></div><div class="toc_link" href="#capitulo_3"></div><div class="toc_link" href="#capitulo_4"></div><div class="toc_link" href="#capitulo_5"></div><div class="toc_link" href="#capitulo_6"></div><div class="toc_link" href="#capitulo_7"></div><div class="toc_link" href="#capitulo_8"></div><div class="toc_link" href="#capitulo_9"></div><div class="toc_link" href="#capitulo_10"></div><div class="toc_link" href="#referencias"></div></div>
+
+	<!--  -->
+	<!-- Una página en blanco y sin numeración visible -->
+	<!--  -->
+	<div class="page" num-type-arabic="true"><h1 id="prefacio">Prefacio</h1><p>Este libro nace con el propósito de ofrecer una mirada articulada sobre la presencia de la inteligencia artificial en la educación superior. Su punto de partida es reconocer que la IA ya interviene en tareas como el análisis de datos, la generación de contenidos, la personalización de recursos, la retroalimentación y el apoyo a la investigación. Sin embargo, la obra no la presenta como una solución automática ni como un reemplazo de la enseñanza, el aprendizaje o la responsabilidad universitaria. La propone, más bien, como una herramienta cuyo valor depende de los objetivos pedagógicos, la supervisión humana, la verificación de los resultados y la reflexión sobre sus efectos.</p><p>El enfoque combina la comprensión de los sistemas de IA con su uso educativo concreto. A lo largo del libro se consideran sus componentes —datos, modelos algorítmicos, interfaces y mecanismos de supervisión—, así como el carácter probabilístico de las respuestas generativas, que pueden parecer coherentes sin ser necesariamente verdaderas o pertinentes. Esta perspectiva invita a examinar tanto las oportunidades como las limitaciones: la rapidez para producir materiales, la adaptación a distintos ritmos, el apoyo inmediato y la reducción de tareas repetitivas conviven con errores, sesgos, riesgos para la privacidad, desigualdades de acceso, dependencia tecnológica y dificultades relacionadas con la autoría y la integridad académica.</p><p style="text-align-last: justify;">La organización de la obra sigue un recorrido que va desde el panorama general de la IA educativa hacia sus principales ámbitos de aplicación. El lector encontrará reflexiones sobre su presencia en la enseñanza y el aprendizaje, propuestas para diseñar estrategias didácticas y aproximaciones a formas de evaluación que atiendan no solo al producto final, sino también al razonamiento, el proceso, la argumentación y la producción propia. El itinerario se amplía después hacia la </p></div>
+
+
+
+	<!--  -->
+	<div class="page"><p>investigación, la ética, la responsabilidad,  la protección de datos y la seguridad, para desembocar en las condiciones necesarias para implementar estas tecnologías en el campus y pensar el futuro de la universidad como un ecosistema sociotécnico.</p><p>Una idea recorre estas páginas: utilizar la IA de manera educativa exige hacer visibles sus procesos y sus límites. Por ello, se concede importancia a contrastar las respuestas con fuentes académicas, declarar el uso de herramientas, proteger la información sensible, establecer normas institucionales y conservar la decisión final bajo responsabilidad de docentes e investigadores. El libro también subraya la necesidad de formar a estudiantes y profesores para que puedan cuestionar, revisar y corregir las producciones algorítmicas. La innovación, en este marco, no se mide por la cantidad de tecnología incorporada, sino por su capacidad para ampliar la participación, la retroalimentación y el acceso sin desplazar el juicio académico ni la dimensión humana de la educación superior.</p><p>Conviene señalar con transparencia que tanto los textos como las imágenes de esta obra fueron generados con ayuda de inteligencia artificial. Esta circunstancia forma parte del propio tema del libro y se asume desde una perspectiva crítica y responsable: los materiales requieren revisión, contextualización y valoración humana. Invitamos al lector a recorrer las páginas siguientes no como un catálogo de respuestas definitivas, sino como un espacio para comprender posibilidades, reconocer riesgos y participar en la construcción de prácticas universitarias más claras, seguras, equitativas y pedagógicamente fundamentadas.</p></div>
+
+	<!--  -->
+	<div class="page"><h1>La IA en educación superior</h1><h2 id="capitulo_1">Panorama de la IA Educativa</h2><figure class="centrada" data-capitulo="1">
+     <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_11.jpg" alt="3D render of a panoramic university campus transformed by educational AI: diverse students and professors learning alongside friendly holographic assistants, floating data networks, adaptive learning screens, virtual classrooms, and ethical human-centered technology, bright futuristic atmosphere, Spanish labels only. (textos en español)" style="border-radius:15px;cursor:pointer;width:58%;">
+                    <figcaption>Panorama de la IA Educativa</figcaption>
+                    
+                </figure><p>La <strong>IA educativa</strong> comprende el conjunto de técnicas y sistemas computacionales capaces de analizar datos, reconocer patrones, generar contenidos, ofrecer recomendaciones o interactuar con estudiantes y docentes en contextos de enseñanza y aprendizaje. En la educación superior, su panorama actual incluye tanto herramientas tradicionales —como sistemas de tutoría inteligente, analítica del aprendizaje y evaluación automatizada— como modelos generativos capaces de producir texto, imágenes, código y retroalimentación. La revisión de Crompton y Burke (2023) muestra que estas tecnologías se aplican en áreas como la personalización del aprendizaje, la predicción del desempeño, la administración académica y el apoyo a la investigación.</p></div><div class="page"><p>Sus <strong>componentes principales</strong> son los datos educativos, los algoritmos de aprendizaje automático, los modelos de lenguaje, las interfaces de interacción y los mecanismos de supervisión humana. En términos generales, el sistema recibe información —por ejemplo, respuestas, consultas, tiempos de dedicación o producciones escritas—, identifica regularidades y genera una salida: una recomendación, una explicación, una alerta o un contenido. En los modelos generativos, el proceso se basa en estimar qué elementos son más probables dentro de una secuencia, por lo que la respuesta puede parecer coherente sin constituir necesariamente conocimiento verdadero o comprensión humana. Kasneci et al. (2023) señalan que esta capacidad abre oportunidades para la tutoría, la generación de materiales y la asistencia a la escritura, pero exige comprobar la exactitud, pertinencia y finalidad pedagógica de cada resultado.</p><p>Entre sus <strong>aplicaciones prácticas y beneficios</strong>, la IA puede apoyar la creación de cuestionarios diferenciados, la traducción y adaptación de materiales, la retroalimentación formativa, la identificación temprana de estudiantes que requieren apoyo y la simulación de conversaciones para practicar idiomas o resolver problemas. También puede reducir tareas repetitivas y permitir que el profesorado dedique más tiempo a la orientación, el debate y el acompañamiento. Por ejemplo, un docente universitario puede utilizar un modelo generativo para proponer varias versiones de un caso, solicitar preguntas de distinto nivel cognitivo y después revisar críticamente las respuestas antes de incorporarlas a su curso. Lo (2023) destaca que estas posibilidades deben integrarse en diseños didácticos que mantengan objetivos de aprendizaje claros, en lugar de utilizar la herramienta como sustituto de la enseñanza.</p><p style="text-align-last: justify;">El panorama también está marcado por <strong>desafíos y limitaciones</strong>: sesgos presentes en los datos, respuestas imprecisas o inventadas, riesgos para la privacidad, dependencia tecnológica, desigualdad de</p></div>
+				
+				<div class="page"><p> acceso y dificultades para determinar la autoría de los trabajos estudiantiles. Además, la automatización de la evaluación puede afectar la transparencia y la confianza si los criterios no son comprensibles para quienes aprenden. El análisis de Tlili et al. (2023) sobre ChatGPT muestra que una adopción responsable requiere alfabetización en IA, protección de datos, revisión docente y normas institucionales sobre uso permitido. Por ello, el principio orientador no debe ser “automatizar por automatizar”, sino combinar las capacidades de la tecnología con el juicio académico, la interacción humana y una evaluación crítica de sus efectos educativos.</p><h2 id="capitulo_2">La IA en el proceso de enseñanza</h2><figure class="flotad" data-capitulo="2">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_12.jpg" alt="3D render of a modern university classroom where a professor and diverse students collaborate with a glowing AI teaching assistant, holographic lesson plans, personalized learning paths, feedback dashboards, and interactive digital tools connecting human guidance with intelligent technology; warm, innovative atmosphere, realistic details, no readable text, or any visible labels must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>La IA en el proceso de enseñanza</figcaption>
+                    
+                </figure><p>La <strong>inteligencia artificial (IA) en el proceso de enseñanza</strong> comprende el uso de sistemas capaces de analizar información, reconocer patrones y generar respuestas para apoyar la planificación docente, la interacción con el alumnado y la evaluación. En la educación superior, su funcionamiento suele combinar modelos de aprendizaje automático, procesamiento del lenguaje natural, bases de datos académicas e interfaces conversacionales. Los modelos generativos, como los asistentes basados en lenguaje, producen explicaciones, ejemplos, preguntas y retroalimentación a partir de instrucciones escritas; sin embargo,  sus respuestas deben ser revisadas porque pueden contener errores, sesgos o referencias inexistentes (Kasneci et al., 2023).</p></div>
+				
+				<div class="page"><p>Sus <strong>componentes principales</strong> incluyen: <strong>a)</strong> datos de entrada, como preguntas, trabajos o resultados de aprendizaje; <strong>b)</strong> un modelo algorítmico que procesa esos datos; <strong>c)</strong> una interfaz de interacción, por ejemplo, un chatbot o sistema tutorial; y <strong>d)</strong> mecanismos de supervisión docente. El principio de funcionamiento consiste en relacionar la información proporcionada por el usuario con patrones aprendidos durante el entrenamiento del sistema. En un proceso educativo, la IA puede analizar una respuesta, identificar dificultades frecuentes y generar una explicación adaptada al nivel del estudiante. No obstante, esta personalización no sustituye el juicio pedagógico: el profesorado debe definir los objetivos, comprobar la calidad de los contenidos y decidir cuándo una recomendación es pertinente (Tlili et al., 2023).</p><p>Entre sus <strong>aplicaciones prácticas</strong> se encuentran la elaboración de materiales didácticos, la generación de bancos de preguntas, la simulación de debates, la traducción y adaptación de textos, la tutoría conversacional y la retroalimentación formativa. Por ejemplo, en una asignatura universitaria, un docente puede solicitar a un sistema de IA que proponga tres casos profesionales sobre un tema, diseñe preguntas de distintos niveles cognitivos y ofrezca una rúbrica preliminar; posteriormente, el docente revisa, contextualiza y ajusta esos materiales. También puede utilizarse para que el estudiante practique mediante preguntas socráticas, siempre que la actividad exija justificar las respuestas y contrastarlas con bibliografía académica. Estas posibilidades favorecen la interacción y amplían las oportunidades de práctica, pero su eficacia depende del diseño de la actividad y de la mediación pedagógica (Kasneci et al., 2023).</p><p>Los <strong>beneficios y ventajas</strong> de la IA incluyen la rapidez para producir recursos, la posibilidad de ofrecer apoyo inmediato y la adaptación de explicaciones a diferentes ritmos de aprendizaje.</p></div>
+				
+				<div class="page"><p> Aun así, existen <strong>desafíos o limitaciones</strong> relacionados con la privacidad de los datos, la brecha de acceso, los sesgos algorítmicos, la dependencia tecnológica, la integridad académica y la falta de transparencia sobre la procedencia de algunas respuestas. Por ello, la institución debe establecer normas de uso, formar a docentes y estudiantes en alfabetización digital y promover una evaluación centrada en el razonamiento, el proceso y la producción propia. La UNESCO (2023) recomienda adoptar un enfoque humano, seguro, equitativo y basado en la protección de datos; en consecuencia, la IA debe entenderse como una herramienta complementaria que fortalece la enseñanza, no como un reemplazo de la relación educativa ni de la responsabilidad profesional del docente.</p><h2 id="capitulo_3">La IA en el proceso de aprendizaje</h2><p>La <strong>IA en el proceso de aprendizaje</strong> comprende el uso de sistemas capaces de analizar información, generar respuestas, reconocer patrones y adaptar recursos educativos a las necesidades de cada estudiante. En la educación superior, suele funcionar mediante modelos de aprendizaje automático y, más recientemente, modelos generativos que procesan grandes volúmenes de datos para producir explicaciones, preguntas, resúmenes, ejemplos o retroalimentación. Crompton y Burke (2023) señalan que sus aplicaciones universitarias abarcan la personalización del aprendizaje, la evaluación, los sistemas tutoriales inteligentes y el apoyo a la gestión académica. Sus componentes principales son: <strong>datos de aprendizaje</strong>, algoritmos o modelos de IA, interfaces de interacción —como chatbots o asistentes virtuales— y mecanismos de supervisión docente.</p>
+				<p style="text-align-last: justify;">El principio de funcionamiento consiste en relacionar la información proporcionada por el estudiante con patrones aprendidos previamente. Por ejemplo, una plataforma puede analizar respuestas incorrectas, tiempo de dedicación y nivel de dificultad para recomendar</p>
+				</div>
+				
+				
+				
+				
+				<div class="page">
+				<figure class="centrada" data-capitulo="3">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_13.jpg" alt="3D render of a diverse university classroom where students and professors collaborate with a glowing AI hologram, interconnected learning pathways, adaptive digital screens, books, and floating knowledge symbols, conveying personalized learning, critical thinking, and human–AI collaboration in higher education, warm futuristic lighting, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>La IA en el proceso de aprendizaje</figcaption>
+                    
+                </figure>
+				<p style="text-align-last: justify;"> una actividad de refuerzo. En el caso de la IA generativa, el sistema interpreta una instrucción escrita y produce una respuesta probabilística basada en los patrones del lenguaje presentes en sus datos de entrenamiento. Este proceso permite ofrecer explicaciones alternativas, simulaciones, ejercicios graduados y tutoría disponible en</p> </div>
+				
+				
+				<div class="page">
+				<p>cualquier momento. Kasneci et al. (2023) destacan que estas herramientas pueden ampliar las oportunidades de aprendizaje, siempre que se utilicen como apoyo al razonamiento y no como sustituto de la participación intelectual del estudiante.</p>
+				
+				<p>Entre sus <strong>aplicaciones prácticas y beneficios</strong> se encuentran la creación de cuestionarios personalizados, la traducción y simplificación de textos académicos, la retroalimentación inicial sobre borradores, la simulación de entrevistas o debates y el acompañamiento en cursos masivos. Un estudiante de ingeniería, por ejemplo, puede solicitar varias explicaciones de un concepto, resolver un problema paso a paso y comparar sus resultados con una solución orientativa. Asimismo, un asistente conversacional puede favorecer el aprendizaje autónomo al proporcionar respuestas inmediatas y adaptar el nivel de complejidad. Sin embargo, Tlili et al. (2023) advierten que la utilidad educativa de los chatbots depende del diseño de las actividades, de la calidad de las instrucciones y de la mediación del profesorado; una respuesta fluida no garantiza que sea correcta, pertinente ni pedagógicamente adecuada.</p><p style="text-align-last: justify">También existen <strong>desafíos y limitaciones</strong> importantes: las respuestas pueden contener errores o información inventada, reproducir sesgos, vulnerar la privacidad o fomentar una dependencia que reduzca la autorregulación y el pensamiento crítico. Por esta razón, el estudiante debe contrastar las respuestas con bibliografía académica, justificar sus decisiones y declarar cuándo empleó una herramienta de IA. La evaluación universitaria necesita centrarse cada vez más en procesos observables —argumentación, aplicación, reflexión y producción original— en lugar de limitarse al producto final. UNESCO (2023) recomienda establecer normas institucionales sobre protección de datos, transparencia, inclusión y supervisión humana. En consecuencia, la IA debe integrarse mediante un enfoque de <strong>colaboración entre estudiante, docente y tecnología</strong>, con objetivos de</p></div>
+				
+				<div class="page">
+				<p> aprendizaje explícitos, verificación de resultados y responsabilidad ética.</p>
+				<h2 id="capitulo_4">Estrategias didácticas</h2><figure class="centrada" data-capitulo="4">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_14.jpg" alt="3D render of a modern university classroom where a professor and diverse students collaboratively use AI-powered learning tools, interactive digital boards, adaptive pathways, feedback dashboards, and group activities symbolizing innovative didactic strategies; warm lighting, dynamic composition, futuristic yet human-centered atmosphere, visible labels in Spanish only: “Estrategias didácticas”, “Aprendizaje colaborativo”, “Evaluación” (textos en español)" style="border-radius:15px;cursor:pointer;width:90%;">
+                    <figcaption>Estrategias didácticas</figcaption>
+                    
+                </figure><p>La <strong>IA generativa en la educación superior</strong> comprende sistemas capaces de producir texto, imágenes, código, retroalimentación u otros recursos a partir de instrucciones del usuario.</p></div>
+				
+				<div class="page">
+				<p> Su funcionamiento se basa en modelos entrenados con grandes volúmenes de datos que identifican patrones y generan respuestas probabilísticas; por ello, no “comprenden” necesariamente la información como lo hace una persona y pueden producir respuestas incorrectas o sesgadas. Kasneci et al. (2023) destacan que estas herramientas pueden apoyar la personalización del aprendizaje, la tutoría y la producción de materiales, aunque requieren supervisión docente y evaluación crítica. En este marco, una estrategia didáctica eficaz debe integrar cinco componentes: <strong>objetivos de aprendizaje, actividad mediada por IA, interacción docente-estudiante, verificación de resultados y evaluación del proceso</strong>.</p>
+				<div class="caja9"><p>El <strong>principio de funcionamiento didáctico</strong> consiste en utilizar la IA como mediadora del razonamiento, no como sustituta de la actividad intelectual. </p></div>
+				<p>El docente puede diseñar secuencias en las que el estudiante formule una pregunta, compare la respuesta generada con fuentes académicas, detecte errores, argumente sus decisiones y revise el producto final. Una aplicación concreta es solicitar a un sistema generativo tres explicaciones diferentes de un concepto, identificar sus coincidencias y contradicciones, y elaborar después una síntesis fundamentada. Lo (2023) señala que este tipo de herramientas ofrece oportunidades para la retroalimentación inmediata y el aprendizaje personalizado, pero también plantea riesgos relacionados con la exactitud, la dependencia tecnológica y la integridad académica. Por ello, conviene establecer instrucciones explícitas sobre cuándo, cómo y para qué puede emplearse la IA.</p><p>Entre las <strong>estrategias didácticas</strong> más pertinentes se encuentran las siguientes:</p></div>
+				
+				<div class="page"><ul>
+<p></p><li><strong>Tutoría socrática:</strong> pedir a la IA que formule preguntas graduales, sin entregar directamente la solución.</li><p></p>
+<p></p><li><strong>Aprendizaje basado en problemas:</strong> utilizar respuestas generadas como hipótesis iniciales que deben ser verificadas mediante bibliografía especializada.</li><p></p>
+<p></p><li><strong>Escritura iterativa:</strong> comparar un borrador humano con una propuesta de la IA y justificar qué cambios se aceptan o rechazan.</li><p></p>
+<p></p><li><strong>Simulación profesional:</strong> emplear la IA para representar pacientes, clientes, usuarios o interlocutores en disciplinas como medicina, derecho, educación o administración.</li><p></p>
+<p></p><li><strong>Evaluación formativa:</strong> generar ejercicios diferenciados y retroalimentación preliminar, siempre revisada por el docente.</li><p></p>
+<p></p><li><strong>Alfabetización crítica:</strong> analizar sesgos, privacidad, autoría, propiedad intelectual y límites de los datos utilizados.</li><p></p>
+<p></p></ul><p></p><p>Estas estrategias permiten aprovechar beneficios como la personalización, la disponibilidad permanente de apoyo y la diversificación de recursos; sin embargo, los <strong>procesos internos y resultados deben ser transparentes</strong>. Tlili et al. (2023) advierten que la IA generativa puede facilitar respuestas plausibles pero falsas, reproducir sesgos y modificar las prácticas de evaluación. En consecuencia, el profesorado debe solicitar declaraciones de uso de IA, exigir fuentes verificables, valorar los borradores y las explicaciones del estudiante, e incorporar defensas orales, diarios de aprendizaje o actividades realizadas en clase. </p></div>
+
+<div class="page"><p>La orientación de UNESCO (2023) complementa esta perspectiva al recomendar un uso humano, seguro, equitativo y pedagógicamente fundamentado. Así, la estrategia no consiste en prohibir ni aceptar sin límites la herramienta, sino en diseñar experiencias donde la tecnología amplíe la participación y la retroalimentación sin desplazar el juicio académico.</p><h2 id="capitulo_5">Evaluación Inteligente</h2><figure class="flotai" data-capitulo="5">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_15.jpg" alt="3D render of a futuristic university assessment hub: AI analyzing diverse student learning paths on transparent screens, adaptive feedback, fair evaluation scales, professors and students collaborating, glowing data streams, human-centered technology, balanced and trustworthy atmosphere; any visible labels or text must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Evaluación Inteligente</figcaption>
+                    
+                </figure><p>La <strong>evaluación inteligente</strong> es un enfoque que integra inteligencia artificial, analítica de aprendizaje y criterios pedagógicos para recopilar evidencias del progreso estudiantil, interpretarlas y ofrecer retroalimentación oportuna. A diferencia de la evaluación automatizada tradicional, no se limita a asignar una calificación: busca identificar patrones de comprensión, errores recurrentes, niveles de participación y necesidades específicas. Sus <strong>componentes principales</strong> son los instrumentos de evaluación, los datos de desempeño, los algoritmos de análisis, los sistemas de retroalimentación y la supervisión docente. En este marco, los modelos generativos pueden apoyar la creación de preguntas, rúbricas y comentarios personalizados, aunque su uso debe orientarse al aprendizaje y no únicamente a la producción automática de respuestas (Kasneci et al., 2023; Lo, 2023).</p></div>
+				
+				<div class="page"><p>El <strong>principio de funcionamiento</strong> consiste en comparar las evidencias producidas por el estudiante —respuestas escritas, proyectos, cuestionarios, debates o actividades prácticas— con criterios previamente definidos. El sistema puede detectar conceptos deficientemente comprendidos, recomendar recursos y sugerir actividades de refuerzo. Entre sus <strong>procesos internos</strong> se encuentran la captura de datos, su clasificación, el análisis mediante modelos estadísticos o de lenguaje, la generación de retroalimentación y la revisión por parte del docente. Un flujo adecuado puede organizarse así:</p><ul>
+<p></p><li>definir resultados de aprendizaje y criterios transparentes;</li><p></p>
+<p></p><li>diseñar tareas auténticas y rúbricas;</li><p></p>
+<p></p><li>analizar las respuestas sin reducirlas exclusivamente a indicadores numéricos;</li><p></p>
+<p></p><li>generar retroalimentación explicativa;</li><p></p>
+<p></p><li>permitir la revisión y decisión final del profesor.</li><p></p>
+<p></p></ul><p></p><p>En las <strong>aplicaciones prácticas</strong>, la IA puede utilizarse para elaborar bancos de preguntas adaptativas, ofrecer tutorías automatizadas, revisar borradores, detectar dificultades conceptuales y apoyar la evaluación de grandes grupos. También puede ayudar al profesor a comparar respuestas, identificar estudiantes que requieren acompañamiento y diseñar actividades diferenciadas. Un caso especialmente relevante es el uso de ChatGPT como herramienta de apoyo educativo: la literatura señala que puede estimular la explicación, la revisión y el diálogo socrático, pero también producir respuestas incorrectas, sesgadas o excesivamente generales (Tlili et al., 2023). </p></div>
+
+<div class="page"><div class="caja10"><p>Una actividad universitaria podría pedir al estudiante que analice una respuesta generada por IA, verifique sus fuentes, identifique errores y la mejore mediante argumentos propios.</p></div><p>Entre sus <strong>beneficios y ventajas</strong> destacan la rapidez de la retroalimentación, la posibilidad de personalizar el aprendizaje, la reducción de tareas repetitivas y la disponibilidad de apoyos formativos fuera del horario de clase. Sin embargo, sus <strong>desafíos y limitaciones</strong> incluyen la privacidad de los datos, los sesgos algorítmicos, la falta de explicabilidad, la dependencia tecnológica y la dificultad para valorar competencias complejas como la creatividad, la ética o el razonamiento profundo. Además, la detección automática de textos generados por IA no debe considerarse una prueba definitiva de fraude. La evaluación inteligente debe, por tanto, combinar evidencias diversas, defensa oral, revisión de procesos, proyectos contextualizados y juicio profesional docente. Como criterio esencial, la IA puede recomendar, comparar y retroalimentar, pero la responsabilidad de interpretar el aprendizaje y tomar decisiones académicas debe permanecer bajo supervisión humana (Kasneci et al., 2023; Lo, 2023).</p>
+<h2 id="capitulo_6">Investigación Potenciada</h2>
+<p>La <strong>investigación potenciada por inteligencia artificial</strong> se refiere al uso de sistemas capaces de analizar lenguaje, recuperar información, resumir documentos, generar códigos y apoyar la interpretación de datos a lo largo del ciclo investigativo. En educación superior, su principio de funcionamiento combina modelos de lenguaje de gran escala, bases de datos académicas y herramientas de análisis para producir resultados preliminares a partir de instrucciones humanas.</p>
+
+</div>
+
+<div class="page"><figure class="centrada" data-capitulo="6">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_16.jpg" alt="3D render of a futuristic university research lab enhanced by AI: diverse researchers collaborating with holographic data streams, neural networks, microscopes, and floating academic papers, symbolizing faster discovery, deeper analysis, and human–AI collaboration; luminous blue and gold lighting, sophisticated, inspiring atmosphere. Any visible labels or words must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:85%;">
+                    <figcaption>Investigación Potenciada</figcaption>
+                    
+                </figure>
+				<p>Kasneci et al. (2023) señalan que estos modelos pueden apoyar la formulación de preguntas, la explicación de conceptos complejos y la asistencia en tareas de escritura, aunque sus respuestas deben considerarse propuestas revisables y no evidencia científica definitiva.</p>
+				<p style="text-align-last: justify;">Sus <strong>componentes principales</strong> suelen incluir: <strong>(1)</strong> un asistente conversacional para delimitar problemas y generar hipótesis; <strong>(2)</strong> sistemas de búsqueda semántica y recuperación aumentada con fuentes documentales; <strong>(3)</strong> gestores bibliográficos para organizar referencias;</p></div>
+				
+				<div class="page"><p> <strong>(4)</strong> herramientas de análisis estadístico, cualitativo o de programación; y <strong>(5)</strong> mecanismos de revisión humana para verificar exactitud, sesgos y procedencia. El proceso interno puede describirse como una secuencia de cinco etapas: definir el objetivo, proporcionar datos o instrucciones, generar una respuesta, contrastarla con fuentes verificables y documentar las decisiones metodológicas. Tlili et al. (2023) advierten que los chatbots pueden producir respuestas plausibles pero incorrectas, por lo que la validación de citas, datos y argumentos debe permanecer bajo responsabilidad del investigador.</p><p>Entre sus <strong>aplicaciones prácticas</strong>, la IA puede ayudar a construir ecuaciones de búsqueda, clasificar grandes colecciones de artículos, identificar temas recurrentes en entrevistas, traducir textos académicos, detectar inconsistencias en bases de datos y generar borradores de código reproducible. Por ejemplo, un equipo universitario podría emplear un modelo para proponer palabras clave sobre abandono estudiantil, organizar los artículos recuperados por temas y sugerir un esquema de revisión; posteriormente, los investigadores tendrían que comprobar cada referencia, aplicar criterios de inclusión y justificar el método utilizado. Entre sus beneficios destacan el ahorro de tiempo, la exploración rápida de alternativas y el acceso más sencillo a técnicas analíticas. Sin embargo, la herramienta no sustituye la interpretación teórica ni la toma de decisiones metodológicas: su valor depende de la calidad de los datos, de las instrucciones y de la supervisión experta (Kasneci et al., 2023).</p><p style="text-align-last: justify;">Los principales <strong>desafíos y limitaciones</strong> son las alucinaciones —información inventada o imprecisa—, los sesgos presentes en los datos de entrenamiento, la exposición de información sensible, la opacidad de algunos modelos y la dificultad para atribuir correctamente la autoría. Además, utilizar IA para redactar o analizar datos sin declararlo puede afectar la integridad académica y la reproducibilidad. La UNESCO (2023) recomienda establecer políticas institucionales</p></div>
+				
+				<div class="page"><p> sobre privacidad, transparencia, alfabetización en IA y supervisión humana. Por ello, una práctica responsable debe conservar un registro de las herramientas empleadas, las instrucciones relevantes, las versiones de los resultados y las modificaciones realizadas por el equipo investigador; así, la IA funciona como <strong>instrumento de apoyo</strong>, mientras que la responsabilidad epistemológica y ética continúa perteneciendo a las personas.</p><h2 id="capitulo_7">Ética y Responsabilidad</h2><figure class="flotad" data-capitulo="7">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_17.jpg" alt="3D render of a university classroom where a diverse professor and students thoughtfully examine a glowing AI system, balanced on scales with symbols of fairness, privacy, transparency, accountability, and human oversight; warm academic atmosphere, ethical tension, cinematic lighting, Spanish labels only if any text appears. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Ética y Responsabilidad</figcaption>
+                    
+                </figure><p>La <strong>ética y responsabilidad en la IA aplicada a la educación superior</strong> se refieren al conjunto de principios, normas y prácticas que orientan el diseño, la adopción y la supervisión de sistemas capaces de generar textos, analizar datos, recomendar recursos o apoyar la evaluación. Su funcionamiento combina grandes volúmenes de datos, modelos algorítmicos y decisiones humanas; por ello, la responsabilidad no recae únicamente en la herramienta, sino también en las universidades, el profesorado, el estudiantado y los proveedores tecnológicos. Kasneci et al. (2023) señalan que los modelos de lenguaje pueden favorecer la personalización y la retroalimentación, pero también producir información incorrecta, sesgada o difícil de verificar. Desde esta perspectiva, los componentes principales de una política ética incluyen transparencia, protección de datos, equidad, supervisión humana, seguridad, accesibilidad y responsabilidad institucional.</p></div>
+				
+				<div class="page"><p>El <strong>principio de funcionamiento</strong> ético exige que la IA se utilice como apoyo y no como sustituto automático del juicio académico. En sus <strong>procesos internos</strong>, un sistema puede recopilar instrucciones, procesar datos, generar una respuesta y ofrecer una recomendación; sin embargo, cada etapa puede introducir riesgos: uso indebido de información personal, reproducción de sesgos presentes en los datos, errores no detectados o decisiones opacas. Por esta razón, la persona docente debe revisar los resultados, explicar sus límites y permitir que el estudiante cuestione o corrija la respuesta. Tlili et al. (2023), al analizar ChatGPT como caso de estudio educativo, destacan la necesidad de combinar innovación con alfabetización digital, evaluación crítica y normas claras de uso. En la práctica, esto implica informar cuándo se empleó IA, verificar las fuentes generadas y evitar que una herramienta determine por sí sola calificaciones, admisiones o sanciones.</p><p>Entre sus <strong>aplicaciones prácticas</strong>, la IA puede apoyar la tutoría personalizada, la elaboración de borradores, la traducción, la accesibilidad para estudiantes con discapacidades, la identificación temprana de dificultades de aprendizaje y la generación de ejercicios diferenciados. Sus <strong>beneficios y ventajas</strong> incluyen respuestas rápidas, disponibilidad permanente y apoyo a tareas repetitivas, lo que puede liberar tiempo para actividades de mayor valor pedagógico (Kasneci et al., 2023). No obstante, las universidades deben establecer protocolos concretos: <strong>(1)</strong> declarar qué usos están permitidos; <strong>(2)</strong> proteger los datos sensibles; <strong>(3)</strong> exigir revisión humana; <strong>(4)</strong> enseñar citación y reconocimiento de la asistencia algorítmica; y <strong>(5)</strong> ofrecer alternativas cuando un estudiante no pueda o no deba utilizar la herramienta. La UNESCO (2023) recomienda que las instituciones adopten un enfoque centrado en las personas, con formación docente, evaluación de riesgos y salvaguardas para la privacidad.</p></div>
+				
+				<div class="page"><p>Los principales <strong>desafíos o limitaciones</strong> son la desigualdad de acceso, la dependencia tecnológica, la pérdida de habilidades de escritura y razonamiento, la fabricación de referencias y el debilitamiento de la integridad académica. Cotton et al. (2023) advierten que la utilización de generadores de texto obliga a replantear las formas tradicionales de evaluación, pues un producto aparentemente original puede no reflejar el aprendizaje del estudiante. Un <strong>caso representativo</strong> es el uso de ChatGPT para redactar un ensayo: éticamente, no basta con prohibirlo o aceptarlo sin condiciones; es preferible solicitar declaración de uso, versiones sucesivas, reflexión personal, defensa oral o actividades aplicadas que permitan comprobar la comprensión. Así, la responsabilidad se concreta en diseñar evaluaciones auténticas, preservar la autonomía del estudiante y garantizar que toda decisión relevante pueda ser explicada, revisada y apelada.</p>
+				
+				<h2 id="capitulo_8">Datos, Privacidad y Seguridad</h2>
+				<p>La <strong>privacidad y la seguridad</strong> en la inteligencia artificial (IA) educativa comprenden el conjunto de principios, procedimientos y controles destinados a proteger los datos de estudiantes, docentes y personal administrativo durante todo el ciclo de vida de un sistema inteligente. En la educación superior, estos datos pueden incluir expedientes académicos, patrones de asistencia, respuestas en plataformas virtuales, datos biométricos, información socioeconómica y conversaciones con asistentes generativos. La IA procesa estos datos mediante técnicas como el aprendizaje automático, la clasificación, la predicción y el análisis de lenguaje natural para personalizar la enseñanza, detectar riesgos académicos o automatizar servicios institucionales (Crompton &amp; Burke, 2023). Por ello, la privacidad no debe limitarse al momento de recopilar información, sino abarcar también su almacenamiento, uso, intercambio, conservación y eliminación.</p>
+				
+				</div>
+				
+				<div class="page">
+				<figure class="centrada" data-capitulo="8">
+                <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_18.jpg" alt="3D render of a secure university campus data center, glowing AI neural networks, encrypted data streams, padlocks, privacy shields, and diverse students connected through transparent interfaces, balancing innovation with digital safety; clean cinematic lighting, blue and teal palette, legible labels in Spanish only. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Datos, Privacidad y Seguridad</figcaption>
+                    
+                </figure>
+				<p>Los <strong>componentes principales</strong> de una estrategia institucional de protección son:</p>
+				<ul>
+				<p></p><li><strong>Gobernanza de datos:</strong> definición de responsables, finalidades, periodos de conservación y criterios para compartir información.  </li></ul>
+				
+				</div>
+				
+				<div class="page"><ul>
+
+<p></p><li><strong>Minimización y consentimiento:</strong> recopilación únicamente de los datos necesarios, con información clara sobre su finalidad y posibles usos.  </li><p></p>
+<p></p><li><strong>Seguridad técnica:</strong> cifrado, autenticación multifactor, control de accesos, copias de seguridad, registros de actividad y actualización de sistemas.  </li><p></p>
+<p></p><li><strong>Transparencia algorítmica:</strong> explicación comprensible de qué datos utiliza el sistema, cómo produce sus resultados y cuáles son sus limitaciones.  </li><p></p>
+<p></p><li><strong>Supervisión humana:</strong> revisión de decisiones automatizadas que puedan afectar calificaciones, admisiones, becas o permanencia estudiantil.  </li><p></p>
+<p></p></ul><p></p><p>El <strong>principio de funcionamiento</strong> seguro consiste en transformar una gestión reactiva en un proceso continuo de evaluación y control. Antes de implementar una herramienta, la institución debería identificar qué datos ingresan, quién puede acceder a ellos, dónde se procesan y qué riesgos existen. Durante el uso, debe vigilarse la exactitud de los resultados, la presencia de sesgos, las filtraciones y los usos no autorizados. Después, conviene auditar el sistema, retirar datos innecesarios y revisar los contratos con proveedores externos. En el caso de modelos generativos, no es recomendable introducir expedientes, trabajos inéditos, información médica o datos personales identificables en servicios públicos sin garantías contractuales y técnicas suficientes; esta precaución responde a los riesgos de reutilización, exposición o transferencia internacional de la información (Tlili et al., 2023).</p></div>
+
+<div class="page"><p> Las orientaciones internacionales también recomiendan políticas institucionales, alfabetización en IA y evaluación de impacto antes de utilizar estas herramientas con fines educativos (UNESCO, 2023).</p><p>Las <strong>aplicaciones prácticas</strong> incluyen sistemas de alerta temprana para identificar estudiantes que podrían requerir apoyo, asistentes virtuales para resolver preguntas frecuentes, análisis de trayectorias académicas, corrección automatizada y detección de necesidades de accesibilidad. Sus beneficios potenciales son la personalización del aprendizaje, la reducción de tareas administrativas y una intervención más rápida; sin embargo, dichos beneficios dependen de la calidad, pertinencia y protección de los datos. Entre los principales <strong>desafíos y limitaciones</strong> se encuentran los sesgos de los conjuntos de entrenamiento, los falsos positivos, la vigilancia excesiva, la opacidad de los modelos, los ataques informáticos y la dependencia de proveedores comerciales.</p>
+
+<div class="caja9"><p> Qian (2023) señala que el uso educativo de sistemas generativos exige combinar innovación con criterios de responsabilidad, integridad académica y protección de los usuarios. En consecuencia, una universidad segura debería aplicar el principio de “privacidad desde el diseño”: limitar la recopilación, anonimizar cuando sea posible, ofrecer alternativas no automatizadas y garantizar que ninguna decisión relevante se base exclusivamente en una predicción algorítmica.</p></div></div>
+
+<div class="page"><h2 id="capitulo_9">Implementación en el Campus</h2><figure class="flotad" data-capitulo="9">
+       <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_19.jpg" alt="3D render of a modern university campus implementing AI in education: students and professors collaborating with holographic dashboards, smart classrooms, connected devices, ethical oversight, and inclusive technology across the campus, bright optimistic lighting, cinematic composition, realistic details; any visible labels or text must be in Spanish. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Implementación en el Campus</figcaption>
+                    
+                </figure><p>La <strong>implementación de la IA en el campus</strong> consiste en integrar sistemas capaces de analizar datos, generar contenidos, automatizar tareas o apoyar la toma de decisiones dentro de los procesos académicos y administrativos, sin sustituir la responsabilidad profesional del personal universitario. Su funcionamiento combina modelos de inteligencia artificial, bases de datos institucionales, interfaces para docentes y estudiantes, y normas de seguridad, privacidad y evaluación. En este contexto, Chan (2023) propone que las universidades desarrollen marcos institucionales que articulen políticas, competencias digitales, supervisión humana y criterios de uso responsable. Los componentes principales son: <strong>infraestructura tecnológica</strong>, gobernanza de datos, formación de usuarios, integración con los entornos virtuales de aprendizaje, mecanismos de evaluación y canales de soporte.</p>
+				<div class="caja5"><p>El principio de funcionamiento debe ser gradual, verificable y centrado en el aprendizaje. La universidad puede comenzar con un diagnóstico de necesidades y continuar con proyectos piloto de bajo riesgo antes de ampliar la herramienta a toda la institución. </p></div></div>
+				
+				<div class="page"><p>Un proceso interno recomendable incluye:</p><ul>
+<p></p><li>identificar problemas concretos, como la retroalimentación tardía o la saturación de los servicios de orientación;</li><p></p>
+<p></p><li>seleccionar una herramienta y comprobar su interoperabilidad, accesibilidad y protección de datos;</li><p></p>
+<p></p><li>definir quién puede utilizarla, con qué finalidad y bajo qué condiciones;</li><p></p>
+<p></p><li>capacitar a docentes, estudiantes y personal administrativo;</li><p></p>
+<p></p><li>evaluar resultados mediante indicadores de aprendizaje, equidad, satisfacción, precisión y carga de trabajo;</li><p></p>
+<p></p><li>revisar periódicamente los resultados y retirar la solución si produce daños o sesgos injustificados.</li><p></p>
+<p></p></ul><p></p><p>La IA puede aplicarse en <strong>tutorías personalizadas, asistentes virtuales, generación de preguntas, análisis de participación, traducción, accesibilidad, orientación académica y apoyo a la investigación</strong>. Por ejemplo, un campus podría implementar un asistente integrado en su plataforma educativa para responder preguntas frecuentes sobre una asignatura, ofrecer explicaciones alternativas y derivar al docente los casos complejos. El sistema no debería asignar automáticamente calificaciones definitivas: su función sería proporcionar retroalimentación preliminar y evidencias para que el profesor tome la decisión final. Las revisiones recientes señalan que estas herramientas pueden ampliar la personalización y agilizar determinadas tareas, aunque sus beneficios dependen del diseño pedagógico y de la supervisión humana (Lo, 2023; Tlili et al., 2023).</p></div>
+
+
+<div class="page"><p>Entre sus principales ventajas se encuentran la reducción de tareas repetitivas, la disponibilidad permanente de orientación, la detección temprana de dificultades y la posibilidad de adaptar materiales a distintos ritmos y necesidades. Sin embargo, la implementación también presenta <strong>desafíos</strong>: respuestas incorrectas o inventadas, sesgos en los datos, exposición de información personal, dependencia tecnológica, brechas de acceso y dificultades para distinguir el trabajo propio del generado por una herramienta. Por ello, la universidad debe aplicar una política de transparencia —informando cuándo y cómo interviene la IA—, establecer procedimientos de revisión humana, proteger los datos sensibles y diseñar evaluaciones que valoren el razonamiento, el proceso y la reflexión, no únicamente el producto final. Como sintetizan Tlili et al. (2023), el uso educativo de los chatbots requiere equilibrar innovación, integridad académica, inclusión y responsabilidad institucional.</p>
+<h2 id="capitulo_10">El Futuro de la Universidad</h2>
+<p>La universidad del futuro será un <strong>ecosistema sociotécnico</strong> en el que la inteligencia artificial (IA) apoyará la enseñanza, la investigación, la gestión y los servicios estudiantiles, sin sustituir la responsabilidad académica ni el juicio humano. En este contexto, la IA puede definirse como un conjunto de sistemas capaces de analizar datos, reconocer patrones, generar contenidos y ofrecer recomendaciones para resolver tareas educativas. Crompton y Burke (2023) señalan que sus aplicaciones en la educación superior abarcan desde los tutores inteligentes y la evaluación automatizada hasta los sistemas de recomendación y la analítica del aprendizaje. Su incorporación, por tanto, no consiste simplemente en instalar una herramienta, sino en rediseñar procesos institucionales con criterios pedagógicos, éticos y de inclusión.</p>
+</div>
+
+<div class="page"><figure class="centrada" data-capitulo="10">
+      <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_110.jpg" alt="Futuristic university campus with AI-powered classrooms, holographic professors, diverse students collaborating with humanoid robots, immersive virtual learning portals, sustainable architecture, glowing data networks connecting knowledge, hopeful sunrise, cinematic 3D render, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>El Futuro de la Universidad</figcaption>
+                    
+                </figure><p>Los <strong>componentes principales</strong> de esta transformación serán: modelos generativos capaces de producir texto, imágenes, código o retroalimentación; plataformas de aprendizaje adaptativo; sistemas de analítica académica; repositorios de datos interoperables; y marcos de gobernanza para proteger la privacidad. </p></div>
+				
+				<div class="page"><p>El principio de funcionamiento será progresivamente personalizado: el sistema recopilará evidencias de interacción —como respuestas, avances o dificultades—, las analizará y propondrá recursos o actividades ajustadas a cada estudiante. Sin embargo, la decisión educativa final deberá permanecer bajo supervisión docente. Kasneci et al. (2023) advierten que los modelos de lenguaje pueden facilitar explicaciones, tutorías y apoyo a la escritura, pero también producir información incorrecta, sesgada o presentada con una seguridad injustificada.</p><p>Los <strong>procesos internos</strong> de una universidad aumentada por IA podrían organizarse en un ciclo continuo: recopilación responsable de datos, análisis, generación de recomendaciones, intervención pedagógica y evaluación de resultados. En la práctica, esto permitiría ofrecer tutorías virtuales disponibles fuera del horario de clase, detectar tempranamente señales de abandono, adaptar itinerarios formativos y automatizar tareas administrativas repetitivas. También transformaría la investigación mediante herramientas para explorar grandes volúmenes documentales, formular hipótesis y apoyar la revisión bibliográfica. La ventaja principal sería liberar tiempo para actividades de mayor valor académico —discusión, creatividad, acompañamiento y pensamiento crítico—, aunque la automatización solo será beneficiosa si mejora realmente la experiencia educativa y no convierte el aprendizaje en una secuencia de decisiones opacas.</p><p style="text-align-last: justify;">El futuro universitario también estará definido por <strong>desafíos y limitaciones</strong>. Entre ellos se encuentran la privacidad de los datos, la discriminación algorítmica, la dependencia de proveedores tecnológicos, la desigual disponibilidad de conectividad y la dificultad para determinar la autoría de trabajos producidos con IA. UNESCO (2023) recomienda establecer políticas institucionales que incluyan protección de datos, formación de docentes y estudiantes, evaluación de riesgos</p></div>
+				
+				<div class="page"><p> y uso humano-centrista de la IA generativa. Asimismo, las universidades deberán actualizar sus sistemas de evaluación: más que premiar únicamente la reproducción de información, tendrán que valorar el razonamiento, la verificación de fuentes, la capacidad de explicar decisiones y la elaboración de productos originales.</p>
+				<div class="caja10"><p>En consecuencia, la universidad del futuro no será necesariamente una institución sin docentes, sino una institución en la que cambiarán sus <strong>roles y competencias</strong>. El profesorado actuará como diseñador de experiencias de aprendizaje, mediador crítico y supervisor de sistemas automatizados; el estudiante deberá aprender a colaborar con herramientas inteligentes sin delegar en ellas su responsabilidad intelectual.</p></div>
+
+				<p>Un modelo sostenible combinará innovación con transparencia mediante reglas claras sobre cuándo y cómo utilizar IA, formación continua, auditorías de sesgos y espacios de participación para la comunidad universitaria. Así, el éxito no se medirá por la cantidad de tecnología incorporada, sino por su capacidad para ampliar el acceso, mejorar el aprendizaje y preservar la autonomía, la equidad y la dimensión humana de la educación superior.</p></div>
+				
+				
+				<div class="page">
+				<h2 id="referencias">Referencias bibliográficas</h2><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Chan, C. K. Y. (2023). A comprehensive AI policy education framework for university teaching and learning. <em>International Journal of Educational Technology in Higher Education, 20</em>, Artículo 38. <a href="https://doi.org/10.1186/s41239-023-00408-3" target="_blank" rel="noopener noreferrer">https://doi.org/10.1186/s41239-023-00408-3</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Cotton, D. R. E., Cotton, P. A., &amp; Shipway, J. R. (2023). ChatGPT: Challenges, opportunities and implications for academic integrity and management. <em>Journal of University Teaching &amp; Learning Practice, 20</em>(2), Artículo 7. <a href="https://doi.org/10.53761/1.20.02.07" target="_blank" rel="noopener noreferrer">https://doi.org/10.53761/1.20.02.07</a></p>
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Crompton, H., &amp; Burke, D. (2023). Artificial intelligence in higher education: The state of the field. <em>International Journal of Educational Technology in Higher Education, 20</em>, Artículo 22. <a href="https://doi.org/10.1186/s41239-023-00392-8" target="_blank" rel="noopener noreferrer">https://doi.org/10.1186/s41239-023-00392-8</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Kasneci, E., Sessler, K., Küchemann, S., Bannert, M., Dementieva, D., Fischer, F., Gasser, U., Groh, G., Günnemann, S., Hüllermeier, E., Krusche, S., Kutyniok, G., Michaeli, T., Nerdel, C., Pfeiffer, F., Poquet, O., Sailer, M., Schmidt, A., Seidel, T., &amp; Kasneci, G. (2023). ChatGPT for good? On opportunities and challenges of large language models for education. <em>Learning and Individual Differences, 103</em>, 102274. <a href="https://doi.org/10.1016/j.lindif.2023.102274" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.lindif.2023.102274</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Lo, C. K. (2023a). The rise of generative AI and possible effects on the future of learning: A review of literature. <em>Education and Information Technologies, 28</em>, 10035–10050. <a href="https://doi.org/10.1007/s10639-023-11703-7" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s10639-023-11703-7</a></p></div>
+				
+				<div class="page">
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Lo, C. K. (2023b). What is the impact of ChatGPT on education? A rapid review of the literature. <em>Education Sciences, 13</em>(4), Artículo 410. <a href="https://doi.org/10.3390/educsci13040410" target="_blank" rel="noopener noreferrer">https://doi.org/10.3390/educsci13040410</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Qian, Y. (2023). ChatGPT and its implications for education. <em>Frontiers in Education, 8</em>, Artículo 1100195. <a href="https://doi.org/10.3389/feduc.2023.1100195" target="_blank" rel="noopener noreferrer">https://doi.org/10.3389/feduc.2023.1100195</a></p><p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Tlili, A., Shehata, B., Adarkwah, M. A., Bozkurt, A., Burgos, D., &amp; Agyemang, B. (2023). What if the devil is my guardian angel: ChatGPT as a case study of using chatbots in education. <em>Smart Learning Environments, 10</em>, Artículo 15. <a href="https://doi.org/10.1186/s40561-023-00237-x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1186/s40561-023-00237-x</a></p>
+				<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">UNESCO. (2023). <em>Guidance for generative AI in education and research</em>. <a href="https://unesdoc.unesco.org/ark:/48223/pf0000386693" target="_blank" rel="noopener noreferrer">https://unesdoc.unesco.org/ark:/48223/pf0000386693</a></p></div>
+				
+				<div class="page">
+
+	</div>
+	
+	<!--  -->
+	<div class="page invertcolor" num="" style="background-image: radial-gradient(white, #ecf0f1, #e3e5e7); display:flex; align-items:center; justify-content:center;">
+			<a style="width:50%" target="_blank" href="https://descartes.matem.unam.mx/"><img loading="lazy" src="images/general/logo_descartes.svg" width="100%"></a>
+	</div>
+	
+	<!-- [cierra] pages_container -->
+	</div>
+
+	<!-- [cierra] book_container -->
+	</div>
+
+
+</body></html>
