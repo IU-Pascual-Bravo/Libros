@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="es"><head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,minimum-scale=1,user-scalable=yes,minimal-ui">
+	<meta name="mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+	<title>Gobernanza de la IA en educación superior</title>
+
+	<!-- se precarga la imagen utilizada para el cargador del libro, en caso de que se utilice -->
+	<link rel="preload" as="image" href="images/general/icartesilibri_logo.svg">
+
+	<!-- configuración del libro -->
+	<script>
+	window.book_config = {
+		// parámetro que indica si los capítulos, secciones y figura se auto numeran
+		// para que los capítulos se auto numeren deben utilizar la etiqueta <h1>
+		// para que las secciones se auto numeren deben utilizar la etiqueta <h2>
+		auto_numerate_sections_and_figures: true,
+		// parámetro para que los interactivos se muestren a pantalla completa al presionar el botón de la esquina superior derecha
+		open_interactives_fullscreen: true,
+		// parámetro para usar el id de las referencias bibliográficas en lugar de la autonumeración
+		bibitem_ref_id: false,
+	}
+	</script>
+
+  <!-- núcleo del libro interactivo -->
+  <link rel="stylesheet" href="css/style.css" type="text/css">
+  <script type="text/javascript" src="js/book.js" charset="utf-8"></script>
+  
+  <!-- personalización del usuario -->
+  <link rel="stylesheet" href="extra/fonts.css" type="text/css">
+  <link rel="stylesheet" href="extra/style.css" type="text/css">
+<link rel="stylesheet" href="extra/mis_estilos.css" type="text/css">
+  <!-- inclusión de la biblioteca KaTex -->
+  <link rel="stylesheet" type="text/css" href="extra/katex/katex.min.css">
+  <script src="extra/katex/katex.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="extra/katex/copy-tex.min.css">
+  <script src="extra/katex/copy-tex.min.js"></script>
+  <script src="extra/katex/auto-render.min.js"></script>
+
+  <!-- Opcional en caso de requerir formulas químicas -->
+  <script src="extra/katex/mhchem.min.js"></script>
+  
+
+  <script>
+  document.addEventListener("DOMContentLoaded", function() {
+    renderMathInElement(document.body, {
+      delimiters: [ {left: "$$", right: "$$", display: true}, {left: "$", right: "$", display: false}, {left: "\\[", right: "\\]", display: true}, {left: "\\(", right: "\\)", display: false} ]
+    });
+  });
+  </script>
+  
+  <style>
+        .flotad {
+            float: right;
+            margin-left: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+		
+		.flotai {
+            float: left;
+			margin-right: 20px; /* Espacio entre imagen y texto */
+            margin-bottom: 8px;
+            max-width: 50%; /* Tamaño máximo de la imagen */
+        }
+        
+    </style>
+</head>
+
+<body>
+	<div id="book_loader_container">
+		<!-- se utiliza un elemento para que funcione como cargador del libro -->
+		<div id="book_loader"></div>
+		<!-- y se indica la imagen a utilizar para personalizar el libro -->
+		<img src="images/general/icartesilibri_logo.svg" width="20%" style="padding-left:1em;">
+	</div>
+	
+	<div id="book_container">
+		<div id="btn_back_page"></div>
+		<div id="btn_next_page"></div>
+		<button id="go_to_table_of_content"></button>
+		
+		<button id="btn_config"></button>
+		<div id="config_options">
+			<div id="dark_light_mode"></div>
+		</div>
+
+		<!-- si este elemento no esta presente, el botón de la tabla de contenido lleva a la primera página con un elemento class="toc_link" -->
+	<div id="table_of_content"></div>
+
+	<div id="pages_container">
+	<!--  -->
+	<div class="page" style="background-color:transparent;"></div>
+
+	<!-- Portada -->
+	<div class="page invertcolor" style="margin:0; padding:0; background-size:contain; background-image:url(images/general/portada.svg);">
+				
+		<div class="invertcolor" style="position: absolute; width: 640px; height: 825px; left: 0px; top: 0px; background-image: url(&quot;images/cap1.jpg&quot;); background-size: 640px 825px; background-repeat: no-repeat;"></div>
+		<!-- Título del libro -->
+		
+		
+			
+		<!-- Nombre del autor del libro -->
+		<div style="position: absolute; bottom: 60px; left: 0px; width: 640px; font-size: 24px; color: rgb(255, 255, 255); text-align: center; text-shadow: rgb(0, 0, 0) 2px 2px 5px; white-space: pre-line;">Juan Guillermo Rivera Berrío</div>
+		
+		<!-- Logo de la editorial o institución -->
+		<p style="position: absolute; bottom: -10px; left: 0px; width: 640px; text-align: center; right: 0px;"> <a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/gifanimadoRedProyecto.gif" width="120px"></a> </p>
+	</div>
+
+	<!--  -->
+	<div class="page" style="display:flex; align-items:center; justify-content:center;">
+		<a style="width:50%" target="_blank" href="https://proyectodescartes.org/iCartesiLibri/"><img src="images/general/icartesilibri_logo.svg" width="100%"></a>
+	</div>
+
+	<!--  -->
+	<!-- init-page-num="true" es un parámetro que indica que a partir de esta página comienza la numeración -->
+	<!-- inicialmente los números de las páginas se numeran con numerales romanos -->
+	<!-- num="" es un parámetro que indica que esta página no lleva numeración visible -->
+	<!--  -->
+	<div class="page" style="text-align:center; font-size:120%;" init-page-num="true" num="">
+		<h1>Gobernanza de la IA en educación superior</h1>
+		<br><br><br><br>
+		<div style="margin-top: 100px;"><b style="white-space: pre-line;">Juan Guillermo Rivera Berrío</b>
+		<br><a target="_blank" href="https://websim.ai/c/0c0GRb7OadRtP1IxT"> <img src="images/logo.png" width="40%"></a>
+		</div>
+		<div align="center" style="position: absolute; bottom: 105px; left:0; right:0;"> Fondo Editorial RED Descartes<br><br>
+		<a target="_blank" href="https://proyectodescartes.org"> <img src="images/general/logo_descartes3.png" width="300px"></a></div>
+
+		<div align="center" style="position: absolute; bottom: 50px; left:0; right:0;">Córdoba (España)<br>
+		2026</div>
+	</div>
+
+	<!--  -->
+    <div class="page" num="">
+		<p>Título de la obra:<br>
+        Gobernanza de la IA en educación superior</p>
+		<br>
+		<p>Autores: <br>Juan Guillermo Rivera Berrío</p><br>
+      	  
+		<p>
+        Código JavaScript para el libro: <a href="https://github.com/jlongi/libro_interactivo" target="_blank">Joel Espinosa Longi</a>, <a href="https://www.matem.unam.mx/" target="_blank">IMATE</a>, UNAM. <br>
+        Recursos interactivos: <a href="http://descartes.matem.unam.mx/" target="_blank">DescartesJS</a>, WebSim, Phet Colorado, GeoGebra, ... <br>
+        Fuentes: <a href="https://fonts.google.com/specimen/Lato" target="_blank">Lato</a> y <a href="https://fonts.google.com/specimen/Ubuntu+Mono" target="_blank">UbuntuMono</a><br>
+		Imagen de portada: ilustración generada por <a href="https://ideogram.ai/g/gM499E9RSBivOecxKJPU4Q/1" target="_blank">Ideogram AI</a> </p><br><br>
+		<p>Red Educativa Digital Descartes<br>
+        Córdoba (España)<br>
+        <a href="mailto:descartes@proyectodescartes.org?Subject=Fondo editorial"> descartes@proyectodescartes.org</a><br>
+        <a href="https://proyectodescartes.org/descartescms/" target="_blank">https://proyectodescartes.org</a><br>
+        <br>
+        Proyecto iCartesiLibri<br>
+        <a href="https://proyectodescartes.org/iCartesiLibri/index.htm" target="_blank">https://proyectodescartes.org/iCartesiLibri/index.htm</a> <br>
+        <br>
+        ISBN: <br>
+		</p>
+		<p style="font-size:10px; position: absolute; bottom: 30px; left: 50px; right:0;"><a href="http://creativecommons.org/licenses/by-nc-sa/4.0" target="_blank"><img src="images/general/88x31.png" style="height:36px; width:99px"></a><br>
+        Esta obra está bajo una licencia Creative Commons 4.0 internacional: Reconocimiento-No Comercial-Compartir Igual.</p>
+    
+	</div>
+
+	<!--  -->
+	<div class="page">
+		<h2>Tabla de contenido</h2>
+
+		<!-- con esto se agrega una entrada en la tabla de contenido,
+		href="#prefacio" indica una referencia a una elemento html con 
+		el parámetro id="prefacio", automáticamente se busca está referencia
+		y se agrega el título correspondiente y la página donde se encuentra -->
+			
+		<div class="toc_link" href="#prefacio"></div>
+
+		
+		
+	<div class="toc_link" href="#capitulo_1"></div><div class="toc_link" href="#capitulo_2"></div><div class="toc_link" href="#capitulo_3"></div><div class="toc_link" href="#capitulo_4"></div><div class="toc_link" href="#capitulo_5"></div><div class="toc_link" href="#capitulo_6"></div><div class="toc_link" href="#capitulo_7"></div><div class="toc_link" href="#capitulo_8"></div><div class="toc_link" href="#capitulo_9"></div><div class="toc_link" href="#capitulo_10"></div><div class="toc_link" href="#capitulo_11"></div><div class="toc_link" href="#referencias"></div></div>
+
+	<!--  -->
+	<!-- Una página en blanco y sin numeración visible -->
+	<!--  -->
+	<div class="page" num-type-arabic="true"><h1 id="prefacio">Prefacio</h1><p>La gobernanza de la inteligencia artificial en la educación superior constituye una tarea institucional que va mucho más allá de permitir o prohibir herramientas. Implica decidir para qué se utilizan, con qué datos, bajo qué condiciones y con qué consecuencias para estudiantes, docentes, investigadores y trabajadores. Este libro nace con el propósito de ofrecer una mirada articulada sobre esas decisiones, entendiendo la IA como un recurso capaz de ampliar el apoyo al aprendizaje, la accesibilidad, la investigación y la gestión, pero también como una fuente de riesgos que exige límites claros, supervisión humana y rendición de cuentas.</p><p>El enfoque de la obra parte de una convicción: la innovación tecnológica solo adquiere sentido cuando se vincula con finalidades educativas explícitas y con procedimientos verificables. Por ello, la gobernanza se presenta como un ciclo continuo de identificación de necesidades, evaluación de impactos, prueba controlada, implementación, monitoreo, auditoría y revisión. En lugar de confiar únicamente en la fluidez o la precisión aparente de los sistemas, el libro invita a considerar su fiabilidad, sus sesgos, la privacidad de los datos, la accesibilidad, la autonomía intelectual y la posibilidad efectiva de corregir o impugnar sus resultados.</p><p style="text-align-last: justify;">La organización propone un recorrido que va de la comprensión general de los horizontes de la IA educativa hacia los principios que deben orientar su gobierno. A partir de ahí, la mirada se amplía a los actores y responsabilidades que intervienen en las decisiones, a la elaboración de políticas con propósito y al control de los datos. El trayecto incorpora después la ética de los algoritmos y las salvaguardas necesarias frente a errores, discriminaciones, opacidad, vigilancia o</p></div>
+
+
+	<!--  -->
+	<div class="page"><p> dependencia tecnológica. Así, los criterios institucionales se relacionan con los espacios concretos en los que la IA puede desplegarse: las aulas, el campus, la investigación y los servicios universitarios.</p><p>El libro avanza luego desde la tecnología considerada con criterio hacia la acción institucional. La pregunta ya no es únicamente qué puede hacer una herramienta, sino cómo seleccionar, autorizar, documentar, supervisar y retirar sistemas según su nivel de riesgo. En este marco, la integridad académica, la evaluación del aprendizaje, la declaración del uso de asistentes generativos y la conservación de evidencias del proceso adquieren un lugar central. El recorrido concluye con una perspectiva de futuro responsable, basada en la participación de la comunidad universitaria, la formación continua, la revisión periódica y la capacidad de suspender aquellas aplicaciones cuyos daños superen sus beneficios.</p><p>Tanto los textos como las imágenes de esta obra se generaron con ayuda de inteligencia artificial. Esta circunstancia forma parte del propio objeto de reflexión del libro y hace visible la necesidad de utilizar estas tecnologías con transparencia, verificación y responsabilidad. Se invita al lector a recorrer sus páginas no como un catálogo cerrado de respuestas, sino como un espacio para deliberar sobre las condiciones que permiten que la IA contribuya a una educación superior más segura, justa, explicable y pedagógicamente pertinente.</p></div>
+
+	<!--  -->
+	<div class="page"><h1 id="capitulo_1">Horizontes de la IA Educativa</h1><figure class="flotai" data-capitulo="1">
+     <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_11.jpg" alt="3D render of a diverse university campus at dawn, students and educators gathered around a transparent AI holographic compass, glowing pathways leading toward multiple horizons, balanced scales symbolizing ethics, equity, privacy, and human oversight, futuristic yet human-centered atmosphere, cinematic lighting, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Horizontes de la IA Educativa</figcaption>
+                    
+                </figure><p>La <strong>gobernanza de la IA en la educación superior</strong> puede entenderse como el conjunto de políticas, estructuras institucionales, criterios éticos y procedimientos técnicos que orientan el diseño, la adquisición, el uso y la evaluación de sistemas de inteligencia artificial en universidades. No se limita a regular herramientas como los asistentes generativos: también comprende sistemas de analítica del aprendizaje, plataformas adaptativas, mecanismos automatizados de admisión, tutores inteligentes y herramientas de apoyo a la investigación. Su principio de funcionamiento combina la supervisión humana, la evaluación de riesgos y la rendición de cuentas durante todo el ciclo de vida de la tecnología. En este marco, una universidad no debería preguntarse únicamente si una herramienta “funciona”, sino <strong>para quién funciona, con qué datos, bajo qué condiciones y con qué consecuencias</strong>. Chan (2023) propone que las instituciones adopten marcos integrales que articulen alfabetización en IA, políticas académicas, desarrollo profesional y responsabilidades compartidas entre docentes, estudiantes y autoridades.</p>
+				<p>Sus <strong>componentes principales</strong> incluyen:</p><ul>
+<p></p><li><strong>Gobernanza estratégica:</strong> órganos responsables, políticas institucionales y mecanismos de consulta.  </li></ul>
+				
+				</div>
+				
+				
+				<div class="page">
+<ul><li><strong>Gobernanza de datos:</strong> calidad, minimización, seguridad, privacidad y control sobre los datos estudiantiles.  </li><p></p>
+<p></p><li><strong>Evaluación algorítmica:</strong> revisión de sesgos, explicabilidad, accesibilidad y posibles impactos discriminatorios.  </li><p></p>
+<p></p><li><strong>Integridad académica:</strong> redefinición de la autoría, la evaluación y el uso legítimo de asistentes generativos.  </li><p></p>
+<p></p><li><strong>Supervisión humana:</strong> capacidad de revisar, corregir o detener decisiones automatizadas.  </li><p></p>
+<p></p><li><strong>Formación continua:</strong> competencias para que la comunidad universitaria comprenda tanto las posibilidades como las limitaciones de la IA.  </li><p></p>
+<p></p></ul><p></p><p style="text-align-last: justify;">Los procesos internos de una política responsable suelen comenzar con la identificación del problema educativo, continuar con una evaluación de impacto y una prueba controlada, y finalizar con auditorías, mecanismos de reclamación y revisión periódica. Esta secuencia es especialmente importante porque los modelos generativos pueden producir información falsa, respuestas sesgadas o textos aparentemente convincentes sin garantizar su exactitud. Kasneci et al. (2023) señalan que estas herramientas pueden apoyar la personalización, la retroalimentación y la generación de materiales, pero también introducen riesgos relacionados con la fiabilidad, la privacidad, la dependencia tecnológica y la transformación de las prácticas de evaluación. Por ello, la gobernanza debe establecer reglas diferenciadas según el nivel de riesgo: no es equivalente utilizar IA para sugerir recursos bibliográficos que emplearla para clasificar automáticamente a estudiantes o emitir decisiones sobre su progreso académico. Los <strong>horizontes de aplicación</strong> abarcan tutores conversacionales</p></div>
+
+<div class="page">
+<p> disponibles fuera del horario de clase, sistemas que detectan tempranamente dificultades de aprendizaje, asistentes para la accesibilidad, análisis institucional orientado a reducir el abandono y herramientas de apoyo a la investigación. Un caso ilustrativo es la incorporación de asistentes generativos en la escritura académica: pueden ayudar a formular preguntas, comparar perspectivas o revisar la claridad de un borrador, pero no deberían sustituir la autoría intelectual ni la verificación de fuentes. Rudolph et al. (2023) advierten que la expansión de ChatGPT cuestiona los modelos tradicionales de evaluación y obliga a diseñar actividades centradas en el razonamiento, la argumentación, la oralidad, la creación de evidencias y la reflexión sobre el propio proceso de aprendizaje. En consecuencia, el beneficio principal de la IA no reside en automatizar indiscriminadamente, sino en ampliar las capacidades docentes y estudiantiles sin desplazar el juicio profesional.</p>
+<p">El principal desafío será construir una gobernanza <strong>adaptativa, inclusiva y verificable</strong>. Las universidades deberán equilibrar innovación y precaución, evitando tanto la prohibición generalizada como la adopción acrítica promovida por proveedores tecnológicos. Entre las limitaciones más relevantes se encuentran la opacidad de algunos modelos, la reproducción de desigualdades, la concentración de datos en empresas privadas, la brecha de competencias digitales y la dificultad de atribuir responsabilidades cuando una recomendación automatizada causa perjuicios. La UNESCO (2023) recomienda una aproximación centrada en la persona, con protección de datos, supervisión humana, formación de usuarios y validación pedagógica. Así, el futuro de la IA educativa dependerá menos de la cantidad de herramientas disponibles que de la capacidad institucional para establecer <strong>límites claros, participación democrática, evaluación permanente y mecanismos efectivos de reparación</strong>.</p></div>
+
+<div class="page"><h1 id="capitulo_2">Principios para Gobernar</h1><figure class="centrada" data-capitulo="2">
+      <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_12.jpg" alt="3D render of a modern university council chamber, diverse educators, students, and AI specialists collaboratively guiding a luminous AI sphere through transparent governance frameworks, balanced scales symbolizing ethics, fairness, accountability, privacy, and human oversight, inclusive campus architecture, soft blue and gold lighting, subtle Spanish labels: “Ética”, “Equidad”, “Transparencia”, “Privacidad”, “Responsabilidad”. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Principios para Gobernar</figcaption>
+                    
+                </figure><p style="text-align-last: justify;">La <strong>gobernanza de la IA en la educación superior</strong> es el conjunto de principios, normas, responsabilidades y procesos mediante los cuales una universidad decide cómo adquirir, desarrollar, utilizar, supervisar</p></div>
+				
+		<div class="page"><p> y retirar sistemas de inteligencia artificial. No se limita al cumplimiento técnico o legal: también comprende la protección de los derechos, la calidad académica, la autonomía docente, la integridad de la investigación y la participación de estudiantes y trabajadores. Kasneci et al. (2023) señalan que los modelos generativos pueden apoyar la personalización, la retroalimentación y la creación de materiales, pero también introducir errores, sesgos y dependencias que requieren supervisión humana. Por ello, el principio rector debe ser que la IA <strong>asista la deliberación institucional, pero no sustituya la responsabilidad humana</strong>.</p><p>Los <strong>componentes principales</strong> de un marco de gobernanza son: <strong>(1)</strong> una política institucional pública y comprensible; <strong>(2)</strong> órganos responsables, como un comité interdisciplinario de IA; <strong>(3)</strong> procedimientos de evaluación de riesgos antes de implementar una herramienta; <strong>(4)</strong> reglas sobre privacidad, seguridad, propiedad intelectual y uso de datos; <strong>(5)</strong> mecanismos de transparencia, explicación y apelación; y <strong>(6)</strong> programas de alfabetización en IA para docentes, estudiantes, investigadores y personal administrativo. Su <strong>principio de funcionamiento</strong> debe seguir un ciclo continuo: identificar la finalidad educativa, evaluar los riesgos, autorizar el uso, documentar las decisiones, monitorear los resultados y corregir o retirar el sistema cuando produzca daños. La guía de UNESCO (2023) recomienda, en particular, un enfoque centrado en las personas, con protección de datos, inclusión, equidad y supervisión humana.</p><p style="text-align-last: justify;">En los <strong>procesos internos</strong>, la institución debería clasificar cada aplicación según su impacto. Un asistente para generar ideas de clase puede requerir controles básicos; en cambio, una herramienta que califica, recomienda admisiones, detecta supuesto plagio o asigna becas exige validación independiente, revisión humana y un procedimiento de reclamación. La gobernanza también debe exigir registros de uso, evaluación de sesgos entre grupos, verificación de la</p></div>
+		
+		
+		<div class="page"><p> exactitud de las respuestas y comunicación clara sobre cuándo interviene la IA. En evaluación del aprendizaje, Cotton et al. (2023) advierten que la IA generativa desafía las prácticas tradicionales de integridad académica; por tanto, las universidades deberían rediseñar actividades hacia la autoría demostrable, la argumentación, la reflexión sobre el proceso y la defensa oral, en lugar de depender únicamente de detectores automáticos.</p><div class="caja9"><p>Entre sus <strong>aplicaciones prácticas y beneficios</strong>, estos principios permiten utilizar IA para tutorías adaptativas, accesibilidad, traducción, análisis de trayectorias académicas, apoyo a la investigación y automatización de tareas administrativas, siempre que exista supervisión proporcional al riesgo. Entre sus <strong>desafíos o limitaciones</strong> se encuentran la opacidad de los modelos, las alucinaciones, la reproducción de discriminaciones, la exposición de datos personales, la brecha de acceso y la concentración del poder tecnológico en pocos proveedores. Un caso institucionalmente responsable sería el de una universidad que prueba un asistente de escritura en un curso piloto: informa a los estudiantes, ofrece una alternativa sin IA, prohíbe introducir datos sensibles, exige citar la asistencia recibida, revisa el impacto por grupos y suspende la herramienta si disminuye la autonomía o perjudica injustamente a determinados estudiantes. Así, gobernar no significa prohibir ni adoptar indiscriminadamente, sino establecer condiciones verificables para que la innovación sea <strong>segura, justa, explicable y pedagógicamente pertinente</strong>.</p></div></div>
+		
+		<div class="page"><h1 id="capitulo_3">Actores y Responsabilidades</h1><figure class="flotai" data-capitulo="3">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_13.jpg" alt="3D render of a university governance roundtable, diverse students, professors, administrators, technologists, and policymakers collaboratively guiding a glowing AI system, connected by transparent responsibility lines and balanced scales symbolizing ethics, accountability, and shared decision-making, modern campus background, cinematic lighting, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Actores y Responsabilidades</figcaption>
+                    
+                </figure><p>La <strong>gobernanza de la IA en la educación superior</strong> es el conjunto de estructuras, normas, procesos y responsabilidades mediante los cuales una institución decide cómo seleccionar, implementar, supervisar y evaluar sistemas de inteligencia artificial. No se limita al cumplimiento jurídico: también busca proteger los derechos de estudiantes y docentes, preservar la integridad académica, asegurar la transparencia y orientar el uso de la IA hacia fines pedagógicos legítimos. Chan (2023) propone comprender esta gobernanza como una responsabilidad compartida que debe articular políticas institucionales, formación en alfabetización de IA y criterios para la toma de decisiones. Su principio de funcionamiento es la <strong>responsabilidad distribuida</strong>: ninguna herramienta ni actor puede sustituir la deliberación humana, la supervisión académica y la rendición de cuentas.</p><p style="text-align-last: justify;">Los <strong>componentes principales</strong> de este modelo incluyen: <strong>(1)</strong> autoridades universitarias, responsables de aprobar políticas, asignar recursos y establecer mecanismos de supervisión; <strong>(2)</strong> docentes, encargados de diseñar usos pedagógicos, informar al estudiantado y evaluar críticamente los resultados generados por IA; <strong>(3)</strong> estudiantes, quienes deben utilizar estas tecnologías de forma transparente, respetar las normas de citación y proteger sus datos; <strong>(4)</strong> equipos técnicos</p></div>
+				
+				<div class="page">
+				<p> y de protección de datos, responsables de la seguridad, interoperabilidad, accesibilidad y evaluación de proveedores; y <strong>(5)</strong> comités de ética, representantes estudiantiles y comunidades académicas, que aportan perspectivas sobre sesgos, inclusión y efectos sociales. </p>
+				<p>En la práctica, los procesos internos pueden organizarse mediante un ciclo de <strong>identificación del riesgo, evaluación previa, autorización, implementación, monitoreo y revisión</strong>. La guía de UNESCO (2023) recomienda que las instituciones desarrollen políticas centradas en las personas, con atención específica a la privacidad, la equidad, la supervisión humana y la formación de los usuarios.</p><p>Las <strong>responsabilidades</strong> deben traducirse en acciones concretas. Antes de adoptar una aplicación de IA generativa, la universidad debería documentar su finalidad, los datos utilizados, los riesgos previsibles, las condiciones del proveedor y los mecanismos de reclamación. Durante su uso, tendría que comunicar cuándo interviene la IA, conservar registros de decisiones relevantes y ofrecer alternativas cuando una persona no desee utilizar el sistema. Los docentes pueden emplearla para generar borradores de actividades, ofrecer retroalimentación preliminar o adaptar materiales, pero deben verificar la exactitud, pertinencia y posible parcialidad de las respuestas. Asimismo, la evaluación del aprendizaje debe evitar depender exclusivamente de detectores automáticos de texto generado, pues su fiabilidad y sus efectos sobre el estudiantado son discutibles (Cotton et al., 2023). Entre las <strong>aplicaciones prácticas</strong> se encuentran los asistentes virtuales institucionales, la analítica para detectar necesidades de apoyo, la traducción y accesibilidad de materiales, y los tutores inteligentes; en todos los casos, la decisión final sobre promoción, sanción o intervención educativa debe permanecer bajo control humano.</p></div>
+				
+				<div class="page"><div class="caja10"><p>Los principales <strong>beneficios y ventajas</strong> de una gobernanza clara son la coherencia institucional, la confianza de la comunidad, la reducción de usos abusivos y una mejor integración de la IA con los objetivos curriculares. Sin embargo, persisten <strong>desafíos y limitaciones</strong>: desigualdades de acceso, opacidad algorítmica, filtración de información personal, sesgos lingüísticos y culturales, dependencia de proveedores comerciales y dificultades para definir la autoría y la integridad académica. Tlili et al. (2023) muestran, a partir del debate sobre ChatGPT, que una tecnología puede ofrecer oportunidades de apoyo al aprendizaje y, simultáneamente, generar riesgos para la evaluación, la privacidad y la calidad de la información. Por ello, un <strong>caso real o ejemplo de actuación institucional</strong> sería exigir que cada curso especifique qué usos de IA están permitidos, cuáles deben declararse y cuáles están prohibidos; además, el reglamento debería incluir formación, procedimientos de apelación y revisiones periódicas. Así, la gobernanza deja de ser una lista de restricciones y se convierte en un proceso continuo de deliberación, aprendizaje institucional y mejora.</p></div>
+				</div>
+				<div class="page"><h1 id="capitulo_4">Políticas con Propósito</h1><figure class="flotad" data-capitulo="4">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_14.jpg" alt="3D render of a modern university campus guided by glowing pathways, diverse students and faculty, transparent AI governance panels, balanced scales, and interconnected policy nodes symbolizing ethical, inclusive, human-centered education; warm blue and gold lighting, hopeful atmosphere, any legible labels in Spanish only. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Políticas con Propósito</figcaption>
+                    
+                </figure><p>La <strong>gobernanza de la IA en educación superior</strong> consiste en establecer principios, normas y mecanismos de supervisión para orientar el diseño, la adquisición y el uso responsable de sistemas de inteligencia artificial en universidades. No se limita a prohibir o autorizar herramientas: funciona como un ciclo institucional que identifica riesgos, asigna responsabilidades, define criterios de transparencia y revisa periódicamente los resultados. Chan (2023) propone comprender estas políticas como un marco integral que articula alfabetización en IA, prácticas docentes, protección de datos, evaluación y toma de decisiones institucionales. Sus componentes principales son: <strong>principios éticos</strong>, responsabilidades de estudiantes y docentes, protocolos de protección de datos, procedimientos de evaluación de impacto, mecanismos de reclamación y procesos de auditoría.</p><p>El <strong>principio de funcionamiento</strong> de una política con propósito es vincular cada regla con un objetivo educativo explícito. Por ejemplo, una norma sobre herramientas generativas debe explicar si busca proteger la integridad académica, mejorar la retroalimentación, reducir sesgos o preservar la autonomía intelectual. </p></div>
+				
+				<div class="page"><p>El proceso interno puede organizarse en varias etapas: <strong>identificación del problema</strong>, consulta con la comunidad universitaria, clasificación del nivel de riesgo, selección de controles, implementación, evaluación y actualización. En la práctica, una institución puede exigir que el uso de IA en una evaluación sea declarado, conservar supervisión humana sobre las decisiones automatizadas y proporcionar alternativas cuando una persona no pueda utilizar una herramienta digital. Estas medidas son coherentes con la necesidad de evitar que la IA sustituya el juicio profesional del docente o convierta la evaluación en una simple detección automática de textos (Rudolph et al., 2023).</p><p>Las <strong>aplicaciones prácticas</strong> de estas políticas incluyen la elaboración de códigos para el uso de asistentes generativos, la revisión de contratos con proveedores, la capacitación obligatoria en alfabetización algorítmica y la creación de comités interdisciplinarios. También pueden establecerse protocolos específicos para admisiones, tutorías inteligentes, analítica del aprendizaje y evaluación automatizada. Entre sus <strong>beneficios y ventajas</strong> se encuentran una mayor coherencia institucional, decisiones más transparentes, reducción de usos improvisados y mejores condiciones para la innovación pedagógica. Una política bien diseñada permite que docentes y estudiantes conozcan de antemano qué usos son aceptables, qué evidencias deben conservar y cómo solicitar revisión humana. Además, la gobernanza puede favorecer una adopción más equitativa al exigir accesibilidad, capacitación y alternativas para quienes enfrentan limitaciones económicas, tecnológicas o de discapacidad.</p><p style="text-align-last: justify;">Sin embargo, existen <strong>desafíos y limitaciones</strong> importantes: la rápida evolución de los modelos, la opacidad de algunos proveedores, los sesgos en los datos, la posible exposición de información personal, la dependencia tecnológica y la dificultad de distinguir apoyo legítimo de sustitución del trabajo académico. Por ello, las políticas deben ser proporcionales al riesgo y revisarse con participación de estudiantes,</p></div>
+				
+				
+				<div class="page">
+				<p> profesorado, personal técnico y especialistas en protección de datos. </p>
+				<p>La orientación internacional reciente recomienda combinar innovación con supervisión humana, transparencia, seguridad y formación crítica de los usuarios (UNESCO, 2023). En síntesis, una política con propósito no pregunta únicamente “¿se permite usar IA?”, sino <strong>para qué, bajo qué condiciones, con qué salvaguardas y quién responde por sus consecuencias</strong>.</p><h1 id="capitulo_5">Datos bajo Control</h1><figure class="flotad" data-capitulo="5">
+                    
+                    
+                    
+                    
+                    
+                    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_15.jpg" alt="3D render of a modern university data center under AI governance: glowing data streams flowing through transparent control panels, a secure digital vault with padlocks and shields, diverse educators and students monitoring dashboards, balanced scales symbolizing privacy, accountability, and ethical control; cinematic blue and gold lighting, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Datos bajo Control</figcaption>
+                    
+                </figure><p><strong>Datos bajo control</strong> significa gobernar de manera sistemática los datos que se generan, recopilan, procesan y comparten mediante sistemas de inteligencia artificial (IA) en la educación superior. No se limita a proteger bases de datos: implica definir quién puede acceder a la información, con qué propósito, durante cuánto tiempo y bajo qué condiciones puede utilizarse. En una universidad, estos datos pueden incluir expedientes académicos, patrones de asistencia, interacciones con plataformas virtuales, respuestas en evaluaciones y predicciones sobre el rendimiento. Como señalan Crompton y Burke (2023), la incorporación de IA en la educación superior exige combinar innovación tecnológica con políticas institucionales, supervisión humana y criterios de responsabilidad.</p></div>
+				
+				<div class="page"><p></p><p>Los <strong>componentes principales</strong> de esta gobernanza son: <strong>calidad y procedencia de los datos</strong>, <strong>privacidad y seguridad</strong>, <strong>control de acceso</strong>, <strong>transparencia de los modelos</strong>, <strong>responsabilidad institucional</strong> y <strong>participación de las personas afectadas</strong>. El principio de funcionamiento consiste en acompañar todo el ciclo de vida del dato: recopilación, clasificación, almacenamiento, análisis, utilización, conservación y eliminación. Antes de emplear una herramienta de IA, la institución debería elaborar un inventario de los datos tratados, identificar su finalidad educativa y evaluar posibles riesgos de discriminación o exposición. Chan (2023) propone que las políticas universitarias de IA articulen normas, alfabetización digital, responsabilidades docentes y mecanismos de supervisión; esto evita que cada profesor o departamento tome decisiones aisladas sobre tecnologías que afectan a estudiantes y trabajadores.</p><p>En la práctica, los <strong>procesos internos</strong> pueden organizarse mediante un protocolo institucional: <strong>1)</strong> justificar la necesidad de recopilar un dato; <strong>2)</strong> informar a las personas usuarias de manera clara; <strong>3)</strong> limitar el acceso según funciones; <strong>4)</strong> auditar la calidad y los sesgos de los datos; <strong>5)</strong> registrar las decisiones automatizadas; y <strong>6)</strong> ofrecer revisión humana y vías de reclamación. Por ejemplo, si una universidad utiliza IA para detectar estudiantes con riesgo de abandono, el sistema no debería producir una sanción automática ni etiquetar públicamente al estudiante. Su resultado tendría que activar una revisión de un equipo académico, contrastarse con información contextual y convertirse, si procede, en una oferta de apoyo. Tlili et al. (2023) advierten que las herramientas conversacionales y generativas pueden aportar utilidad educativa, pero también plantean riesgos relacionados con la privacidad, la fiabilidad de las respuestas y la dependencia de sistemas cuyo funcionamiento no siempre es comprensible para sus usuarios.</p></div>
+				
+				<div class="page"><p></p><p>Entre los <strong>beneficios y ventajas</strong> de este enfoque se encuentran una mejor toma de decisiones, mayor confianza en las plataformas digitales, reducción de usos indebidos y capacidad para detectar errores antes de que afecten a la trayectoria académica. Sin embargo, persisten <strong>desafíos y limitaciones</strong>: datos incompletos, sesgos históricos, reutilización de información para fines no previstos, dependencia de proveedores externos y dificultad para explicar modelos complejos. La UNESCO (2023) recomienda que el uso de IA generativa en educación preserve la supervisión humana, la protección de datos y la equidad. Por ello, una política madura de “datos bajo control” no busca impedir la innovación, sino establecer condiciones verificables: propósito legítimo, mínima cantidad de datos, seguridad proporcional al riesgo, documentación de las decisiones y posibilidad efectiva de revisión y corrección.</p><h1 id="capitulo_6">Ética de los Algoritmos</h1>
+				<p>La <strong>ética de los algoritmos</strong> estudia los valores, riesgos y responsabilidades asociados con el diseño, entrenamiento, implementación y evaluación de sistemas automatizados que toman decisiones o generan recomendaciones. En la educación superior, estos sistemas pueden intervenir en la admisión, la asignación de becas, la detección de plagio, la predicción del abandono, la evaluación del aprendizaje y la personalización de contenidos. Su funcionamiento general transforma datos —por ejemplo, calificaciones, registros de acceso o respuestas de estudiantes— en patrones, puntuaciones o decisiones mediante reglas programadas o modelos de aprendizaje automático. Kasneci et al. (2023) señalan que las herramientas basadas en inteligencia artificial pueden ampliar las oportunidades de aprendizaje, pero también introducen problemas de fiabilidad, transparencia, privacidad y dependencia tecnológica.</p>
+				</div>
+				
+				
+				<div class="page">
+				<figure class="centrada" data-capitulo="6">
+                <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_16.jpg" alt="3D render of a transparent AI algorithm balancing fairness, privacy, accountability, and academic freedom on a glowing scale, surrounded by diverse university students, educators, and governance symbols in a modern campus setting; holographic labels, if visible, must be in Spanish only. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Ética de los Algoritmos</figcaption>
+                    
+                </figure>
+				
+				<p style="text-align-last: justify">Sus <strong>componentes principales</strong> son los datos de entrada, el modelo algorítmico, los criterios de decisión, la interfaz de uso y los mecanismos de supervisión humana. El principio de funcionamiento ético exige que la institución pueda justificar qué datos utiliza, con qué finalidad, quién controla el sistema y cómo puede una persona </p></div>
+				
+				
+				<div class="page">
+				<p>impugnar un resultado. En un proceso interno típico, el algoritmo recopila datos, los limpia, identifica correlaciones, produce una predicción y la convierte en una recomendación o decisión institucional. Sin embargo, una correlación estadística no demuestra por sí misma mérito, riesgo o capacidad académica; por ello, la decisión automatizada debe interpretarse junto con el contexto del estudiante y someterse a revisión humana.</p><p>En la práctica, la gobernanza universitaria debe incorporar controles como los siguientes:</p>
+				<ul>
+<p></p><li><strong>Transparencia:</strong> informar cuándo se utiliza un sistema algorítmico y explicar, en un lenguaje comprensible, sus objetivos y limitaciones.</li><p></p>
+<p></p><li><strong>Equidad y no discriminación:</strong> comprobar si las predicciones producen errores desiguales entre grupos definidos por género, discapacidad, origen socioeconómico u otras características relevantes.</li><p></p>
+<p></p><li><strong>Privacidad y minimización de datos:</strong> recoger únicamente la información necesaria, establecer plazos de conservación y restringir el acceso.</li><p></p>
+<p></p><li><strong>Supervisión y apelación:</strong> permitir que estudiantes y docentes soliciten revisión, corrección o impugnación de una decisión.</li><p></p>
+<p></p><li><strong>Trazabilidad:</strong> conservar registros de versiones del modelo, fuentes de datos, modificaciones y responsables de cada etapa.</li><p></p>
+<p></p></ul><p></p><p style="text-align-last: justify">Estas medidas ofrecen beneficios concretos: pueden ayudar a detectar tempranamente dificultades académicas, orientar recursos de apoyo y reducir tareas administrativas repetitivas. No obstante, los</p></div>
+
+
+<div class="page">
+<p> beneficios solo son legítimos cuando el sistema fortalece —y no sustituye— la autonomía y el juicio profesional. Tlili et al. (2023), al analizar los sistemas conversacionales en educación mediante el caso de ChatGPT, advierten que sus respuestas pueden parecer convincentes aunque contengan errores, sesgos o información inventada. Por ello, una universidad no debería utilizar la fluidez de una respuesta como evidencia suficiente de su exactitud ni delegar en un modelo generativo la evaluación final de una persona.</p>
+<p>Un <strong>caso representativo</strong> es el uso de un sistema predictivo para identificar estudiantes con posible riesgo de abandono. El algoritmo podría activar una tutoría, pero también estigmatizar a quienes reciben una puntuación elevada o reproducir desigualdades presentes en los datos históricos. Del mismo modo, un sistema de vigilancia durante exámenes puede aumentar la sensación de control, pero afectar de manera desproporcionada a estudiantes con discapacidades, conexiones deficientes o condiciones domésticas particulares. La guía de UNESCO (2023) recomienda que el uso educativo de la inteligencia artificial preserve la agencia humana, proteja los datos personales y se acompañe de alfabetización crítica. En consecuencia, la ética algorítmica no consiste únicamente en hacer modelos más precisos: implica establecer límites institucionales, evaluar impactos reales y garantizar que toda decisión educativa importante siga siendo explicable, revisable y responsable.</p>
+<h1 id="capitulo_7">Riesgos y Salvaguardas</h1>
+<p">La <strong>gobernanza de la IA en la educación superior</strong> comprende el conjunto de políticas, responsabilidades, controles y procesos mediante los cuales una universidad decide cómo seleccionar, implementar, supervisar y retirar sistemas de inteligencia artificial. </p>
+</div>
+
+<div class="page">
+<figure class="centrada" data-capitulo="7">
+<img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_17.jpg" alt="3D render of a modern university campus protected by a transparent digital shield, balancing glowing AI networks with warning symbols for bias, privacy breaches, misinformation, and cyber threats; diverse students and educators at a governance control panel, scales of justice, locks, and ethical safeguards, cinematic blue-and-gold lighting, labels in Spanish only. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Riesgos y Salvaguardas</figcaption>
+                    
+                </figure>
+				<p>En el ámbito de los modelos generativos, su finalidad no es únicamente aprovechar herramientas capaces de producir texto, código, imágenes o análisis, sino asegurar que su uso sea <strong>seguro, transparente, equitativo, explicable y compatible con la autonomía académica</strong>. </p>
+				</div>
+				
+				
+		<div class="page"><p>El funcionamiento de esta gobernanza requiere coordinar a rectorados, docentes, estudiantes, equipos tecnológicos, asesores jurídicos, responsables de protección de datos y comités de ética. Lo (2023) señala que la adopción de ChatGPT en educación ofrece oportunidades para la personalización y la asistencia pedagógica, pero también plantea riesgos relacionados con la exactitud, la dependencia tecnológica y la evaluación del aprendizaje.</p><p>Los <strong>componentes principales</strong> de un marco institucional de salvaguardas incluyen:</p>
+<ul>
+<p></p><li>clasificación de los sistemas según su nivel de riesgo y finalidad educativa;</li><p></p>
+<p></p><li>evaluación previa de privacidad, seguridad, sesgo, accesibilidad y propiedad intelectual;</li><p></p>
+<p></p><li>definición de responsables humanos para aprobar, supervisar y revisar cada aplicación;</li><p></p>
+<p></p><li>reglas sobre recopilación, conservación y eliminación de datos;</li><p></p>
+<p></p><li>mecanismos de transparencia, consentimiento y explicación para las personas afectadas;</li><p></p>
+<p></p><li>auditorías periódicas, registro de incidentes y procedimientos de reclamación;</li><p></p>
+<p></p><li>formación en alfabetización digital, ética de la IA y verificación de resultados.</li><p></p>
+<p></p></ul><p></p><p style="text-align-last: justify;">El principio de funcionamiento más importante es la <strong>supervisión humana significativa</strong>: la IA puede apoyar decisiones, pero no debe</p></div>
+
+<div class="page"><p> sustituir automáticamente el juicio profesional en asuntos que afectan la trayectoria académica, la admisión, la evaluación, las becas o la disciplina estudiantil. En los procesos internos, la universidad debería comenzar con un inventario de herramientas, identificar los datos tratados y valorar los posibles daños; después debe realizar una prueba controlada, documentar sus resultados, establecer límites de uso y revisar periódicamente su desempeño. Las salvaguardas también deben incluir la minimización de datos, el uso de plataformas institucionales autorizadas y la prohibición de introducir información personal o confidencial en servicios sin garantías suficientes. La UNESCO (2023) recomienda, además, enfoques centrados en las personas, protección de datos, capacitación de usuarios y validación ética de las aplicaciones generativas.</p><p>Las aplicaciones prácticas pueden abarcar asistentes para orientación administrativa, apoyo a la accesibilidad, tutores conversacionales, análisis de información institucional y herramientas de retroalimentación docente. Sus beneficios potenciales son la reducción de tareas repetitivas, una atención más rápida y la ampliación de apoyos para estudiantes con distintas necesidades. Sin embargo, existen <strong>desafíos y limitaciones</strong>: respuestas inventadas o incorrectas, sesgos lingüísticos y culturales, vigilancia excesiva, filtración de datos, desigualdades de acceso, dependencia de proveedores y debilitamiento de la integridad académica.</p>
+<div class="caja9"><p> Perkins (2023) advierte que el uso de modelos de lenguaje obliga a revisar las prácticas de evaluación, porque la detección automática de textos generados por IA puede producir falsos positivos y afectar injustamente a estudiantes.</p></div>
+</div>
+
+<div class="page">
+<p> Por ello, una salvaguarda más sólida consiste en combinar declaraciones de uso de IA, evaluación del proceso —borradores, razonamientos, fuentes y revisiones—, conversaciones orales y tareas contextualizadas, en lugar de confiar exclusivamente en detectores automáticos. Sullivan, Kelly y McLaughlan (2023) también destacan la necesidad de equilibrar la innovación con la responsabilidad institucional y la preservación del aprendizaje auténtico.</p>
+<h1 id="capitulo_8">Tecnología con Criterio</h1><figure class="flotai" data-capitulo="8">
+<img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_18.jpg" alt="3D render of a modern university campus where human educators thoughtfully guide a transparent AI system, balanced scales of ethics, privacy, fairness, and innovation, diverse students collaborating, warm blue and gold lighting, clean futuristic composition, subtle legible labels in Spanish only. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Tecnología con Criterio</figcaption>
+                    
+                </figure><p>La <strong>gobernanza de la inteligencia artificial (IA) en la educación superior</strong> es el conjunto de políticas, responsabilidades, procedimientos y mecanismos de supervisión que orientan el diseño, la adquisición y el uso de sistemas de IA en universidades. Su propósito no es prohibir la tecnología, sino asegurar que se utilice de manera <strong>transparente, segura, equitativa, responsable y alineada con la misión educativa</strong>. En este marco, la gobernanza funciona como un ciclo institucional: identificar riesgos, establecer reglas, implementar controles, evaluar resultados y corregir prácticas. Chan (2023) propone que las universidades integren la alfabetización en IA, la formulación de políticas y la participación de la comunidad académica para que las decisiones tecnológicas no queden exclusivamente en manos de proveedores o equipos técnicos.</p></div>
+				
+		<div class="page">
+		<p>Sus <strong>componentes principales</strong> suelen incluir: <strong>políticas institucionales</strong>, protección de datos personales, criterios de contratación y evaluación de proveedores, formación de docentes y estudiantes, mecanismos de apelación y auditorías periódicas. El principio de funcionamiento es la responsabilidad compartida: los equipos directivos definen orientaciones; el profesorado decide cómo incorporar la IA en la enseñanza; los estudiantes deben declarar y utilizar adecuadamente las herramientas; y las áreas jurídicas, tecnológicas y de bienestar supervisan los impactos. En los procesos internos conviene documentar qué datos se introducen en un sistema, con qué finalidad se procesan, quién puede acceder a ellos y cómo se revisan sus resultados. Kasneci et al. (2023) advierten que los modelos generativos pueden producir respuestas plausibles pero incorrectas, sesgadas o difíciles de verificar; por ello, la revisión humana y la comprobación de fuentes deben formar parte del procedimiento ordinario.</p><p>En la práctica, la gobernanza puede aplicarse a la <strong>evaluación del aprendizaje</strong>, la tutoría automatizada, la analítica académica, la investigación, la atención administrativa y la creación de materiales didácticos. Por ejemplo, una universidad podría permitir el uso de un asistente generativo para elaborar borradores, pero exigir que el estudiante declare su utilización, conserve evidencias del proceso y contraste la información con bibliografía especializada. También puede establecer un protocolo para que un sistema de analítica identifique posibles riesgos de abandono sin convertir una predicción en una sanción o decisión automática. Entre sus beneficios se encuentran la innovación pedagógica, la personalización del apoyo y una mayor coherencia institucional; sin embargo, estos beneficios dependen de que existan criterios de accesibilidad, supervisión y rendición de cuentas. Dwivedi et al. (2023) señalan que la IA generativa ofrece oportunidades relevantes, pero también plantea problemas de fiabilidad, privacidad, autoría, propiedad intelectual y transformación del trabajo profesional.</p></div>
+		
+		<div class="page"><p style="text-align-last: justify;">Los principales <strong>desafíos y limitaciones</strong> son la opacidad de los algoritmos, la desigualdad en el acceso, la transferencia de datos a servicios externos, los sesgos en los resultados y la dificultad de distinguir entre asistencia legítima ysustitución del trabajo intelectual. Por esta razón, una política eficaz debe evitar tanto la adopción irreflexiva como la prohibición generalizada. Las orientaciones de UNESCO (2023) recomiendan un enfoque centrado en las personas, con protección de datos, formación crítica y evaluación de los efectos educativos. En síntesis, “tecnología con criterio” significa adoptar la IA solo cuando mejora una finalidad académica claramente definida, mantener la decisión humana en asuntos de alto impacto y ofrecer procedimientos transparentes para revisar errores, reclamar decisiones y retirar una herramienta cuando sus riesgos superen sus beneficios.</p><h1 id="capitulo_9">Aulas, Campus e Investigación</h1><p>La <strong>gobernanza de la IA en educación superior</strong> es el conjunto de normas, responsabilidades, procedimientos y mecanismos de supervisión que orientan el diseño, la adquisición y el uso de sistemas inteligentes en aulas, campus y actividades de investigación. No se limita a decidir si una universidad permite utilizar ChatGPT: implica establecer quién puede usarlo, con qué propósito, qué datos pueden introducirse, cómo se validan sus resultados y quién responde por sus consecuencias. En este marco, sus componentes principales son: <strong>políticas institucionales</strong>, protección de datos, transparencia algorítmica, integridad académica, formación de docentes y estudiantes, evaluación de riesgos y participación de la comunidad universitaria. Tlili et al. (2023) muestran, mediante el análisis de los chatbots generativos, que estas tecnologías pueden apoyar la personalización y el diálogo educativo, pero también producir información incorrecta, sesgos y dependencia tecnológica.</p></div>
+				
+				
+		<div class="page">
+		<figure class="centrada" data-capitulo="9">
+        <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_19.jpg" alt="3D render of a modern university campus with collaborative classrooms, diverse students and professors using AI responsibly, transparent data visualizations, research laboratories, and a glowing governance network connecting learning, innovation, ethics, and institutional oversight; futuristic yet human-centered, cinematic lighting, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Aulas, Campus e Investigación</figcaption>
+                    
+                </figure>
+		<p>El principio de funcionamiento consiste en combinar <strong>supervisión humana, trazabilidad y proporcionalidad</strong>. Antes de incorporar una herramienta, la institución debería identificar el objetivo pedagógico o científico, clasificar los riesgos, revisar las condiciones del proveedor y definir controles. Los procesos internos pueden incluir:</p></div>
+		
+		<div class="page"><ul>
+<p></p><li><strong>evaluación previa</strong> del sistema y de sus impactos sobre estudiantes, docentes y participantes de investigación;  </li><p></p>
+<p></p><li><strong>autorización diferenciada</strong> según el nivel de riesgo y el tipo de datos utilizados;  </li><p></p>
+<p></p><li><strong>registro de uso</strong>, indicando cuándo una salida de IA intervino en una tarea, decisión o publicación;  </li><p></p>
+<p></p><li><strong>verificación humana</strong>, especialmente en calificaciones, admisiones, recomendaciones académicas y análisis de resultados;  </li><p></p>
+<p></p><li><strong>auditoría y revisión periódica</strong> para corregir errores, sesgos o efectos no previstos.  </li><p></p>
+<p></p></ul><p></p><p>En las aulas, estas reglas pueden traducirse en actividades de comparación entre una respuesta generada por IA y fuentes académicas verificables, declaración obligatoria del uso de asistentes, evaluación del proceso de razonamiento y prohibición de introducir información personal o datos sensibles en plataformas no autorizadas. Lim et al. (2023) sostienen que la IA generativa puede impulsar una transformación de la enseñanza universitaria si se utiliza para rediseñar las actividades de aprendizaje, y no simplemente para automatizar tareas o sustituir el juicio docente. En el campus, la gobernanza también abarca asistentes para orientación estudiantil, analítica institucional, accesibilidad y gestión de servicios; sus beneficios potenciales incluyen mayor rapidez, apoyo personalizado y disponibilidad continua, aunque deben equilibrarse con riesgos de vigilancia, discriminación y exclusión digital.</p></div>
+
+<div class="page"><p>En investigación, la gobernanza exige declarar el uso de IA en la formulación de preguntas, revisión bibliográfica, programación, análisis o redacción; conservar versiones y registros de las interacciones; comprobar la exactitud de las referencias; y evitar atribuir autoría a sistemas que no pueden asumir responsabilidad científica. Un ejemplo práctico es un protocolo de laboratorio o grupo de investigación que permita emplear IA para depurar código, pero obligue a validar los resultados con datos independientes y a documentar cualquier transformación automatizada. La integridad académica constituye un desafío especialmente complejo: Khalil y Er (2023) advierten que los detectores de texto generado por IA no ofrecen por sí solos una prueba concluyente de plagio, por lo que las universidades deberían combinar evaluación auténtica, diálogo con el estudiante y evidencias del proceso de aprendizaje. En consecuencia, una política eficaz debe ser revisable, pública y participativa, en consonancia con las recomendaciones de UNESCO (2023) sobre supervisión humana, protección de datos, inclusión y uso responsable de la IA generativa.</p><h1 id="capitulo_10">Del Marco a la Acción</h1>
+<p>La transición del marco normativo a la acción comienza por entender la <strong>gobernanza de la IA</strong> como un sistema continuo de decisiones, responsabilidades y controles que orienta el diseño, la adquisición y el uso de herramientas algorítmicas en la universidad. No se limita a prohibir o autorizar aplicaciones: establece quién decide, con qué criterios, cómo se evalúan los riesgos y qué mecanismos permiten corregir los efectos no deseados. Chan (2023) propone que las instituciones articulen la política de IA con la enseñanza, la evaluación, la investigación, la protección de datos y el desarrollo de competencias digitales. En este sentido, el principio de funcionamiento puede resumirse así: <strong>decisión informada, implementación controlada, evaluación verificable y mejora continua</strong>.</p>
+</div>
+
+<div class="page">
+<figure class="centrada" data-capitulo="10">
+    <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_110.jpg" alt="3D render of a university governance framework transforming into concrete action: interconnected policy pillars, diverse educators and students, AI systems, checklists, decision pathways, and glowing implementation gears moving from blueprint to real campus impact; modern academic setting, collaborative, ethical, dynamic, cinematic lighting, Spanish labels only. (textos en español)" style="border-radius:15px;cursor:pointer;width:100%;">
+                    <figcaption>Del Marco a la Acción</figcaption>
+                    
+                </figure>
+<p>Los <strong>componentes principales</strong> de un plan operativo de gobernanza pueden organizarse en cinco ámbitos:</p>
+<ul><p></p><li><strong>Estructura institucional:</strong> comité o unidad responsable, autoridades competentes y canales de participación.</li><p></p></ul>
+</div>
+
+<div class="page"><ul>
+
+
+
+<p></p><li><strong>Reglas de uso:</strong> criterios para estudiantes, docentes, investigadores y personal administrativo.</li><p></p>
+<p></p><li><strong>Gestión de riesgos:</strong> privacidad, seguridad, sesgos, propiedad intelectual, accesibilidad y dependencia tecnológica.</li><p></p>
+<p></p><li><strong>Transparencia y supervisión:</strong> registro de sistemas utilizados, comunicación de sus finalidades y revisión humana.</li><p></p>
+<p></p><li><strong>Formación y apoyo:</strong> capacitación para utilizar la IA de manera crítica, ética y pedagógicamente pertinente.</li><p></p>
+<p></p></ul><p></p><p>Estos componentes deben integrarse en procesos internos concretos: inventariar las herramientas empleadas, clasificar sus niveles de riesgo, realizar evaluaciones de impacto, aprobar protocolos, capacitar a la comunidad y revisar periódicamente los resultados. La orientación de UNESCO (2023) destaca la necesidad de mantener la agencia humana, proteger los datos personales y asegurar que el uso de IA generativa se vincule con objetivos educativos explícitos, no únicamente con criterios de eficiencia.</p><p style="text-align-last: justify;">En las <strong>aplicaciones prácticas</strong>, una universidad puede comenzar con proyectos piloto de bajo riesgo, como asistentes para orientar trámites, herramientas de retroalimentación formativa o sistemas de apoyo a la accesibilidad. En cada caso, la unidad responsable debería documentar: propósito, datos utilizados, proveedor, límites del sistema, intervención humana y procedimiento de reclamación. En el ámbito de la evaluación, por ejemplo, no basta con intentar detectar el uso de IA; es más eficaz rediseñar actividades para valorar procesos, argumentación, versiones preliminares y reflexión del estudiante. Cotton et al. (2023) señalan que la expansión de ChatGPT</p></div>
+
+
+<div class="page">
+<p> obliga a revisar simultáneamente la integridad académica, la alfabetización en IA y las prácticas de evaluación docente.</p>
+<p>Los <strong>beneficios y ventajas</strong> de este enfoque incluyen mayor coherencia institucional, reducción de decisiones improvisadas, mejor protección de estudiantes y trabajadores, y una adopción tecnológica más alineada con la misión educativa. Sin embargo, persisten <strong>desafíos y limitaciones</strong>: la rápida obsolescencia de las herramientas, la opacidad de algunos proveedores, la desigualdad de acceso, los sesgos en los datos y la dificultad de atribuir responsabilidades cuando intervienen múltiples actores.</p>
+
+<div class="caja3"><p>La gobernanza debe tratarse como un ciclo de aprendizaje institucional: <strong>diagnosticar, priorizar, experimentar, auditar y ajustar</strong>. El éxito no se mide por la cantidad de sistemas de IA incorporados, sino por la capacidad de la universidad para demostrar que cada uso es justificable, comprensible, seguro y beneficioso para su comunidad.</p></div>
+<h1 id="capitulo_11">Futuro Responsable</h1>
+<p style="text-align-last: justify">La <strong>gobernanza responsable de la inteligencia artificial (IA) en la educación superior</strong> es el conjunto de políticas, estructuras, procesos y responsabilidades destinados a orientar el diseño, la adquisición y el uso de sistemas de IA de manera ética, segura, transparente e inclusiva. Su principio fundamental consiste en mantener la supervisión humana y vincular cada aplicación tecnológica con los objetivos educativos de la institución. En este marco, la IA no debe entenderse como un sustituto del profesorado, sino como una herramienta que</p>
+
+</div>
+
+<div class="page"><figure class="centrada" data-capitulo="11">
+          <img loading="lazy" class="image_expand" onclick="openImage(this)" src="images/imagen_111.jpg" alt="3D render of a responsible AI-powered university campus in the future: diverse students and educators collaborating with transparent, human-centered robots, surrounded by glowing ethical data networks, privacy shields, sustainability symbols, and balanced scales, clean hopeful atmosphere, inclusive and trustworthy design, no readable text. (textos en español)" style="border-radius:15px;cursor:pointer;width:98%;">
+                    <figcaption>Futuro Responsable</figcaption>
+                    
+                </figure>
+				<p> apoya la enseñanza, la investigación, la gestión académica y los servicios estudiantiles. Kasneci et al. (2023) señalan que los modelos generativos ofrecen oportunidades para personalizar el aprendizaje y ampliar el acceso al conocimiento, pero también presentan riesgos relacionados con errores, sesgos, privacidad y dependencia tecnológica.</p>
+				</div>
+				
+				
+				<div class="page">
+				<p>Los <strong>componentes principales</strong> de un modelo de futuro responsable incluyen:</p>
+				<ul>
+<p></p><li>una política institucional de IA, revisada periódicamente;  </li><p></p>
+<p></p><li>comités interdisciplinarios con participación docente, estudiantil, administrativa y jurídica;  </li><p></p>
+<p></p><li>protocolos para evaluar sesgos, seguridad, protección de datos y accesibilidad;  </li><p></p>
+<p></p><li>mecanismos de transparencia que informen cuándo y cómo se utiliza la IA;  </li><p></p>
+<p></p><li>formación continua en alfabetización digital, ética y evaluación crítica;  </li><p></p>
+<p></p><li>procedimientos de reclamación y revisión humana ante decisiones automatizadas.  </li><p></p>
+<p></p></ul><p></p><p>Chan (2023) propone que las universidades integren la gobernanza de la IA con sus políticas de enseñanza, evaluación, integridad académica y desarrollo profesional. En consecuencia, el funcionamiento responsable no depende únicamente del departamento informático: requiere coordinación entre autoridades, docentes, estudiantes, investigadores, proveedores tecnológicos y responsables de protección de datos.</p><p>Los <strong>procesos internos</strong> pueden organizarse en un ciclo de seis etapas: identificación de la necesidad educativa, evaluación de riesgos, selección o desarrollo de la herramienta, prueba controlada, implementación supervisada y auditoría periódica.</p></div>
+
+<div class="page"><p>Por ejemplo, antes de utilizar un sistema generativo para retroalimentar trabajos, una universidad debería comprobar la calidad de susrespuestas, documentar sus límites, proteger los datos del alumnado y establecer que la calificación final corresponda a una persona responsable. Entre sus <strong>aplicaciones prácticas</strong> se encuentran los tutores virtuales, la generación de materiales accesibles, el análisis temprano de señales de abandono, la asistencia a la investigación y la automatización de tareas administrativas. Cotton et al. (2023) advierten, sin embargo, que estas aplicaciones deben acompañarse de criterios claros sobre autoría, evaluación y uso legítimo de herramientas generativas.</p><p>El <strong>futuro responsable</strong> dependerá de equilibrar innovación y protección de derechos. Entre sus beneficios se encuentran una atención más personalizada, la reducción de cargas administrativas, el apoyo a estudiantes con distintas necesidades y la ampliación de oportunidades de aprendizaje. Sus principales limitaciones son las alucinaciones o respuestas incorrectas, la reproducción de desigualdades presentes en los datos, la vigilancia excesiva, la opacidad de algunos modelos y la brecha de acceso. Por ello, una universidad responsable debe aplicar el principio de precaución: comenzar con proyectos piloto, publicar criterios de evaluación, consultar a la comunidad y suspender cualquier sistema que produzca daños desproporcionados. La orientación de la UNESCO (2023) refuerza esta perspectiva al recomendar un enfoque centrado en las personas, basado en derechos humanos, equidad, transparencia y responsabilidad institucional.</p></div>
+
+
+<div class="page">
+<h1 id="referencias">Referencias bibliográficas</h1>
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Chan, C. K. Y. (2023). A comprehensive AI policy education framework for university teaching and learning. <em>International Journal of Educational Technology in Higher Education, 20</em>, Article 38. <a href="https://doi.org/10.1186/s41239-023-00408-3" target="_blank" rel="noopener noreferrer">https://doi.org/10.1186/s41239-023-00408-3</a></p>
+
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Cotton, D. R. E., Cotton, P. A., &amp; Shipway, J. R. (2023). ChatGPT: A brave new world for academic integrity? <em>Innovations in Education and Teaching International, 60</em>(5), 1–12. <a href="https://doi.org/10.1080/14703297.2023.2190148" target="_blank" rel="noopener noreferrer">https://doi.org/10.1080/14703297.2023.2190148</a></p>
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Crompton, H., &amp; Burke, D. (2023). Artificial intelligence in higher education: The state of the field. <em>International Journal of Educational Technology in Higher Education, 20</em>, Article 22. <a href="https://doi.org/10.1186/s41239-023-00392-8" target="_blank" rel="noopener noreferrer">https://doi.org/10.1186/s41239-023-00392-8</a></p>
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Dwivedi, Y. K., Kshetri, N., Hughes, L., Slade, E. L., Jeyaraj, A., Kar, A. K., Baabdullah, A. M., Koohang, A., Raghavan, V., Ahuja, M., Albanna, H., Albashrawi, M. A., Al-Busaidi, A. S., Al-Haidari, A., Al-Jabri, I., Al-Samarraie, H., Andreou, A., &amp; otros. (2023). So what if ChatGPT wrote it? Multidisciplinary perspectives on opportunities, challenges and implications of generative conversational AI for research, practice and policy. <em>International Journal of Information Management, 71</em>, 102642. <a href="https://doi.org/10.1016/j.ijinfomgt.2023.102642" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.ijinfomgt.2023.102642</a></p>
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Khalil, M., &amp; Er, E. (2023). Will ChatGPT get you caught? Rethinking of plagiarism detection. <em>International Journal for Educational Integrity, 19</em>, Article 9. <a href="https://doi.org/10.1007/s40979-023-00142-0" target="_blank" rel="noopener noreferrer">https://doi.org/10.1007/s40979-023-00142-0</a></p>
+
+</div>
+
+<div class="page">
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Kasneci, E., Sessler, K., Küchemann, S., Bannert, M., Dementieva, D., Fischer, F., Gasser, U., Groh, G., Günnemann, S., Hüllermeier, E., Krusche, S., Kutyniok, G., Michaeli, T., Nerdel, C., Pfeiffer, F., Poquet, O., Sailer, M., Schmidt, A., Seidel, T., Stadler, M., &amp; Kasneci, G. (2023). ChatGPT for good? On opportunities and challenges of large language models for education. <em>Learning and Individual Differences, 103</em>, 102274. <a href="https://doi.org/10.1016/j.lindif.2023.102274" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.lindif.2023.102274</a></p>
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Lim, W. M., Gunasekara, A., Pallant, J. L., Pallant, J. I., &amp; Pechenkina, E. (2023). Generative AI and the future of education: Ragnarök or reformation? A paradoxical perspective from management educators. <em>The International Journal of Management Education, 21</em>(2), Article 100790. <a href="https://doi.org/10.1016/j.ijme.2023.100790" target="_blank" rel="noopener noreferrer">https://doi.org/10.1016/j.ijme.2023.100790</a></p>
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Lo, C. K. (2023). What is the impact of ChatGPT on education? A rapid review of the literature. <em>Education Sciences, 13</em>(4), Article 410. <a href="https://doi.org/10.3390/educsci13040410" target="_blank" rel="noopener noreferrer">https://doi.org/10.3390/educsci13040410</a></p>
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Perkins, M. (2023). Academic integrity considerations of AI large language models in the post-pandemic era: ChatGPT and beyond. <em>Journal of University Teaching &amp; Learning Practice, 20</em>(2), Article 07. <a href="https://doi.org/10.53761/1.20.02.07" target="_blank" rel="noopener noreferrer">https://doi.org/10.53761/1.20.02.07</a></p>
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Rudolph, J., Tan, S., &amp; Tan, S. (2023). ChatGPT: Bullshit spewer or the end of traditional assessments in higher education? <em>Journal of Applied Learning &amp; Teaching, 6</em>(1), 342–363. <a href="https://doi.org/10.37074/jalt.2023.6.1.9" target="_blank" rel="noopener noreferrer">https://doi.org/10.37074/jalt.2023.6.1.9</a></p>
+
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Sullivan, M., Kelly, A., &amp; McLaughlan, P. (2023). ChatGPT in higher education: Considerations for academic integrity and student learning. <em>Journal of Applied Learning &amp; Teaching, 6</em>(1), 1–10. <a href="https://doi.org/10.37074/jalt.2023.6.1.17" target="_blank" rel="noopener noreferrer">https://doi.org/10.37074/jalt.2023.6.1.17</a></p>
+
+
+
+</div>
+
+<div class="page">
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word;">Tlili, A., Shehata, B., Adarkwah, M. A., Bozkurt, A., Hickey, D. T., Huang, R., &amp; Agyemang, B. (2023). What if the devil is my guardian angel: ChatGPT as a case study of using chatbots in education. <em>Smart Learning Environments, 10</em>, Article 15. <a href="https://doi.org/10.1186/s40561-023-00237-x" target="_blank" rel="noopener noreferrer">https://doi.org/10.1186/s40561-023-00237-x</a></p>
+<p style="margin-left: 48px; text-indent: -48px; text-align: left; overflow-wrap: anywhere; word-break: break-word; text-align-last: justify;">UNESCO. (2023). <em>Guidance for generative AI in education and research</em>. <a href="https://unesdoc.unesco.org/ark:/48223/pf0000386693" target="_blank" rel="noopener noreferrer">https://unesdoc.unesco.org/ark:/48223/pf0000386693</a></p></div><div class="page">
+
+	</div>
+	
+	<!--  -->
+	<div class="page invertcolor" num="" style="background-image: radial-gradient(white, #ecf0f1, #e3e5e7); display:flex; align-items:center; justify-content:center;">
+			<a style="width:50%" target="_blank" href="https://descartes.matem.unam.mx/"><img loading="lazy" src="images/general/logo_descartes.svg" width="100%"></a>
+	</div>
+	
+	<!-- [cierra] pages_container -->
+	</div>
+
+	<!-- [cierra] book_container -->
+	</div>
+
+
+</body></html>
